@@ -97,7 +97,7 @@
                             <artifactItem>
                                 <groupId>com.github.jsimone</groupId>
                                 <artifactId>whattodrink_project</artifactId>
-                                <version>9.0.13.0</version>
+                                <version>9.0</version>
                                 <destFileName>whattodrink_project.jar</destFileName>
                             </artifactItem>
                         </artifactItems>
