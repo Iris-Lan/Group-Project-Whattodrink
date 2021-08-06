@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,19 +54,19 @@ public class CompanyBean implements Serializable {
 	private Timestamp 		alter_date;
 	
 	
-	@OneToMany(mappedBy = "companyBean")
+	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<DrinkBean> drinks = new LinkedHashSet<>();
 	
-	@OneToMany(mappedBy = "companyBean")
+	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<CategoryBean> categories = new LinkedHashSet<>();
 	
-	@OneToMany(mappedBy = "companyBean")
+	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<ToppingBean> toppings = new LinkedHashSet<>();
 	
-	@OneToMany(mappedBy = "companyBean")
+	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<OrderBean> orders = new LinkedHashSet<>();
 	
-	@OneToMany(mappedBy = "companyBean")
+	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<FavoriteBean> favorites = new LinkedHashSet<>();
 	
 	
