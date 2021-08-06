@@ -85,7 +85,7 @@
 
 
 
-		 <plugin>
+        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
@@ -95,10 +95,10 @@
                     <configuration>
                         <artifactItems>
                             <artifactItem>
-                                <groupId>com.github.jsimone</groupId>
-                                <artifactId>whattodrink_project</artifactId>
-                                <version>9.0</version>
-                                <destFileName>whattodrink_project.jar</destFileName>
+                                <groupId>com.heroku</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>9.0.41.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
                             </artifactItem>
                         </artifactItems>
                     </configuration>
