@@ -1,9 +1,12 @@
 package _00_init.utils;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +24,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -67,6 +72,60 @@ public class GlobalService {
 		}
 		return mimeRepo;
 	}
+	
+	static public Map<String, String> readCompanyIdData() {
+    	Map<String, String> companyIdData = new HashMap<>();
+    	InputStream is = null;
+    	try {
+    		try {
+    			is = new FileInputStream("data/companyIdTable.csv");
+    		} catch(Exception e) {
+    			System.out.println("發生例外：" + e.getMessage());
+    			return null; 
+    		}
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(is, "BIG5")
+					);
+			System.out.println("br=" + br);
+			String line = "";
+			while ((line = br.readLine())!= null) {
+				//System.out.println("line=" + line);
+				String[] sa = line.split(",");
+				companyIdData.put(sa[0], sa[1]);
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return companyIdData;
+    	
+    }
+	
+	static public String getCompanyId(String companyName) {
+		File file = new File("data/companyIdTable.csv");		
+		String  createCompanyId = ""; 
+		try (
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true),"BIG5"));			
+		){
+			TreeSet<String> oldCompanyId = new TreeSet<>();
+			for(String strKey : GlobalService.readCompanyIdData().keySet()) {			
+				oldCompanyId.add(GlobalService.readCompanyIdData().get(strKey));
+			}
+			
+			if(GlobalService.readCompanyIdData().containsKey(companyName) == false) {
+				createCompanyId = (char)(oldCompanyId.last().charAt(0) + 1) + "01";
+				String newCompanyIdDate = companyName + "," + createCompanyId;
+				bw.write(newCompanyIdDate);
+			}else {
+				createCompanyId = GlobalService.readCompanyIdData().get(companyName);
+//				System.out.println("公司已存在，companyId=" + createCompanyId);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return createCompanyId;
+	}
+	
 	
     static public Map<String, String> readMimeTypeData() {
     	Map<String, String> mimeRepo = new HashMap<>();
@@ -193,6 +252,8 @@ public class GlobalService {
 		//
 		String t1 = getSHA1Endocing(file);
 		System.out.println("SHA1:" + t1);
+		
+
 	}
 
 	// 本方法調整fileName的長度小於或等於maxLength。

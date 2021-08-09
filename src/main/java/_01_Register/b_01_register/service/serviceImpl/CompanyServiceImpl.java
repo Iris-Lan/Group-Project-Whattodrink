@@ -9,10 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import _00_init.utils.GlobalService;
 import _00_init.utils.HibernateUtils;
 import _01_Register.b_01_register.dao.CompanyDao;
 import _01_Register.b_01_register.dao.impl.CompanyDaoImpl;
-import _01_Register.b_01_register.modal.CompanyBean;
+import _01_Register.b_01_register.model.CompanyBean;
 import _01_Register.b_01_register.service.CompanyService;
 
 
@@ -29,29 +31,11 @@ public class CompanyServiceImpl implements Serializable, CompanyService {
 	CompanyDao companyDao;
 
 	public CompanyServiceImpl() {
-		companyDao = new CompanyDaoImpl();
 		factory = HibernateUtils.getSessionFactory();
+		companyDao = new CompanyDaoImpl();
 	}
 	
-	
-	@Override
-	public void persist(CompanyBean companyBean) {
-		Session session = factory.getCurrentSession();
-		Transaction tx = null;
-		
-		try {
-			 tx = session.beginTransaction();
-			 companyDao.persist(companyBean);
-			 tx.commit();
-		}catch(Exception ex) {
-			if (tx != null)
-				tx.rollback();
-			ex.printStackTrace();
-			throw new RuntimeException(ex);
-		}
-		log.info("新增CompanyBean功能之Service: 資料新增成功, CompanyBean=" + companyBean);
-	}
-	
+
 	
 	@Override
 	public void save(CompanyBean companyBean) {
@@ -178,14 +162,35 @@ public class CompanyServiceImpl implements Serializable, CompanyService {
 		return companyBeans;
 	}
 
+//	@Override
+//	public CompanyBean findById(Integer id) {
+//		CompanyBean companyBean = null;
+//		Session session = factory.getCurrentSession();
+//		Transaction tx = null;
+//		try {
+//			tx = session.beginTransaction();
+//			companyBean = companyDao.findById(id);
+//			tx.commit();
+//		}catch(Exception e) {
+//			if(tx != null) {
+//				tx.rollback();
+//			}
+//		}
+//		
+//		log.info("List<CompanyBean> companyBean=" + companyBean);
+//		return companyBean;
+//	}
+
+
+
 	@Override
-	public CompanyBean findById(Integer id) {
+	public CompanyBean findById(String companyId) {
 		CompanyBean companyBean = null;
 		Session session = factory.getCurrentSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			companyBean = companyDao.findById(id);
+			companyBean = companyDao.findById(companyId);
 			tx.commit();
 		}catch(Exception e) {
 			if(tx != null) {
@@ -195,6 +200,14 @@ public class CompanyServiceImpl implements Serializable, CompanyService {
 		
 		log.info("List<CompanyBean> companyBean=" + companyBean);
 		return companyBean;
+	}
+
+
+
+	@Override
+	public String getCompanyId(String companyName) {
+		String companyId = GlobalService.getCompanyId(companyName);
+		return companyId;
 	}
 
 

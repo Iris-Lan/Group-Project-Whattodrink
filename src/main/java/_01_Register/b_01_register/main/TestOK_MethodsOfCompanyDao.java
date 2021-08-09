@@ -1,8 +1,6 @@
 package _01_Register.b_01_register.main;
 
-import java.util.List;
-
-import _01_Register.b_01_register.modal.CompanyBean;
+import _01_Register.b_01_register.model.CompanyBean;
 import _01_Register.b_01_register.service.CompanyService;
 import _01_Register.b_01_register.service.serviceImpl.CompanyServiceImpl;
 
@@ -18,7 +16,7 @@ public class TestOK_MethodsOfCompanyDao {
 		cb.setCompany_owner("我原本叫黃小新，被改成黃大新了");
 		companyService.updateCompany(cb);
 		
-		System.out.println(companyService.findById(5));
+		System.out.println(companyService.findById(cb.getCompany_id()));
 		
 		
 		

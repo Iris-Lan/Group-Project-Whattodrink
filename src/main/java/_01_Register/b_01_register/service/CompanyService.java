@@ -1,7 +1,8 @@
 package _01_Register.b_01_register.service;
 
 import java.util.List;
-import _01_Register.b_01_register.modal.CompanyBean;
+
+import _01_Register.b_01_register.model.CompanyBean;
 
 
 public interface CompanyService {
@@ -15,16 +16,16 @@ public interface CompanyService {
 	CompanyBean findByCompanyAccountAndPassword(String company_account, String password);
 	
 	void updateCompany(CompanyBean companyBean);
-	
-	void persist(CompanyBean companyBean);
-	
-	
+
+	String getCompanyId(String companyName);
 	
 	
 
 	List<CompanyBean> findAll() ;
 
-	CompanyBean findById(Integer id) ;
+	CompanyBean findById(String companyId) ;
+	
+//	CompanyBean findById(Integer id) ;
 
 //	String getSelectTag(String tagName, int selected);
 	

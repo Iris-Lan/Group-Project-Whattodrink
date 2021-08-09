@@ -2,7 +2,7 @@ package _01_Register.b_01_register.dao;
 
 import java.util.List;
 
-import _01_Register.b_01_register.modal.CompanyBean;
+import _01_Register.b_01_register.model.CompanyBean;
 
 
 public interface CompanyDao {
@@ -16,15 +16,15 @@ public interface CompanyDao {
 	void updateCompany(CompanyBean companyBean);
 	
 	CompanyBean findByCompanyAccountAndPassword(String company_account, String password);
-	
-	void persist(CompanyBean companyBean);
-	
+
 	
 	
 
 	List<CompanyBean> findAll();
 
-	CompanyBean findById(Integer id);
+	CompanyBean findById(String companyId);
+	
+//	CompanyBean findById(Integer id);
 
 	
 

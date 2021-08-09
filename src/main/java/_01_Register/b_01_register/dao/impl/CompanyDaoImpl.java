@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import _00_init.utils.HibernateUtils;
 import _01_Register.b_01_register.dao.CompanyDao;
-import _01_Register.b_01_register.modal.CompanyBean;
+import _01_Register.b_01_register.model.CompanyBean;
 
 
 
@@ -43,20 +43,12 @@ public class CompanyDaoImpl implements Serializable, CompanyDao {
 	}
 	
 	
-	//新增一筆紀錄
-	@Override
-	public void persist(CompanyBean companyBean) {
-		Session session = factory.getCurrentSession();
-		session.persist(companyBean);
-		log.info("儲存CompanyBean功能之Dao: 資料新增成功, CompanyBean=" + companyBean);
-	}
-	
 	
 	//新增一筆紀錄
 	@Override
 	public void save(CompanyBean companyBean) {
 		Session session = factory.getCurrentSession();
-		session.save(companyBean);
+		session.persist(companyBean);
 		log.info("儲存CompanyBean功能之Dao: 資料新增成功, CompanyBean=" + companyBean);
 	}
 	
@@ -136,15 +128,15 @@ public class CompanyDaoImpl implements Serializable, CompanyDao {
 	
 	
 	
-	//透過商家Id，回傳該CompanyBean
-	@Override
-	public CompanyBean findById(Integer company_id) {
-		Session session = factory.getCurrentSession();
-		
-		CompanyBean companyBean = session.get(CompanyBean.class, company_id);
-		log.info("CompanyBean=" + companyBean);
-		return companyBean;
-	}
+//	//透過商家Id，回傳該CompanyBean
+//	@Override
+//	public CompanyBean findById(Integer company_id) {
+//		Session session = factory.getCurrentSession();
+//		
+//		CompanyBean companyBean = session.get(CompanyBean.class, company_id);
+//		log.info("CompanyBean=" + companyBean);
+//		return companyBean;
+//	}
 
 	//回傳所有商家的CompanyBean資料
 	@Override
@@ -156,6 +148,16 @@ public class CompanyDaoImpl implements Serializable, CompanyDao {
 					  .getResultList();		
 		log.info("回傳所有商家資料之Dao#findAll(), List<CompanyBean>=" + list); 
 		return list;
+	}
+
+
+
+	@Override
+	public CompanyBean findById(String companyId) {
+		Session session = factory.getCurrentSession();		
+		CompanyBean companyBean = session.get(CompanyBean.class, companyId);
+		log.info("CompanyBean=" + companyBean);
+		return companyBean;
 	}
 
 

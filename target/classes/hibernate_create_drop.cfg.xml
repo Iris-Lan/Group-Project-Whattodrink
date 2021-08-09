@@ -26,14 +26,22 @@
 		<property name="connection_pool_size">8</property>
 
 		<!-- 3. 宣告程式使用的Mapping檔 ，每個永續類別都需要定義一個Mapping檔 -->
-		<mapping class="_01_Register.b_01_register.modal.CompanyBean" />
+		<mapping class="_01_Register.c_01_register.model.CustomerBean" />
+		<mapping class="_01_Register.b_01_register.model.CompanyBean" />
 		<mapping class="_03_ListDrinks.model.CategoryBean" />
 		<mapping class="_03_ListDrinks.model.DrinkBean" />
 		<mapping class="_03_ListDrinks.model.ToppingBean" />
 		<mapping class="_04_ShoppingCart.model.ItemBean" />
 		<mapping class="_04_ShoppingCart.model.ItemToppingBean" />
 		<mapping class="_04_ShoppingCart.model.OrderBean" />
+		<mapping class="_04_ShoppingCart.model.ShoppingCart" />
+		<mapping class="_07_Others.model.CommentBean" />
 		<mapping class="_07_Others.model.FavoriteBean" />
+		<mapping class="_07_Others.model.SugarLevelBean" />
+		<mapping class="_07_Others.model.SugarLimitBean" />
+		<mapping class="_07_Others.model.TempLevelBean" />
+		<mapping class="_07_Others.model.TempLimitBean" />
+		<mapping class="_07_Others.model.CreateOrderId" />
 
 
 	</session-factory>

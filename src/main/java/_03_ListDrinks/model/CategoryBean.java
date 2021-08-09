@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import _01_Register.b_01_register.modal.CompanyBean;
+import _01_Register.b_01_register.model.CompanyBean;
 
 
 @Entity
