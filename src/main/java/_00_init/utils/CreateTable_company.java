@@ -49,7 +49,7 @@ public class CreateTable_company {
 		companyBean.setDrinks(null);
 		companyBean.setCategories(null);
 		companyBean.setToppings(null);
-		companyBean.setOrders(null);
+//		companyBean.setOrders(null);
 		companyBean.setFavorites(null);
 		
 		
