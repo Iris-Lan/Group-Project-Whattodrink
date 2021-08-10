@@ -56,7 +56,7 @@ public class TestForECPay2 extends HttpServlet {
 	public static String genAioCheckOutALL(){		
 		AioCheckOutALL obj = new AioCheckOutALL();
 		InvoiceObj invoice = new InvoiceObj();		
-		obj.setMerchantTradeNo("aykkdjjdjd");
+		obj.setMerchantTradeNo("aykkdjjjd");
 		obj.setMerchantTradeDate("2021/08/10 19:32:00");
 		obj.setTotalAmount("105");
 		obj.setTradeDesc("aaaxxx");
