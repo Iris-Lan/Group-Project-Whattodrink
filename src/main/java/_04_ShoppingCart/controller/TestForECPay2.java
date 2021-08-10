@@ -37,9 +37,13 @@ public class TestForECPay2 extends HttpServlet {
 		
 		productName = "珍珠奶茶x1 70元#冬瓜茶x1 35元";
 		String result = genAioCheckOutALL();
-		request.setAttribute("result", result);
 		
 		
+		System.out.println(result);
+		
+		
+		
+//		request.setAttribute("result", result);
 //		RequestDispatcher rd = request.getRequestDispatcher("/ECPayResult.jsp");
 //		rd.forward(request, response);
 //		return;
@@ -63,16 +67,16 @@ public class TestForECPay2 extends HttpServlet {
 		obj.setItemName(productName);
 //		EcpayFunction.genCheckMacValue(key, iv, obj);
 		//必填，僅停留付款成功頁面，此處須設計頁面接收綠界交易結果並回傳參數
-		obj.setReturnURL("https://whattodrink.herokuapp.com/ECPayResult.jsp");
+		obj.setReturnURL("https://whattodrink.herokuapp.com/page1.jsp");
 //		obj.setReturnURL("https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5");
 //		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
 		
 		//付款成功後按返回按鈕
-//		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
+		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
 		
 		
 		//付款成功後返回client端網址  
-		obj.setOrderResultURL("https://whattodrink.herokuapp.com/page1.jsp");
+//		obj.setOrderResultURL("https://whattodrink.herokuapp.com");
 		obj.setNeedExtraPaidInfo("N");
 		
 		obj.setInvoiceMark("Y");
