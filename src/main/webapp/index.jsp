@@ -27,6 +27,6 @@
 		<input type="button" value="付款去~" onclick="reconfirmOrder()"/>
 	</form>
 	
-	<a href="<c:url value='/page1.jsp'/>"></a>
+	<a href="<c:url value='/page1.jsp'/>">HI</a>
 </body>
 </html>
