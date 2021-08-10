@@ -3,6 +3,7 @@ package _04_ShoppingCart.controller;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,16 +34,14 @@ public class TestForECPay2 extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		initial();
-//		response.setContentType("text/html;charset=UTF-8");
-		
-		productName = "珍珠奶茶x1 70元#冬瓜茶x1 35元";
-		String result = genAioCheckOutALL();
-		
-		
-		System.out.println(result);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();		
+		productName = "珍珠奶茶x1 70元#冬瓜茶x1 35元";		
+        out.println(genAioCheckOutALL());
 		
 		
 		
+//        String result = genAioCheckOutALL();
 //		request.setAttribute("result", result);
 //		RequestDispatcher rd = request.getRequestDispatcher("/ECPayResult.jsp");
 //		rd.forward(request, response);
@@ -59,24 +58,25 @@ public class TestForECPay2 extends HttpServlet {
 	//ALL
 	public static String genAioCheckOutALL(){		
 		AioCheckOutALL obj = new AioCheckOutALL();
-		InvoiceObj invoice = new InvoiceObj();		
-		obj.setMerchantTradeNo("aykkdjjjd");
+		InvoiceObj invoice = new InvoiceObj();
+//		obj.setMerchantTradeNo("mknjbh");
+		obj.setMerchantTradeNo(String.valueOf(System.currentTimeMillis()));
 		obj.setMerchantTradeDate("2021/08/10 19:32:00");
 		obj.setTotalAmount("105");
 		obj.setTradeDesc("aaaxxx");
 		obj.setItemName(productName);
 //		EcpayFunction.genCheckMacValue(key, iv, obj);
 		//必填，僅停留付款成功頁面，此處須設計頁面接收綠界交易結果並回傳參數
-		obj.setReturnURL("https://whattodrink.herokuapp.com/page1.jsp");
-//		obj.setReturnURL("https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5");
+//		obj.setReturnURL("https://whattodrink.herokuapp.com/");
+		obj.setReturnURL("https://payment.ecpay.com.tw/Cashier/AioCheckOut/V5");
 //		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
 		
 		//付款成功後按返回按鈕
-		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
+//		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
 		
 		
 		//付款成功後返回client端網址  
-//		obj.setOrderResultURL("https://whattodrink.herokuapp.com");
+		obj.setOrderResultURL("https://whattodrink.herokuapp.com/");
 		obj.setNeedExtraPaidInfo("N");
 		
 		obj.setInvoiceMark("Y");

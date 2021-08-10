@@ -13,6 +13,15 @@
 			document.forms[0].method="POST";
 			document.forms[0].submit();
 		}
+
+		function getOrdersByCompanyId() {	
+			document.forms[0].action="<c:url value='/_04_ShoppingCart/showOrdersByCompanyId'/>" ;
+			document.forms[0].method="POST";
+			document.forms[0].submit();
+		}
+
+
+		
 	</script>
 	
 </head>
@@ -27,6 +36,18 @@
 		<input type="button" value="付款去~" onclick="reconfirmOrder()"/>
 	</form>
 	
-	<a href="<c:url value='/page1.jsp'/>">HI</a>
+	<a href="<c:url value='/page1.jsp'/>">HI</a><br>
+
+	<form action="<c:url value='/_04_ShoppingCart/showOrdersByCompanyId'/>"  method="POST" >
+		<input type="button" value="XXX公司的所有訂單" onclick="getOrdersByCompanyId()" />
+	</form>
+	
+	<br>
+	
+	<c:forEach var="list" items="${getOrdersByCompanyIdTest}">
+		${list}<br>
+	</c:forEach>
+	
+	
 </body>
 </html>
