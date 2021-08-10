@@ -56,18 +56,18 @@ public class TestForECPay2 extends HttpServlet {
 	public static String genAioCheckOutALL(){		
 		AioCheckOutALL obj = new AioCheckOutALL();
 		InvoiceObj invoice = new InvoiceObj();		
-		obj.setMerchantTradeNo("ayyya");
-		obj.setMerchantTradeDate("2021/08/06 02:30:00");
+		obj.setMerchantTradeNo("aykkdjjdjd");
+		obj.setMerchantTradeDate("2021/08/10 19:32:00");
 		obj.setTotalAmount("105");
 		obj.setTradeDesc("aaaxxx");
 		obj.setItemName(productName);
 //		EcpayFunction.genCheckMacValue(key, iv, obj);
 		//必填，僅停留付款成功頁面，此處須設計頁面接收綠界交易結果並回傳參數
-		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
-//		obj.setReturnURL("https://whattodrink.herokuapp.com/");
+		obj.setReturnURL("https://whattodrink.herokuapp.com/");
+//		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
 		
 		//付款成功後按返回按鈕
-		obj.setClientBackURL("https://whattodrink.000webhostapp.com/");
+		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
 		
 		
 		//付款成功後返回client端網址  
