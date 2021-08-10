@@ -8,6 +8,6 @@
 <title>ECPay Payment</title>
 </head>
 <body>
-	${requestScope.result}
+	${requestScope.result} 
 </body>
 </html>
