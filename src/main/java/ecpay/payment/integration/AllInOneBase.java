@@ -37,7 +37,14 @@ public class AllInOneBase {
 //			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
+			
+//localVersion
+//			String paymentConfPath = "C:\\_JSP\\workspace\\whattodrink\\src\\main\\resources\\payment_conf.xml";			
+			//原本是下方的，但會有例外
+//			String paymentConfPath = "./src/main/resources/payment_conf.xml";
 				
+			
+//webVersion
 			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 			String paymentConfPath = "";
 			try {
@@ -46,9 +53,6 @@ public class AllInOneBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
-//			String paymentConfPath = "C:\\_JSP\\workspace\\whattodrink\\src\\main\\resources\\payment_conf.xml";			
-			//原本是下方的，但會有例外
-//			String paymentConfPath = "./src/main/resources/payment_conf.xml";
 			
 			
 			
