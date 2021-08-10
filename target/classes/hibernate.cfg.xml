@@ -25,7 +25,7 @@
         <property name="hibernate.transaction.coordinator_class">jdbc</property>
 		<!-- hibernate 相關效能設定 -->
 		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-		<property name="connection_pool_size">8</property>
+		<property name="connection_pool_size">10</property>
 
 		<!-- 3. 宣告程式使用的永續類別 -->
 		<mapping class="_01_Register.c_01_register.model.CustomerBean" />
