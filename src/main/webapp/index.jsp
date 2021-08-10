@@ -26,5 +26,9 @@
 	<form action="<c:url value='/_04_ShoppingCart/TestForECPay2'/>"  method="POST" >
 		<input type="button" value="付款去~" onclick="reconfirmOrder()"/>
 	</form>
+	
+	<form action="<c:url value='/page1.jsp'/>"  method="POST" >
+		<input type="button" value="Go to page1"/>
+	</form>
 </body>
 </html>
