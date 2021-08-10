@@ -19,7 +19,7 @@ public class PaymentVerifyBase{
 		URL fileURL = this.getClass().getResource(confPath);
 		doc = EcpayFunction.xmlParser(fileURL.getPath());
 //		doc = EcpayFunction.xmlParser(fileURL.toString());
-		doc.getDocumentElement().normalize();
+		doc.getDocumentElement().normalize(); 
 	}
 	
 	protected void requireCheck(String FieldName, String objValue, String require){
