@@ -38,8 +38,16 @@ public class AllInOneBase {
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
 				
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			String paymentConfPath = "";
+			try {
+				paymentConfPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+//			String paymentConfPath = "C:\\_JSP\\workspace\\whattodrink\\src\\main\\resources\\payment_conf.xml";			
 			//原本是下方的，但會有例外
-			String paymentConfPath = "C:\\_JSP\\workspace\\whattodrink\\src\\main\\resources\\payment_conf.xml";			
 //			String paymentConfPath = "./src/main/resources/payment_conf.xml";
 			
 			
