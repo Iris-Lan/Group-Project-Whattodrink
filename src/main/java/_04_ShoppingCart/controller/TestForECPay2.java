@@ -63,7 +63,8 @@ public class TestForECPay2 extends HttpServlet {
 		obj.setItemName(productName);
 //		EcpayFunction.genCheckMacValue(key, iv, obj);
 		//必填，僅停留付款成功頁面，此處須設計頁面接收綠界交易結果並回傳參數
-		obj.setReturnURL("https://whattodrink.herokuapp.com/");
+		obj.setReturnURL("https://whattodrink.herokuapp.com/_04_ShoppingCart/TestForECPay2");
+//		obj.setReturnURL("https://whattodrink.herokuapp.com/");
 //		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
 		
 		//付款成功後按返回按鈕

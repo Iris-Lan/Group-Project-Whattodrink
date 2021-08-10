@@ -18,27 +18,27 @@ public class OrderTest_AllMethods {
 	public static void main(String[] args) {
 
 //SaveOrder
-		CompanyService companyService = new CompanyServiceImpl();
-		OrderService orderService = new OrderServiceImpl();
-		
-		
-		String 	      order_id 	      = orderService.getOrderIdByCompanyName("五十嵐");
-		Timestamp     order_date 	  = new Timestamp(System.currentTimeMillis());
-		Timestamp 	  pickup_date 	  = null;
-		Integer 	  order_quantity  = 5;
-		Integer 	  order_total 	  = 500;
-		String 		  payment 		  = "現金支付";
-		String 		  orderStatus 	  = "確認訂單中";
-		String 		  company_id      = companyService.getCompanyId("五十嵐");
-		Integer 	  customer_id     = null;
-		String 		  receipt		  = null;
-		String 		  order_text      = null;
-		CustomerBean  customerBean    = null;
-		CompanyBean   companyBean     = companyService.findById(company_id);
-		
+//		CompanyService companyService = new CompanyServiceImpl();
+//		OrderService orderService = new OrderServiceImpl();
+//		
+//		
+//		String 	      order_id 	      = orderService.getOrderIdByCompanyName("五十嵐");
+//		Timestamp     order_date 	  = new Timestamp(System.currentTimeMillis());
+//		Timestamp 	  pickup_date 	  = null;
+//		Integer 	  order_quantity  = 5;
+//		Integer 	  order_total 	  = 500;
+//		String 		  payment 		  = "現金支付";
+//		String 		  orderStatus 	  = "確認訂單中";
+//		String 		  company_id      = companyService.getCompanyId("五十嵐");
+//		Integer 	  customer_id     = null;
+//		String 		  receipt		  = null;
+//		String 		  order_text      = null;
+//		CustomerBean  customerBean    = null;
+//		CompanyBean   companyBean     = companyService.findById(company_id);
+//		
 
 //預設建構子		
-		OrderBean orderBean = new OrderBean(order_id, customer_id, order_date, pickup_date, company_id, order_quantity, order_total, payment, orderStatus, receipt, order_text);
+//		OrderBean orderBean = new OrderBean(order_id, customer_id, order_date, pickup_date, company_id, order_quantity, order_total, payment, orderStatus, receipt, order_text);
 		
 //包含bean建構子		
 //		OrderBean orderBean = new OrderBean(order_id, order_date, pickup_date, order_quantity, order_total, payment, orderStatus, receipt, order_text, customerBean, companyBean);
@@ -46,7 +46,7 @@ public class OrderTest_AllMethods {
 		
 		
 //		orderBean.setItems(null);
-		orderBean.setCompanyBean(companyBean);
+//		orderBean.setCompanyBean(companyBean);
 //		orderBean.setComments(null);
 //		orderBean.setCustomerBean(null);
 
@@ -79,12 +79,12 @@ public class OrderTest_AllMethods {
 		
 		
 //FindOrderByCompanyId
-//		OrderService orderService = new OrderServiceImpl();
-//
-//		List<OrderBean> list = orderService.findByCompanyId("A01");
-//		for(OrderBean ob : list) {
-//			System.out.println(ob); 			
-//		}
+		OrderService orderService = new OrderServiceImpl();
+
+		List<OrderBean> list = orderService.findByCompanyId("A01");
+		for(OrderBean ob : list) {
+			System.out.println(ob); 			
+		}
 	
 		
 //FindOrderByCustomerId
