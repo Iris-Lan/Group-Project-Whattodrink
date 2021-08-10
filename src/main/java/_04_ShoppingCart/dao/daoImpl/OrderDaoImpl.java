@@ -1,5 +1,6 @@
 package _04_ShoppingCart.dao.daoImpl;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,9 +60,9 @@ public class OrderDaoImpl implements OrderDao{
 						         .setParameter("account", customer_account)
 			  	   		         .getSingleResult();
 		
-		String hql2 = "FROM OrderBean o WHERE o.customerBean = :custb";
+		String hql2 = "FROM OrderBean o WHERE o.customer_id = :id";
 		List<OrderBean> beans = session.createQuery(hql2, OrderBean.class)
-								       .setParameter("custb", cb)
+								       .setParameter("id", cb.getCustomer_id())
 					  	   		       .getResultList();
 		return beans;
 	}
@@ -71,16 +72,12 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public List<OrderBean> findByCompanyId(String companyId) {
 		log.info("依照companyId編號讀取特定公司的所有訂單之Dao, companyId=" + companyId);
-		Session session = factory.getCurrentSession();
-		String hql = "FROM CompanyBean c WHERE c.company_id = :id";
-		CompanyBean cb = session.createQuery(hql, CompanyBean.class)
-						        .setParameter("id", companyId)
-			  	   		        .getSingleResult();
-		
-		String hql2 = "FROM OrderBean o WHERE o.company_id = :compBean";
-		List<OrderBean> beans = session.createQuery(hql2, OrderBean.class)
-								       .setParameter("compBean", companyId)
-					  	   		       .getResultList();
+		Session session = factory.getCurrentSession();	
+		String hql = "FROM OrderBean o WHERE o.company_id = :id";
+		List<OrderBean> beans = session.createQuery(hql, OrderBean.class)
+									   .setParameter("id", companyId)
+									   .getResultList();
+								
 		return beans;
 	}
 
@@ -89,10 +86,8 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public void deleteOrderById(String orderId) {
 		log.info("依照orderId編號刪除特定訂單之Dao, orderId=" + orderId);
-		Session session = factory.getCurrentSession();
-		String hql2 = "DELETE FROM CreateOrderId c WHERE c.order_id = :id";		
-		String hql = "DELETE FROM OrderBean o WHERE o.order_id = :id";		
-		session.createQuery(hql2).setParameter("id", orderId).executeUpdate();		
+		Session session = factory.getCurrentSession();	
+		String hql = "DELETE FROM OrderBean o WHERE o.order_id = :id";			
 		session.createQuery(hql).setParameter("id", orderId).executeUpdate();		
 	}
 
@@ -106,6 +101,15 @@ public class OrderDaoImpl implements OrderDao{
 		session.createQuery(hql).setParameter("status", orderStatus)
 								.setParameter("id", orderBean.getOrder_id())
 								.executeUpdate();
+		
+		
+		
+		String hqlAddPickUpDate = "UPDATE OrderBean o SET o.pickup_date = :pickup WHERE o.order_id = :id";
+		if(orderStatus == "已領取") {
+			session.createQuery(hqlAddPickUpDate).setParameter("pickup", new Timestamp(System.currentTimeMillis()))
+												 .setParameter("id", orderBean.getOrder_id())
+												 .executeUpdate();
+		}
 	}
 
 
@@ -131,11 +135,6 @@ public class OrderDaoImpl implements OrderDao{
 	public List<OrderBean> findByCustomerId(int customerId) {
 		log.info("依照customerId編號讀取特定會員的所有訂單之Dao, customerId=" + customerId);
 		Session session = factory.getCurrentSession();
-//		String hql = "FROM OrderBean c WHERE c.customer_id = :account";
-//		CustomerBean cb = session.createQuery(hql, CustomerBean.class)
-//						         .setParameter("account", customerId)
-//			  	   		         .getSingleResult();
-		
 		String hql = "FROM OrderBean o WHERE o.customer_id = :account";
 		List<OrderBean> beans = session.createQuery(hql, OrderBean.class)
 								       .setParameter("account", customerId)

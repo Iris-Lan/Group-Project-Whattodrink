@@ -58,14 +58,14 @@ public class OrderBean {
 	private Set<ItemBean> items = new LinkedHashSet<>();
 
 	
-//	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="FK_CustomerBean_customer_id")
-//	private CustomerBean customerBean;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_CustomerBean_customer_id")
+	private CustomerBean customerBean;
 	
 	
-// 	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="FK_CompanyBean_Company_id")
-//	private CompanyBean companyBean;
+ 	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_CompanyBean_Company_id")
+	private CompanyBean companyBean;
  	
  	
 	@OneToMany(mappedBy = "orderBean")
@@ -79,7 +79,7 @@ public class OrderBean {
 
 	
 
-	
+//預設建構子
 	public OrderBean(String order_id, Integer customer_id, Timestamp order_date, Timestamp pickup_date,
 			String company_id, Integer order_quantity, Integer order_total, String payment, String orderStatus,
 			String receipt, String order_text) {
@@ -99,14 +99,28 @@ public class OrderBean {
 
 
 
-
-
+//包含相關bean建構子
+	public OrderBean(String order_id, Timestamp order_date, Timestamp pickup_date, Integer order_quantity,
+			Integer order_total, String payment, String orderStatus, String receipt, String order_text,
+			CustomerBean customerBean, CompanyBean companyBean) {
+		super();
+		this.order_id = order_id;
+		this.order_date = order_date;
+		this.pickup_date = pickup_date;
+		this.order_quantity = order_quantity;
+		this.order_total = order_total;
+		this.payment = payment;
+		this.orderStatus = orderStatus;
+		this.receipt = receipt;
+		this.order_text = order_text;
+		this.customerBean = customerBean;
+		this.companyBean = companyBean;
+	}
 
 
 	public String getOrder_id() {
 		return order_id;
 	}
-
 
 	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
@@ -193,21 +207,21 @@ public class OrderBean {
 		this.items = items;
 	}
 
-//	public CustomerBean getCustomer_id() {
-//		return customerBean;
-//	}
-//
-//	public void setCustomer_id(CustomerBean customerBean) {
-//		this.customerBean = customerBean;
-//	}
-//
-//	public CompanyBean getCompanyBean() {
-//		return companyBean;
-//	}
-//
-//	public void setCompanyBean(CompanyBean companyBean) {
-//		this.companyBean = companyBean;
-//	}
+	public CustomerBean getCustomer_id() {
+		return customerBean;
+	}
+
+	public void setCustomer_id(CustomerBean customerBean) {
+		this.customerBean = customerBean;
+	}
+
+	public CompanyBean getCompanyBean() {
+		return companyBean;
+	}
+
+	public void setCompanyBean(CompanyBean companyBean) {
+		this.companyBean = companyBean;
+	}
 
 
 	public Set<CommentBean> getComments() {
@@ -237,16 +251,16 @@ public class OrderBean {
 
 
 
-//	public CustomerBean getCustomerBean() {
-//		return customerBean;
-//	}
-//
-//
-//
-//
-//	public void setCustomerBean(CustomerBean customerBean) {
-//		this.customerBean = customerBean;
-//	}
+	public CustomerBean getCustomerBean() {
+		return customerBean;
+	}
+
+
+
+
+	public void setCustomerBean(CustomerBean customerBean) {
+		this.customerBean = customerBean;
+	}
 
 
 
@@ -283,10 +297,10 @@ public class OrderBean {
 		builder.append(receipt);
 		builder.append(", order_text=");
 		builder.append(order_text);
-//		builder.append(", customerBean=");
-//		builder.append(customerBean);
-//		builder.append(", companyBean=");
-//		builder.append(companyBean);
+		builder.append(", customerBean=");
+		builder.append(customerBean);
+		builder.append(", companyBean=");
+		builder.append(companyBean);
 		builder.append("]");
 		return builder.toString();
 	}

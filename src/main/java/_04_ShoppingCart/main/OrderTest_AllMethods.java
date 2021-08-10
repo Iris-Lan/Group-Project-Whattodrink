@@ -3,9 +3,12 @@ package _04_ShoppingCart.main;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
+import _01_Register.b_01_register.model.CompanyBean;
 import _01_Register.b_01_register.service.CompanyService;
 import _01_Register.b_01_register.service.serviceImpl.CompanyServiceImpl;
+import _01_Register.c_01_register.model.CustomerBean;
 import _04_ShoppingCart.model.OrderBean;
 import _04_ShoppingCart.service.OrderService;
 import _04_ShoppingCart.service.serviceImpl.OrderServiceImpl;
@@ -30,15 +33,24 @@ public class OrderTest_AllMethods {
 		Integer 	  customer_id     = null;
 		String 		  receipt		  = null;
 		String 		  order_text      = null;
-
+		CustomerBean  customerBean    = null;
+		CompanyBean   companyBean     = companyService.findById(company_id);
 		
+
+//預設建構子		
 		OrderBean orderBean = new OrderBean(order_id, customer_id, order_date, pickup_date, company_id, order_quantity, order_total, payment, orderStatus, receipt, order_text);
+		
+//包含bean建構子		
+//		OrderBean orderBean = new OrderBean(order_id, order_date, pickup_date, order_quantity, order_total, payment, orderStatus, receipt, order_text, customerBean, companyBean);
+		
+		
+		
 //		orderBean.setItems(null);
-//		orderBean.setCompanyBean(null);
+		orderBean.setCompanyBean(companyBean);
 //		orderBean.setComments(null);
 //		orderBean.setCustomerBean(null);
 
-		orderService.save(orderBean);
+//		orderService.save(orderBean);
 		
 		
 		
@@ -54,18 +66,24 @@ public class OrderTest_AllMethods {
 		
 //DeleteByOrderId
 //		OrderService orderService = new OrderServiceImpl();
-//		orderService.deleteOrderById("B0120210810002");
-		
+//		orderService.deleteOrderById("A0120210810007");
 		
 
+//FindOrderBeanByCompanyBean => null (因為存Order時沒存CompanyBean，只存companyId，就無法用CompanyBean 去get多方的訂單資訊 companyBean.getOrders)
+//		CompanyService companyService = new CompanyServiceImpl();
+//		CompanyBean cb = companyService.findById("A01");
+//		Set<OrderBean> list = cb.getOrders();
+//		for(OrderBean ob : list) {
+//			System.out.println(ob);
+//		}
 		
 		
 //FindOrderByCompanyId
 //		OrderService orderService = new OrderServiceImpl();
 //
-//		List<OrderBean> list = orderService.findByCompanyId("B01");
+//		List<OrderBean> list = orderService.findByCompanyId("A01");
 //		for(OrderBean ob : list) {
-//			System.out.println(ob.getOrder_total()); 			
+//			System.out.println(ob); 			
 //		}
 	
 		
@@ -80,8 +98,8 @@ public class OrderTest_AllMethods {
 		
 //UpdateOrderStatus
 //		OrderService orderService = new OrderServiceImpl();
-//		OrderBean orderBean = orderService.findById("A0120210810002");
-//		orderService.updateOrderStatus(orderBean, "取消接單");
+//		OrderBean orderBean = orderService.findById("A0120210810004");
+//		orderService.updateOrderStatus(orderBean, "已領取");
 		
 		
 

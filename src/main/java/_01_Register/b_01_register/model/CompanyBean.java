@@ -71,8 +71,8 @@ public class CompanyBean implements Serializable {
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<ToppingBean> toppings = new LinkedHashSet<>();
 	
-//	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
-//	private Set<OrderBean> orders = new LinkedHashSet<>();
+	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
+	private Set<OrderBean> orders = new LinkedHashSet<>();
 	
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<FavoriteBean> favorites = new LinkedHashSet<>();
@@ -353,14 +353,14 @@ public class CompanyBean implements Serializable {
 
 
 
-//	public Set<OrderBean> getOrders() {
-//		return orders;
-//	}
-//
-//
-//	public void setOrders(Set<OrderBean> orders) {
-//		this.orders = orders;
-//	}
+	public Set<OrderBean> getOrders() {
+		return orders;
+	}
+
+
+	public void setOrders(Set<OrderBean> orders) {
+		this.orders = orders;
+	}
 
 
 	public Set<FavoriteBean> getFavorites() {
@@ -422,8 +422,8 @@ public class CompanyBean implements Serializable {
 		builder.append(categories);
 		builder.append(", toppings=");
 		builder.append(toppings);
-//		builder.append(", orders=");
-//		builder.append(orders);
+		builder.append(", orders=");
+		builder.append(orders);
 		builder.append(", favorites=");
 		builder.append(favorites);
 		builder.append("]");

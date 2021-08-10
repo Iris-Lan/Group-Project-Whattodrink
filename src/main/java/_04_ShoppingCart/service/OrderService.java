@@ -18,9 +18,7 @@ public interface OrderService {
 	List<OrderBean> findByCustomerId(int customerId);
 	
 	void updateOrderStatus(OrderBean orderBean, String orderStatus);
-	
-//	void updateOrder(String orderId);
-	
+
 	void deleteOrderById(String orderId);
 	
 	String getOrderIdByCompanyName(String companyName);

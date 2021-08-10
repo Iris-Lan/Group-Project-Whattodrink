@@ -41,7 +41,7 @@
 		<mapping class="_07_Others.model.SugarLimitBean" />
 		<mapping class="_07_Others.model.TempLevelBean" />
 		<mapping class="_07_Others.model.TempLimitBean" />
-		<mapping class="_07_Others.model.CreateOrderId" />
+
 
 
 	</session-factory>
