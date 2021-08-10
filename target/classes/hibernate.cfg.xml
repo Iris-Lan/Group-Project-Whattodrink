@@ -8,8 +8,8 @@
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">0000</property>
-<!-- 		<property name="connection.url">jdbc:mysql://localhost:3306/test?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property> -->
-		<property name="connection.url">jdbc:mysql://be8e076a5c8c52:6e2ace50@us-cdbr-east-04.cleardb.com/heroku_a64c0078cd65816?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/test?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property>
+<!-- 		<property name="connection.url">jdbc:mysql://be8e076a5c8c52:6e2ace50@us-cdbr-east-04.cleardb.com/heroku_a64c0078cd65816?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property> -->
 		<!-- 2. 其他與資料存取有關的設定 -->
 		<!-- SQL方言，設定是MySQL8Dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
