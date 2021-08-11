@@ -76,7 +76,7 @@ public class TestForECPay2 extends HttpServlet {
 		
 		
 		//付款成功後返回client端網址  
-		obj.setOrderResultURL("https://whattodrink.herokuapp.com/pqge1.jsp");
+		obj.setOrderResultURL("https://whattodrink.herokuapp.com/page1.jsp");
 		obj.setNeedExtraPaidInfo("N");
 		
 		obj.setInvoiceMark("N");
