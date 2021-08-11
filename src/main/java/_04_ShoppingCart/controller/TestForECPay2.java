@@ -72,11 +72,11 @@ public class TestForECPay2 extends HttpServlet {
 //		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
 		
 		//付款成功後按返回按鈕
-		obj.setClientBackURL("http://localhost:8080/whattodrink");
+//		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
 		
 		
 		//付款成功後返回client端網址  
-//		obj.setOrderResultURL("https://whattodrink.herokuapp.com/");
+		obj.setOrderResultURL("https://whattodrink.herokuapp.com/pqge1.jsp");
 		obj.setNeedExtraPaidInfo("N");
 		
 		obj.setInvoiceMark("N");
