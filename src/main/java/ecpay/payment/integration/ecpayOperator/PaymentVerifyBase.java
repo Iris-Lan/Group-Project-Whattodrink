@@ -16,8 +16,9 @@ public class PaymentVerifyBase{
 	protected String confPath = "/ecpay/payment/integration/config/EcpayPayment.xml";
 	protected Document doc;
 	public PaymentVerifyBase(){
-		URL fileURL = this.getClass().getResource(confPath);
-		doc = EcpayFunction.xmlParser(fileURL.getPath());
+//		URL fileURL = this.getClass().getResource(confPath);
+		String fileURL = Thread.currentThread().getContextClassLoader().getResource(confPath).getPath();
+		doc = EcpayFunction.xmlParser(fileURL);
 //		doc = EcpayFunction.xmlParser(fileURL.toString());
 		doc.getDocumentElement().normalize(); 
 	}
