@@ -5,9 +5,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import javax.persistence.*;
-
 import _04_ShoppingCart.model.OrderBean;
 import _07_Others.model.CommentBean;
 import _07_Others.model.FavoriteBean;
