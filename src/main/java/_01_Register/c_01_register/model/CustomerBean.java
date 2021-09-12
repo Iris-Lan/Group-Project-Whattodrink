@@ -1,4 +1,4 @@
-﻿package _01_Register.c_01_register.model;
+package _01_Register.c_01_register.model;
 
 import java.io.Serializable;
 import java.sql.Date;
