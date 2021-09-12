@@ -56,7 +56,7 @@ public class CustomerBean implements Serializable {
 
 	
 	
-	
+	// 顧客會員帳戶設定用
 	public CustomerBean(String customer_name, Date birthday, String email,
 			String customer_address, Double weight) {
 		super();
