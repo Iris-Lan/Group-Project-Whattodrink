@@ -1,6 +1,9 @@
 package _07_Others.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +16,8 @@ import _03_ListDrinks.model.DrinkBean;
 
 @Entity
 @Table(name = "sugar_limit")
-public class SugarLimitBean {
+public class SugarLimitBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,13 +26,15 @@ public class SugarLimitBean {
 	private Integer product_id;
 	
 	private Integer sugar_id;
+	@Column(columnDefinition = "TINYINT(1) default 1" )
+	private boolean enabled;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "FK_TempLevelBean_sugar_id")
+	@ManyToOne
+	@JoinColumn(name = "FK_SugarLevelBean_sugar_id")
 	private SugarLevelBean sugarLevelBean;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "FK_DrinkBean_product_id")
 	private DrinkBean drinkBean;
 
@@ -38,15 +44,15 @@ public class SugarLimitBean {
 	}
 
 
-	public SugarLimitBean(Integer sl_sql, Integer product_id, Integer sugar_id, SugarLevelBean sugarLevelBean,
-			DrinkBean drinkBean) {
+
+	public SugarLimitBean(Integer sl_sql, Integer product_id, Integer sugar_id, boolean enabled) {
 		super();
 		this.sl_sql = sl_sql;
 		this.product_id = product_id;
 		this.sugar_id = sugar_id;
-		this.sugarLevelBean = sugarLevelBean;
-		this.drinkBean = drinkBean;
+		this.enabled = enabled;
 	}
+
 
 
 	public Integer getSl_sql() {
@@ -57,6 +63,18 @@ public class SugarLimitBean {
 	public void setSl_sql(Integer sl_sql) {
 		this.sl_sql = sl_sql;
 	}
+
+
+	public boolean getEnabled() {
+		return enabled;
+	}
+
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 
 
 	public Integer getProduct_id() {
@@ -99,6 +117,7 @@ public class SugarLimitBean {
 	}
 
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -108,6 +127,8 @@ public class SugarLimitBean {
 		builder.append(product_id);
 		builder.append(", sugar_id=");
 		builder.append(sugar_id);
+		builder.append(", enabled=");
+		builder.append(enabled);
 		builder.append(", sugarLevelBean=");
 		builder.append(sugarLevelBean);
 		builder.append(", drinkBean=");
@@ -116,7 +137,7 @@ public class SugarLimitBean {
 		return builder.toString();
 	}
 
-	
+
 	
 	
 	

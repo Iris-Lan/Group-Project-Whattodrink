@@ -8,6 +8,14 @@ package ecpay.payment.integration.domain;
 public class CreateServerOrderObj {
 	
 	/**
+	 * orderBean
+	 * 合作廠商編號，由綠界提供
+	 */
+//	private String MerchantID = "";
+	
+	
+	
+	/**
 	 * MerchantID
 	 * 合作廠商編號，由綠界提供
 	 */

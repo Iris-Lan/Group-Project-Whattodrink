@@ -1,19 +1,18 @@
 package _04_ShoppingCart.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 import _01_Register.b_01_register.model.CompanyBean;
 import _01_Register.c_01_register.model.CustomerBean;
@@ -26,7 +25,8 @@ import _07_Others.model.CommentBean;
 
 @Entity
 @Table(name = "orders")
-public class OrderBean {
+public class OrderBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +38,8 @@ public class OrderBean {
 	private Timestamp order_date;
 	
 	private Timestamp pickup_date;
+	
+	private String scheduled_time;
 	
 	private String company_id;
 	
@@ -51,22 +53,24 @@ public class OrderBean {
 	 
 	private String receipt;
 	
+	private String taxId; //統一編號
+	
 	private String order_text;
 	
- 	
+	private String invitationDiscount;
+	
+	
 	@OneToMany(mappedBy="orderBean", cascade=CascadeType.ALL)
 	private Set<ItemBean> items = new LinkedHashSet<>();
 
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="FK_CustomerBean_customer_id")
 	private CustomerBean customerBean;
 	
-	
- 	@ManyToOne(cascade=CascadeType.ALL)
+ 	@ManyToOne
 	@JoinColumn(name="FK_CompanyBean_Company_id")
 	private CompanyBean companyBean;
- 	
  	
 	@OneToMany(mappedBy = "orderBean")
 	private Set<CommentBean> comments = new LinkedHashSet<>();
@@ -79,43 +83,48 @@ public class OrderBean {
 
 	
 
-//預設建構子
+//建構子
 	public OrderBean(String order_id, Integer customer_id, Timestamp order_date, Timestamp pickup_date,
-			String company_id, Integer order_quantity, Integer order_total, String payment, String orderStatus,
-			String receipt, String order_text) {
+			String scheduled_time, String company_id, Integer order_quantity, Integer order_total, String payment,
+			String orderStatus, String receipt, String taxId, String order_text, String invitationDiscount) {
 		super();
 		this.order_id = order_id;
 		this.customer_id = customer_id;
 		this.order_date = order_date;
 		this.pickup_date = pickup_date;
+		this.scheduled_time = scheduled_time;
 		this.company_id = company_id;
 		this.order_quantity = order_quantity;
 		this.order_total = order_total;
 		this.payment = payment;
 		this.orderStatus = orderStatus;
 		this.receipt = receipt;
+		this.taxId = taxId;
 		this.order_text = order_text;
+		this.invitationDiscount = invitationDiscount;
 	}
-
 
 
 //包含相關bean建構子
-	public OrderBean(String order_id, Timestamp order_date, Timestamp pickup_date, Integer order_quantity,
-			Integer order_total, String payment, String orderStatus, String receipt, String order_text,
-			CustomerBean customerBean, CompanyBean companyBean) {
-		super();
-		this.order_id = order_id;
-		this.order_date = order_date;
-		this.pickup_date = pickup_date;
-		this.order_quantity = order_quantity;
-		this.order_total = order_total;
-		this.payment = payment;
-		this.orderStatus = orderStatus;
-		this.receipt = receipt;
-		this.order_text = order_text;
-		this.customerBean = customerBean;
-		this.companyBean = companyBean;
-	}
+//	public OrderBean(String order_id, Integer customer_id, Timestamp order_date, Timestamp pickup_date,
+//			String scheduled_time, String company_id, Integer order_quantity, Integer order_total, String payment,
+//			String orderStatus, String receipt, String order_text, CustomerBean customerBean, CompanyBean companyBean) {
+//		super();
+//		this.order_id = order_id;
+//		this.customer_id = customer_id;
+//		this.order_date = order_date;
+//		this.pickup_date = pickup_date;
+//		this.scheduled_time = scheduled_time;
+//		this.company_id = company_id;
+//		this.order_quantity = order_quantity;
+//		this.order_total = order_total;
+//		this.payment = payment;
+//		this.orderStatus = orderStatus;
+//		this.receipt = receipt;
+//		this.order_text = order_text;
+//		this.customerBean = customerBean;
+//		this.companyBean = companyBean;
+//	}
 
 
 	public String getOrder_id() {
@@ -141,6 +150,32 @@ public class OrderBean {
 	public void setPickup_date(Timestamp pickup_date) {
 		this.pickup_date = pickup_date;
 	}
+
+	
+	
+	public String getScheduled_time() {
+		return scheduled_time;
+	}
+
+
+
+	public void setScheduled_time(String scheduled_time) {
+		this.scheduled_time = scheduled_time;
+	}
+
+
+
+	public String getInvitationDiscount() {
+		return invitationDiscount;
+	}
+
+
+
+	public void setInvitationDiscount(String invitationDiscount) {
+		this.invitationDiscount = invitationDiscount;
+	}
+
+
 
 	public Integer getOrder_quantity() {
 		return order_quantity;
@@ -207,12 +242,12 @@ public class OrderBean {
 		this.items = items;
 	}
 
-	public CustomerBean getCustomer_id() {
-		return customerBean;
+	public int getCustomer_id() {
+		return customer_id;
 	}
 
-	public void setCustomer_id(CustomerBean customerBean) {
-		this.customerBean = customerBean;
+	public void setCustomer_id(Integer customer_id) {
+		this.customer_id = customer_id;
 	}
 
 	public CompanyBean getCompanyBean() {
@@ -234,6 +269,18 @@ public class OrderBean {
 
 
 
+
+
+
+	public String getTaxId() {
+		return taxId;
+	}
+
+
+
+	public void setTaxId(String taxId) {
+		this.taxId = taxId;
+	}
 
 
 
@@ -265,13 +312,6 @@ public class OrderBean {
 
 
 
-	public void setCustomer_id(Integer customer_id) {
-		this.customer_id = customer_id;
-	}
-
-
-
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -283,6 +323,8 @@ public class OrderBean {
 		builder.append(order_date);
 		builder.append(", pickup_date=");
 		builder.append(pickup_date);
+		builder.append(", scheduled_time=");
+		builder.append(scheduled_time);
 		builder.append(", company_id=");
 		builder.append(company_id);
 		builder.append(", order_quantity=");
@@ -295,8 +337,12 @@ public class OrderBean {
 		builder.append(orderStatus);
 		builder.append(", receipt=");
 		builder.append(receipt);
+		builder.append(", taxId=");
+		builder.append(taxId);
 		builder.append(", order_text=");
 		builder.append(order_text);
+		builder.append(", invitationDiscount=");
+		builder.append(invitationDiscount);
 		builder.append(", customerBean=");
 		builder.append(customerBean);
 		builder.append(", companyBean=");
@@ -304,9 +350,6 @@ public class OrderBean {
 		builder.append("]");
 		return builder.toString();
 	}
-
-
-
-
+	
 
 }

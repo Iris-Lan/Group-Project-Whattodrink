@@ -1,13 +1,10 @@
 package _07_Others.model;
 
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,8 +13,9 @@ import _04_ShoppingCart.model.ItemBean;
 
 @Entity
 @Table(name = "temp_level")
-public class TempLevelBean {
-	
+public class TempLevelBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	private Integer temp_id;
 	
@@ -39,13 +37,13 @@ public class TempLevelBean {
 
 
 
-	public TempLevelBean(Integer temp_id, String temp_level, Set<ItemBean> items, Set<TempLimitBean> tempLimits) {
+
+	public TempLevelBean(Integer temp_id, String temp_level) {
 		super();
 		this.temp_id = temp_id;
 		this.temp_level = temp_level;
-		this.items = items;
-		this.tempLimits = tempLimits;
 	}
+
 
 
 
@@ -91,6 +89,10 @@ public class TempLevelBean {
 	}
 
 
+
+
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -98,17 +100,11 @@ public class TempLevelBean {
 		builder.append(temp_id);
 		builder.append(", temp_level=");
 		builder.append(temp_level);
-		builder.append(", items=");
-		builder.append(items);
-		builder.append(", tempLimits=");
-		builder.append(tempLimits);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
+
+
 	
 	
 	

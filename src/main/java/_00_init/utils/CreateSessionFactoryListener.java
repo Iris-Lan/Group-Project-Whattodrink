@@ -8,6 +8,10 @@ import org.hibernate.SessionFactory;
 @WebListener
 public class CreateSessionFactoryListener implements ServletContextListener {
 	SessionFactory factory;
+	
+//    public CreateSessionFactoryListener() {
+//    	
+//    }
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {

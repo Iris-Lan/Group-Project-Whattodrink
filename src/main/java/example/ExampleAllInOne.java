@@ -1,15 +1,20 @@
 package example;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Hashtable;
+import java.util.Set;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import _03_ListDrinks.model.DrinkBean;
+import _03_ListDrinks.service.DrinkService;
+import _03_ListDrinks.service.serviceImpl.DrinkServiceImpl;
+import _04_ShoppingCart.model.ItemBean;
+import _04_ShoppingCart.model.ItemToppingBean;
+import _04_ShoppingCart.model.OrderBean;
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutALL;
-import ecpay.payment.integration.domain.AioCheckOutATM;
 import ecpay.payment.integration.domain.AioCheckOutBARCODE;
 import ecpay.payment.integration.domain.AioCheckOutCVS;
 import ecpay.payment.integration.domain.AioCheckOutDevide;
@@ -27,6 +32,7 @@ import ecpay.payment.integration.domain.TradeNoAioObj;
 
 public class ExampleAllInOne {
 	public static AllInOne all;
+
 	public static void main(String[] args) {
 		initial();
 //		System.out.println("compare CheckMacValue method testing result: " + cmprChkMacValue());
@@ -37,7 +43,8 @@ public class ExampleAllInOne {
 //		System.out.println("queryTrade: " + postQueryTrade());
 //		System.out.println("tradeNoAio: " + postTradeNoAio());
 //		System.out.println("fundingReconDetail: " + postFundingReconDetail());
-		System.out.println("aioCheckOutALL: " + genAioCheckOutALL());
+//		System.out.println("aioCheckOutALL: " + genAioCheckOutALL("String orderId, ",  OrderBean orderBean));
+		
 //		System.out.println("aioCheckOutATM: " + genAioCheckOutATM());
 //		System.out.println("aioCheckOutCVS: " + genAioCheckOutCVS());
 //		System.out.println("aioCheckOutBARCODE: " + genAioCheckOutBARCODE());
@@ -47,7 +54,8 @@ public class ExampleAllInOne {
 //		System.out.println("aioCheckOutWebATM: " + genAioCheckOutWebATM());
 	}
 
-	private static void initial(){
+	//原本是private
+	public static void initial(){
 		//原本應該要是這樣   -> all = new AllInOne("");		
 		all = new AllInOne();
 	}
@@ -137,14 +145,33 @@ public class ExampleAllInOne {
 		return form;
 	}
 	
-	public static String genAioCheckOutALL(){
+	public static String genAioCheckOutALL(OrderBean orderBean){
 		AioCheckOutALL obj = new AioCheckOutALL();
-		obj.setMerchantTradeNo("hsohdpdfdhvnk");
-		obj.setMerchantTradeDate("2017/01/01 08:05:23");
-		obj.setTotalAmount("50");
+		obj.setMerchantTradeNo(orderBean.getOrder_id());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String tradeDate = sdf.format(orderBean.getOrder_date());
+		obj.setMerchantTradeDate(tradeDate);
+		obj.setTotalAmount(String.valueOf(orderBean.getOrder_total()));
 		obj.setTradeDesc("test Description");
-		obj.setItemName("TestItem");
-		obj.setReturnURL("http://211.23.128.214:5000");
+		Set<ItemBean> items = orderBean.getItems();
+		DrinkService drinkService = new DrinkServiceImpl();
+		String itemName = "";
+		String toppingName = "";
+		for(ItemBean bean : items) {
+			Set<ItemToppingBean> toppings = bean.getItemToppings();
+			DrinkBean drinkBean = drinkService.findById(bean.getProduct_id());
+			for(ItemToppingBean toppingBean : toppings) {
+				toppingName += toppingBean.getToppingBean().getTopping_name() + " ";
+			}
+			
+			itemName += drinkBean.getProduct_name() + "    " + toppingName + "    x" + bean.getQuantity() + "    " + bean.getPrice() + "元#";
+		}
+		if(orderBean.getInvitationDiscount().equals("已折扣50元")) {
+			itemName+= "已使用好友邀請碼折扣    -50元";
+		}
+		obj.setItemName(itemName);
+		obj.setReturnURL("http://localhost:8080/whattodrink/_04_ShoppingCart/CheckingMacValue");
+		obj.setOrderResultURL("http://localhost:8080/whattodrink/_04_ShoppingCart/saveOrderServlet");
 		obj.setNeedExtraPaidInfo("N");
 		String form = all.aioCheckOut(obj, null);
 		return form;

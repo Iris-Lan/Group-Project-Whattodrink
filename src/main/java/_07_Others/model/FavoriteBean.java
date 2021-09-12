@@ -1,5 +1,7 @@
 package _07_Others.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,19 +16,21 @@ import _01_Register.c_01_register.model.CustomerBean;
 
 @Entity
 @Table(name = "favorite")
-public class FavoriteBean {
-
+public class FavoriteBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer f_seq;
+	private Integer customer_id;
+	private String company_id;
 	
 	
-	
- 	@ManyToOne(cascade=CascadeType.ALL)
+ 	@ManyToOne
 	@JoinColumn(name="FK_CompanyBean_Company_id")
 	private CompanyBean companyBean;
  	
- 	@ManyToOne(cascade=CascadeType.ALL)
+ 	@ManyToOne
 	@JoinColumn(name="FK_CustomerBean_customer_id")
 	private CustomerBean customerBean;
 
@@ -37,17 +41,49 @@ public class FavoriteBean {
 	}
 
 
+	
 
-	public FavoriteBean(Integer f_seq, CompanyBean companyBean, CustomerBean customerBean) {
+	public FavoriteBean(Integer f_seq, Integer customer_id, String company_id) {
 		super();
 		this.f_seq = f_seq;
-		this.companyBean = companyBean;
-		this.customerBean = customerBean;
+		this.customer_id = customer_id;
+		this.company_id = company_id;
 	}
 
 
-	
-	
+
+
+
+
+
+
+	public Integer getCustomer_id() {
+		return customer_id;
+	}
+
+
+
+
+	public void setCustomer_id(Integer customer_id) {
+		this.customer_id = customer_id;
+	}
+
+
+
+
+	public String getCompany_id() {
+		return company_id;
+	}
+
+
+
+
+	public void setCompany_id(String company_id) {
+		this.company_id = company_id;
+	}
+
+
+
 
 	public Integer getF_seq() {
 		return f_seq;
@@ -79,9 +115,6 @@ public class FavoriteBean {
 
 
 
-	public void setCustomerBean(CustomerBean customerBean) {
-		this.customerBean = customerBean;
-	}
 
 
 
@@ -90,6 +123,10 @@ public class FavoriteBean {
 		StringBuilder builder = new StringBuilder();
 		builder.append("FavoriteBean [f_seq=");
 		builder.append(f_seq);
+		builder.append(", customer_id=");
+		builder.append(customer_id);
+		builder.append(", company_id=");
+		builder.append(company_id);
 		builder.append(", companyBean=");
 		builder.append(companyBean);
 		builder.append(", customerBean=");
@@ -97,8 +134,16 @@ public class FavoriteBean {
 		builder.append("]");
 		return builder.toString();
 	}
- 	
- 	
+
+
+
+
+	public void setCustomerBean(CustomerBean customerBean) {
+		this.customerBean = customerBean;
+	}
+
+
+
  	
  	
 }

@@ -1,11 +1,10 @@
 package _07_Others.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +16,10 @@ import _04_ShoppingCart.model.ItemBean;
 
 @Entity
 @Table(name = "sugar_level")
-public class SugarLevelBean {
+public class SugarLevelBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer sugar_id;
 	
 	private String sugar_level;
@@ -41,15 +40,14 @@ public class SugarLevelBean {
 	}
 
 
-	public SugarLevelBean(Integer sugar_id, String sugar_level, BigDecimal factor, Set<ItemBean> items,
-			Set<SugarLimitBean> sugarLimits) {
+
+	public SugarLevelBean(Integer sugar_id, String sugar_level, BigDecimal factor) {
 		super();
 		this.sugar_id = sugar_id;
 		this.sugar_level = sugar_level;
 		this.factor = factor;
-		this.items = items;
-		this.sugarLimits = sugarLimits;
 	}
+
 
 
 	public Integer getSugar_id() {
@@ -102,6 +100,7 @@ public class SugarLevelBean {
 	}
 
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -111,13 +110,11 @@ public class SugarLevelBean {
 		builder.append(sugar_level);
 		builder.append(", factor=");
 		builder.append(factor);
-		builder.append(", items=");
-		builder.append(items);
-		builder.append(", sugarLimits=");
-		builder.append(sugarLimits);
 		builder.append("]");
 		return builder.toString();
 	}
+
+
 	
 	
 	

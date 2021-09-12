@@ -6,7 +6,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">0000</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jspdb?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/project?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
 		<!-- 2. 其他與資料存取有關的設定 -->
@@ -30,6 +30,7 @@
 		<mapping class="_01_Register.b_01_register.model.CompanyBean" />
 		<mapping class="_03_ListDrinks.model.CategoryBean" />
 		<mapping class="_03_ListDrinks.model.DrinkBean" />
+		<mapping class="_03_ListDrinks.model.TagBean" />
 		<mapping class="_03_ListDrinks.model.ToppingBean" />
 		<mapping class="_04_ShoppingCart.model.ItemBean" />
 		<mapping class="_04_ShoppingCart.model.ItemToppingBean" />
@@ -41,7 +42,6 @@
 		<mapping class="_07_Others.model.SugarLimitBean" />
 		<mapping class="_07_Others.model.TempLevelBean" />
 		<mapping class="_07_Others.model.TempLimitBean" />
-
 
 
 	</session-factory>

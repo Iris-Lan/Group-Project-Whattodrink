@@ -1,21 +1,20 @@
 package _01_Register.b_01_register.model;
 
 import java.io.Serializable;
+
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 import _03_ListDrinks.model.CategoryBean;
 import _03_ListDrinks.model.DrinkBean;
@@ -55,25 +54,31 @@ public class CompanyBean implements Serializable {
 	private Timestamp 		alter_date;
 	@Column(columnDefinition = "VARCHAR(255) UNIQUE KEY")
 	private String 			company_owner_phone; //負責人電話
-	private String 			trade_name;			 //公司行號
+	private String 			trade_name;			 //分店名稱
 	private String 			bg_iconpath;		 //底圖
 	private String 			bg_filename;
+	private String          invitation;    		 //邀請碼
+	private String          business_name;    		 //公司行號
 	
 
 	
-	
+//	@JSONField(serialize = false)
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<DrinkBean> drinks = new LinkedHashSet<>();
 	
+//	@JSONField(serialize = false)
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<CategoryBean> categories = new LinkedHashSet<>();
 	
+//	@JSONField(serialize = false)
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<ToppingBean> toppings = new LinkedHashSet<>();
 	
+//	@JSONField(serialize = false)
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<OrderBean> orders = new LinkedHashSet<>();
 	
+//	@JSONField(serialize = false)
 	@OneToMany(mappedBy = "companyBean", cascade=CascadeType.ALL)
 	private Set<FavoriteBean> favorites = new LinkedHashSet<>();
 	
@@ -87,7 +92,7 @@ public class CompanyBean implements Serializable {
 			String company_owner, String company_owner_email, Time start_time, Time end_time, String tel,
 			String company_address, String website, String company_iconpath, String company_filename,
 			String tax_id_number, Timestamp register_date, Timestamp alter_date, String company_owner_phone,
-			String trade_name, String bg_iconpath, String bg_filename) {
+			String trade_name, String bg_iconpath, String bg_filename, String invitation) {
 		super();
 		this.company_id = company_id;
 		this.company_name = company_name;
@@ -109,10 +114,34 @@ public class CompanyBean implements Serializable {
 		this.trade_name = trade_name;
 		this.bg_iconpath = bg_iconpath;
 		this.bg_filename = bg_filename;
+		this.invitation = invitation;
 	}
 
 
 
+
+
+
+
+
+	public String getBusiness_name() {
+		return business_name;
+	}
+
+
+	public void setBusiness_name(String business_name) {
+		this.business_name = business_name;
+	}
+
+
+	public String getInvitation() {
+		return invitation;
+	}
+
+
+	public void setInvitation(String invitation) {
+		this.invitation = invitation;
+	}
 
 
 	public String getCompany_id() {
@@ -416,19 +445,12 @@ public class CompanyBean implements Serializable {
 		builder.append(bg_iconpath);
 		builder.append(", bg_filename=");
 		builder.append(bg_filename);
-		builder.append(", drinks=");
-		builder.append(drinks);
-		builder.append(", categories=");
-		builder.append(categories);
-		builder.append(", toppings=");
-		builder.append(toppings);
-		builder.append(", orders=");
-		builder.append(orders);
-		builder.append(", favorites=");
-		builder.append(favorites);
+		builder.append(", invitation=");
+		builder.append(invitation);
 		builder.append("]");
 		return builder.toString();
 	}
+
 
 
 	

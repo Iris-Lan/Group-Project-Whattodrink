@@ -22,12 +22,19 @@ public class showOrdersByCompanyId extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		OrderService orderService = new OrderServiceImpl();
-		List<OrderBean> list = orderService.findByCompanyId("A01");
 		
-		request.setAttribute("getOrdersByCompanyIdTest", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-		rd.forward(request, response);
-		return;
+		
+		
+		
+//		OrderService orderService = new OrderServiceImpl();
+//		List<OrderBean> list = orderService.findByCompanyId("A01");
+//		
+//		request.setAttribute("getOrdersByCompanyIdTest", list);
+//		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+//		rd.forward(request, response);
+//		return;
+		
+		
+		
 	}
 }

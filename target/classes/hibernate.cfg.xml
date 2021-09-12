@@ -9,7 +9,7 @@
 		<property name="connection.username">be8e076a5c8c52</property>
 		<property name="connection.password">6e2ace50</property>
 <!-- 		<property name="connection.url">jdbc:mysql://localhost:3306/test?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property> -->
-		<property name="connection.url">jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_a64c0078cd65816?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property>
+		<property name="connection.url">jdbc:mysql://be8e076a5c8c52:6e2ace50@us-cdbr-east-04.cleardb.com/heroku_a64c0078cd65816?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Taipei&amp;allowPublicKeyRetrieval=true</property>
 		<!-- 2. 其他與資料存取有關的設定 -->
 		<!-- SQL方言，設定是MySQL8Dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
@@ -25,13 +25,14 @@
         <property name="hibernate.transaction.coordinator_class">jdbc</property>
 		<!-- hibernate 相關效能設定 -->
 		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-		<property name="connection_pool_size">10</property>
+		<property name="connection_pool_size">8</property>
 
 		<!-- 3. 宣告程式使用的永續類別 -->
 		<mapping class="_01_Register.c_01_register.model.CustomerBean" />
 		<mapping class="_01_Register.b_01_register.model.CompanyBean" />
 		<mapping class="_03_ListDrinks.model.CategoryBean" />
 		<mapping class="_03_ListDrinks.model.DrinkBean" />
+		<mapping class="_03_ListDrinks.model.TagBean" />
 		<mapping class="_03_ListDrinks.model.ToppingBean" />
 		<mapping class="_04_ShoppingCart.model.ItemBean" />
 		<mapping class="_04_ShoppingCart.model.ItemToppingBean" />

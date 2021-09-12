@@ -1,9 +1,9 @@
 package _07_Others.model;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +16,9 @@ import _03_ListDrinks.model.DrinkBean;
 
 @Entity
 @Table(name = "temp_limit")
-public class TempLimitBean {
-	
+public class TempLimitBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer tl_sql;
@@ -25,13 +26,15 @@ public class TempLimitBean {
 	private Integer product_id;
 	
 	private Integer temp_id;
+	@Column(columnDefinition = "TINYINT(1) default 1" )
+	private boolean enabled;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "FK_TempLevelBean_temp_id")
 	private TempLevelBean tempLevelBean;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "FK_DrinkBean_product_id")
 	private DrinkBean drinkBean;
 
@@ -41,15 +44,15 @@ public class TempLimitBean {
 	}
 
 
-	public TempLimitBean(Integer tl_sql, Integer product_id, Integer temp_id, TempLevelBean tempLevelBean,
-			DrinkBean drinkBean) {
+
+	public TempLimitBean(Integer tl_sql, Integer product_id, Integer temp_id, boolean enabled) {
 		super();
 		this.tl_sql = tl_sql;
 		this.product_id = product_id;
 		this.temp_id = temp_id;
-		this.tempLevelBean = tempLevelBean;
-		this.drinkBean = drinkBean;
+		this.enabled = enabled;
 	}
+
 
 
 	public Integer getTl_sql() {
@@ -102,6 +105,19 @@ public class TempLimitBean {
 	}
 
 
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -111,6 +127,8 @@ public class TempLimitBean {
 		builder.append(product_id);
 		builder.append(", temp_id=");
 		builder.append(temp_id);
+		builder.append(", enabled=");
+		builder.append(enabled);
 		builder.append(", tempLevelBean=");
 		builder.append(tempLevelBean);
 		builder.append(", drinkBean=");
@@ -118,9 +136,9 @@ public class TempLimitBean {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
+
+
+
 	
 
 }

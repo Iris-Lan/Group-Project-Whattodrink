@@ -1,8 +1,12 @@
 package _01_Register.b_01_register.main;
 
-import _01_Register.b_01_register.model.CompanyBean;
+import java.util.List;
+
 import _01_Register.b_01_register.service.CompanyService;
 import _01_Register.b_01_register.service.serviceImpl.CompanyServiceImpl;
+import _03_ListDrinks.model.DrinkBean;
+import _03_ListDrinks.service.DrinkService;
+import _03_ListDrinks.service.serviceImpl.DrinkServiceImpl;
 
 
 public class TestOK_MethodsOfCompanyDao {
@@ -11,12 +15,12 @@ public class TestOK_MethodsOfCompanyDao {
 //updateCompany()
 		CompanyService companyService = new CompanyServiceImpl();
 		
-		CompanyBean cb = new CompanyBean();
-		cb = companyService.findByCompanyAccount("dog1111");
-		cb.setCompany_owner("我原本叫黃小新，被改成黃大新了");
-		companyService.updateCompany(cb);
+//		CompanyBean cb = new CompanyBean();
+//		cb = companyService.findByCompanyAccount("dog1111");
+//		cb.setCompany_owner("我原本叫黃小新，被改成黃大新了");
+//		companyService.updateCompany(cb);
 		
-		System.out.println(companyService.findById(cb.getCompany_id()));
+//		System.out.println(companyService.findById(cb.getCompany_id()));
 		
 		
 		
@@ -29,7 +33,7 @@ public class TestOK_MethodsOfCompanyDao {
 		
 		
 //findByCompanyAccount()
-//		System.out.println(companyService.findByCompanyAccount("kitty1111"));
+//		System.out.println(companyService.findByCompanyAccount("account_1"));
 				
 //findById()
 //		CompanyBean companyBean = companyService.findById(1);
@@ -40,7 +44,7 @@ public class TestOK_MethodsOfCompanyDao {
 //		for(CompanyBean company : list) {
 //			System.out.println(company);
 //		}
-
+		
 	}
 
 }

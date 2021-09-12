@@ -1,7 +1,7 @@
 package _04_ShoppingCart.service.serviceImpl;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -63,6 +63,11 @@ public class OrderServiceImpl implements OrderService{
 			throw new RuntimeException(e);
 		}		
 		return ob;
+	}
+	
+	@Override //商家明細頁面限定用途，其他處請使用上方
+	public OrderBean findByOrderId(String orderId) {
+		return orderDao.findByOrderId(orderId);
 	}
 
 	@Override
@@ -181,6 +186,62 @@ public class OrderServiceImpl implements OrderService{
 		return beans;
 	}
 
+	@Override
+	public String getLastOrderIdByCompanyId(String companyId) {
+		String orderId = "";
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			log.info("處理訂單之Service: 使用companyName產生orderId");
+			orderId = orderDao.getLastOrderIdByCompanyId(companyId);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			System.out.println("發生異常，交易回滾.....,原因: " + e.getMessage());			
+			throw new RuntimeException(e);
+		}		
+		return orderId;
+	}
+
+	@Override
+	 public Map<String, Object> createDailyReport(String companyName) {
+	  Map<String, Object>  monthlyReport = null;
+	  Session session = factory.getCurrentSession();
+	  Transaction tx = null;
+	  try {
+	   tx = session.beginTransaction();
+	   monthlyReport = orderDao.createDailyReport(companyName);
+	   tx.commit();
+	  }catch(Exception e) {
+	   if(tx != null){
+	    tx.rollback();
+	   }
+	   System.out.println("發生異常，交易回滾.....,原因: " + e.getMessage());   
+	   throw new RuntimeException(e);
+	  }
+	  return monthlyReport;
+	 }
+
+	@Override
+	public void updateOrderBean(OrderBean orderBean) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			orderDao.updateOrderBean(orderBean);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();				
+			}
+			System.out.println("發生異常，交易回滾.....,原因: " + e.getMessage());			
+			throw new RuntimeException(e);
+		}
+		
+	}
 
 
 }

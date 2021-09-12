@@ -8,6 +8,20 @@ package ecpay.payment.integration.domain;
 public class ATMRequestObj {
 	
 	/**
+	 * PaymentDate
+	 * 自己新增的付款時間
+	 */
+	private String PaymentDate;
+	public String getPaymentDate() {
+		return PaymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		PaymentDate = paymentDate;
+	}
+	
+	
+	
+	/**
 	 * MerchantID
 	 * 合作特店編號
 	 */
@@ -389,6 +403,8 @@ public class ATMRequestObj {
 	public void setSimulatePaid(String simulatePaid) {
 		SimulatePaid = simulatePaid;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "ATMRequestObj [MerchantID=" + MerchantID + ", MerchantTradeNo=" + MerchantTradeNo + ", StoreID="
@@ -399,4 +415,5 @@ public class ATMRequestObj {
 				+ ", CheckMacValue=" + CheckMacValue + ", BankCode=" + BankCode + ", vAccount=" + vAccount
 				+ ", ExpireDate=" + ExpireDate + "]";
 	}
+	
 }

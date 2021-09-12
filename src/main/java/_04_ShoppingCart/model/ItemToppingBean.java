@@ -1,6 +1,6 @@
 package _04_ShoppingCart.model;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,24 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import _01_Register.b_01_register.model.CompanyBean;
 import _03_ListDrinks.model.ToppingBean;
 
 @Entity
 @Table(name = "item_topping")
-public class ItemToppingBean {
-
+public class ItemToppingBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer i_t_seq;
+	private Integer item_id;
+	private Integer topping_id;
 
 	
- 	@ManyToOne(cascade=CascadeType.ALL)
+ 	@ManyToOne
 	@JoinColumn(name="FK_ItemBean_item_id")
 	private ItemBean itemBean;
  	
- 	@ManyToOne(cascade=CascadeType.ALL)
+ 	@ManyToOne
 	@JoinColumn(name="FK_ToppingBean_topping_id")
 	private ToppingBean toppingBean;
 
@@ -36,12 +37,17 @@ public class ItemToppingBean {
 	}
 
 
-	public ItemToppingBean(Integer i_t_seq, ItemBean itemBean, ToppingBean toppingBean) {
+
+
+
+	public ItemToppingBean(Integer i_t_seq, Integer item_id, Integer topping_id) {
 		super();
 		this.i_t_seq = i_t_seq;
-		this.itemBean = itemBean;
-		this.toppingBean = toppingBean;
+		this.item_id = item_id;
+		this.topping_id = topping_id;
 	}
+
+
 
 
 
@@ -81,11 +87,50 @@ public class ItemToppingBean {
 	}
 
 
+
+
+
+	public Integer getItem_id() {
+		return item_id;
+	}
+
+
+
+
+
+	public void setItem_id(Integer item_id) {
+		this.item_id = item_id;
+	}
+
+
+
+
+
+	public Integer getTopping_id() {
+		return topping_id;
+	}
+
+
+
+
+
+	public void setTopping_id(Integer topping_id) {
+		this.topping_id = topping_id;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ItemToppingBean [i_t_seq=");
 		builder.append(i_t_seq);
+		builder.append(", item_id=");
+		builder.append(item_id);
+		builder.append(", topping_id=");
+		builder.append(topping_id);
 		builder.append(", itemBean=");
 		builder.append(itemBean);
 		builder.append(", toppingBean=");
@@ -93,7 +138,6 @@ public class ItemToppingBean {
 		builder.append("]");
 		return builder.toString();
 	}
-
 
 
  	
