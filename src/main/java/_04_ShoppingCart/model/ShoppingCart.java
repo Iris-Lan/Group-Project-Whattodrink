@@ -48,8 +48,8 @@ public class ShoppingCart {
 				if (itemBean.getProduct_id().equals(cart.get(key).getProduct_id())
 						&& itemBean.getSugar_id().equals(cart.get(key).getSugar_id())
 						&& itemBean.getTemp_id().equals(cart.get(key).getTemp_id())
-						&& itemBean.getMessage().strip().equals(cart.get(key).getMessage().strip())
-						&& itemBean.getNote().strip().equals(cart.get(key).getNote().strip())) {
+						&& itemBean.getMessage().trim().equals(cart.get(key).getMessage().trim())
+						&& itemBean.getNote().trim().equals(cart.get(key).getNote().trim())) {
 
 					if (itemBean.getItemToppings().size() == cart.get(key).getItemToppings().size()) {
 						Collection<Integer> oldList = new ArrayList<>();
