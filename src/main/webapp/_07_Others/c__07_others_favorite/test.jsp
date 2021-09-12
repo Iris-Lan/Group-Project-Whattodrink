@@ -48,7 +48,7 @@ $('a').click(function(e){
 
   console.log(e.target.innerHTML);
   $.ajax({
-            url: "http://localhost:8080/whattodrink/MyFavoriteServlet",
+            url: "https://whattodrink.herokuapp.com/MyFavoriteServlet",
             type: "post",
             data: {
               company_id : e.target.innerHTML

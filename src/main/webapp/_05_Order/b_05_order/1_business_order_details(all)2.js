@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/B_item",
+    url: "https://whattodrink.herokuapp.com/B_item",
     dataType: "json",
     success: function (response) {
       console.log(response);
@@ -62,7 +62,7 @@ function renderHTML(data) {
     console.log(e.target.id);
     $.ajax({
       type: "POST",
-      url: "http://localhost:8080/whattodrink/B_itemStatusChange",
+      url: "https://whattodrink.herokuapp.com/B_itemStatusChange",
       data: { itemStatus: $(e.target).val(), item_id: e.target.id },
       success: function (response) {
 //		conlose.log(response);

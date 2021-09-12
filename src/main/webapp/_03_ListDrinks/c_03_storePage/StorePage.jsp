@@ -885,7 +885,7 @@
         	console.log(e.target.previousElementSibling.value);
         	
 						$.ajax({
-							url: "http://localhost:8080/whattodrink/_03_ListDrinks/DrinkDetail",
+							url: "https://whattodrink.herokuapp.com/_03_ListDrinks/DrinkDetail",
 							type: "POST",
 							data: {productId:e.target.previousElementSibling.value},
 							dataType:"json",
@@ -983,7 +983,7 @@
             });
 
     	  $.ajax({
-				url: "http://localhost:8080/whattodrink/_04_ShoppingCart/AddToCartServlet",
+				url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/AddToCartServlet",
 				type: "POST",
 				data: {
 					productId:$('#productId').val(),
@@ -1023,7 +1023,7 @@
 		$("#clearbtn").click(function () {
 			modal3.hide();
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/_04_ShoppingCart/deleteCartServlet",
+				url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/deleteCartServlet",
 				type: "POST",
 				data:{
 					productId:$('#productId').val(),
@@ -1123,7 +1123,7 @@
 	function doo3() {
 
 		$.ajax({
-		    url: "http://localhost:8080/whattodrink/_04_ShoppingCart/RetrieveShoppingCart",
+		    url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/RetrieveShoppingCart",
 		    type: "POST",
 		    success(res) {
 			console.log(res);
@@ -1132,7 +1132,7 @@
 					const nocartModal = new bootstrap.Modal(NocartModal, { keyboard: false });
 						nocartModal.show();
 					}else{
-						window.location.assign("http://localhost:8080/whattodrink/_04_ShoppingCart/shoppingcart.jsp");		
+						window.location.assign("https://whattodrink.herokuapp.com/_04_ShoppingCart/shoppingcart.jsp");		
 					}
 			
 						}

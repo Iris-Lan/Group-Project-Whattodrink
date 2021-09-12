@@ -15,7 +15,7 @@ $(function () {
     let flag = false;
       $.ajax({
         type: "GET",
-        url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterCheckServlet.do",
+        url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterCheckServlet.do",
         data: $("#email").serialize(),
         dataType: "json",
     	async: false,
@@ -35,7 +35,7 @@ $(function () {
     let flag = false;
       $.ajax({
         type: "GET",
-        url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterCheckServlet.do",
+        url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterCheckServlet.do",
         data: $("#invitationCode").serialize(),
         dataType: "json",
 		async: false,

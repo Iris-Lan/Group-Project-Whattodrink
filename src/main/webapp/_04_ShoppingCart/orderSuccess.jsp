@@ -295,7 +295,7 @@
     $(function () {
     	$.ajax({
             type: "POST",
-            url: "http://localhost:8080/whattodrink/_04_ShoppingCart/saveOrderServlet",
+            url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/saveOrderServlet",
             success: function (res) {
             }
           });

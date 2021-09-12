@@ -1,7 +1,7 @@
    
         $.ajax({  
             type:"post", 
-            url:"http://localhost:8080/whattodrink/CCC",   
+            url:"https://whattodrink.herokuapp.com/CCC",   
             dataType:"json",
             success:
                 function(data){  

@@ -337,7 +337,7 @@ function initMap() {
                   
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/whattodrink/DistanceServlet",
+                    url: "https://whattodrink.herokuapp.com/DistanceServlet",
                     data:str,
                     success: function (response) {
                       console.log(response);  

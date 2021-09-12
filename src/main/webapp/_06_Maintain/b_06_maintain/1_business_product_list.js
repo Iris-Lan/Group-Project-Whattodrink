@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/UpdateProductServlet",
+    url: "https://whattodrink.herokuapp.com/UpdateProductServlet",
     dataType: "json",
     success: function (response) {
       // console.log(response);

@@ -191,7 +191,7 @@ console.log(heart.parentElement.parentElement.lastElementChild.previousElementSi
   if (heart.className == "far fa-heart fa-lg heart") {
   		console.log('空心轉實心');
    $.ajax({
-            url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
+            url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
             type: "post",
             data: {
               company_id:heart.parentElement.parentElement.lastElementChild.previousElementSibling.value
@@ -207,7 +207,7 @@ console.log(heart.parentElement.parentElement.lastElementChild.previousElementSi
 		console.log('實星轉空星');
    $.ajax({
      	
-            url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
+            url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
             type: "post",
             data: {
               company_id:heart.parentElement.parentElement.lastElementChild.previousElementSibling.value

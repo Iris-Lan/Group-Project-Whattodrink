@@ -32,7 +32,7 @@ $("#register_next0").click(function (e) {
     if ((str.length == 10) && (regex.test(str)===true)) {
 
      $.ajax({
-       url: "http://localhost:8080/whattodrink/_01_register/register.do",
+       url: "https://whattodrink.herokuapp.com/_01_register/register.do",
        type: "POST",
        data: $("#register1").serialize(),
        success(res) {
@@ -86,7 +86,7 @@ $("#register_next2").click(function (e) {
      if (($("#password1_register").val() == $("#password2_register").val())&&(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(str1)==true)) {
 
        $.ajax({
-         url: "http://localhost:8080/whattodrink/CustomerRegisterServlet",
+         url: "https://whattodrink.herokuapp.com/CustomerRegisterServlet",
          type: "POST",
          data: $("#register1").serialize()+"&"+$("#register3").serialize(),
          success(res) {
@@ -94,7 +94,7 @@ $("#register_next2").click(function (e) {
              $("#register3_warn").html(res);
            }
            if (res == 0) {
-             window.location.assign("http://localhost:8080/whattodrink/_01_Register/c_01_register/Registersuccess.jsp");
+             window.location.assign("https://whattodrink.herokuapp.com/_01_Register/c_01_register/Registersuccess.jsp");
            }
          },
        });

@@ -2,7 +2,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet",
+    url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet",
     dataType: "json",
     success: function (response) {
       loadData(response);
@@ -133,7 +133,7 @@ $("#check1").click(function (e) {
   var endTime = $("#endTime").val();
   var storeTel = $("#storeTel").val();
   $.ajax({
-    url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=1",
+    url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=1",
     type: "POST",
     data: {
       storeName: storeName,
@@ -153,7 +153,7 @@ $("#check2").click(function (e) {
   var tax_id_number = $("#tax_id_number").val();
   var tel = $("#tel").val();
   $.ajax({
-    url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=2",
+    url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=2",
     type: "POST",
     data: {
       person: person,
