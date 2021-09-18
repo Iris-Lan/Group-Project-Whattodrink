@@ -78,7 +78,7 @@
 				</h6>
 
 				<h6 class="fw-normal">
-					<a class="link-secondary text-decoration-none" href="">登出</a>
+					<a class="link-secondary text-decoration-none" href="https://whattodrink.herokuapp.com/LogoutServlet">登出</a>
 				</h6>
 			</div>
 			<div class="d-flex flex-column">
@@ -137,31 +137,31 @@
             <div class="bg-white overflow-auto p-5" 
             style="height: 420px;border-radius: 10px;box-shadow: 3px 3px 5px 6px #cccccc6b;">
               <h4 class="mb-3">付款方式</h4>
-              <div class="form-check mb-2">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="payment"
-                  id="creditcard"
-                  value="信用卡"
-                  checked
-                  data-bs-toggle="modal"
-                  data-bs-target="#visa"
-                />
-                <label class="form-check-label" for="creditcard">信用卡</label>
-              </div>
-              <div class="form-check mb-2">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="payment"
-                  id="incash"
-                  value="現金，限店家外送"
-                />
-                <label class="form-check-label" for="incash"
-                  >現金，限店家外送</label
-                >
-              </div>
+                <div class="form-check mb-2">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="payment"
+                    id="creditcard"
+                    value="信用卡"
+                    checked
+                    data-bs-toggle="modal"
+                    data-bs-target="#visa"
+                  />
+                  <label class="form-check-label" for="creditcard">信用卡</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="payment"
+                    id="incash"
+                    value="現金"
+                  />
+                  <label class="form-check-label" for="incash"
+                    >現金</label
+                  ><span class="text-danger ms-2" style="font-size: 14px;" id="storeTel">此選項需與店家聯繫</span>
+                </div>
                 <hr class="my-4" style="background-color: black" />
                 <!-- 發票 -->
                 <h4 class="mb-3">是否需要統編</h4>
@@ -189,8 +189,9 @@
                 <!-- 邀請碼優惠 -->
                 <form  id="discount" class="d-none">
                   <hr class="my-4" style="background-color: black" />
-                  <h4 class="mb-3">邀請碼優惠</h4>
-                  <div class="form-check mb-2">
+                  <h4>邀請碼優惠</h4>
+                  <span class="fs-6 text-danger">單筆訂單滿百才可使用</span>
+                  <div class="form-check mt-3 mb-2">
                     <input
                       class="form-check-input"
                       type="radio"

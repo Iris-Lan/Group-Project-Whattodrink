@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,70 +36,38 @@
  <jsp:include page="/_08_Fragment/top.jsp" />
 
     <!-- 開始 -->
-	${orderBean}
-	${date}
-		<c:choose>
-		<c:when test="${itemSet != null}">
-			<c:forEach var="cart" varStatus="stVar"  items="${itemSet}">
-				${itemSet}====
-				${itemSet[0]}
-			</c:forEach>
-		</c:when>
-		<c:otherwise>沒有item</c:otherwise>
-	</c:choose>
-	${fn:length(itemSet)}
-	---------
-	${fn:length(itemToppingsMap)}
-	---------
-	<c:choose>
-		<c:when test="${itemToppingsMap != null}">
-			<c:forEach var="cart" varStatus="stVar"  items="${itemToppingsMap}">
-				toppingList: ${fn:length(cart.value)}<br>
-				topping: ${cart.value}<br>
-				topping[0]: ${cart.value[0]}<br>
-			</c:forEach>
-		</c:when>
-		<c:otherwise>沒有配料</c:otherwise>
-	</c:choose>
-	
-	
-	
-	
-    
     <div class="container-fluid" style="min-height: 70vh;">
       <div class="row">
         <!-- start -->
-        <div class="col-sm-10 mx-auto">
+        <div class="col-sm-10 mx-auto d-flex flex-wrap justify-content-center">
           <!-- Start -->
           <!-- title -->
-          <br />
-          <div class="firstTitle" style="display: flex">
-            <div class="icon"><i class="fas fa-check"></i></div>
-            <div><h4>感謝您的訂購</h4></div>
-          </div>
+           <div class="row" style="margin-top: 30px;display: flex">
+              <h4><i class="fas fa-check"></i> 感謝您的訂購</h4>
+            </div>
 
-          <div class="secondTitle">
+         <div class="row" style="margin-top: 10px;text-align: center;" >
             <!-- have a tag -->
-            <p>
-              已將您的訂單提交給店家，請隨時注意您的<a href="<c:url value="/_05_Order/c_05_order/1_我的訂單.jsp"/>">訂單狀態</a
+            <h6>
+              已將您的訂單提交給店家，請隨時注意您的<a href="<c:url value="/_05_Order/c_05_order/myOrder.jsp"/>">訂單狀態</a
               >，以確認店家是否接單。
-            </p>
+             </h6>
             <!-- have a tag -->
 
             <!-- SPAN shopName -->
-            <p>
+            <h6>
               以下是你在<span class="fw-bold shopName"
-                >迷客夏Milk Shop.高雄慶豐店</span
+                >${orderBean.companyBean.company_name}・${orderBean.companyBean.trade_name}</span
               >
               訂購的電子明細。
-            </p>
+            </h6>
             <!-- SPAN shopName -->
           </div>
           <!-- title -->
           <!-- BODY -->
           <div
-            class="modal-body"
             style="
+             background-color: #ffffff;
               border: black 2px solid;
               padding: 20px;
               margin: 20px;
@@ -109,62 +78,76 @@
               <div class="d-flex" style="justify-content: space-between">
                 <!-- SPAN time -->
                 <span class="time" style="color: gray; font-size: 0.5rem"
-                  >週三 2021-07-10 上午 11:42</span
+                  >${date}<br>訂單編號${orderBean.order_id}</span
                 >
+               <c:if test='${orderBean.taxId!=""}'>
+               <span class="taxId" style="color: gray; font-size: 0.5rem"
+                  >統一編號${orderBean.taxId}</span
+                >
+                </c:if>
+                
+                
+                
                 <!-- SPAN time -->
               </div>
             </div>
-            <div class="row">
+            <div class="row mb-2">
               <div>
                 <!-- SPAN shopName -->
-                <span class="fw-bold shopName" style="width: 400px"
-                  >迷客夏Milk Shop.高雄慶豐店</span
+                 <span class="fw-bold shopName" style="width: 400px;margin-bottom: 10px;">${orderBean.companyBean.company_name}・${orderBean.companyBean.trade_name}</span
                 >
                 <!-- SPAN shopName -->
               </div>
-              <!-- 以下是總計價錢 -->
-              <div class="d-flex fw-bold justify-content-between">
-                <p>總計</p>
-                <!-- SPAN total -->
-                <span class="d-flex total">210</span>
-                <!-- SPAN total -->
-              </div>
-              <!-- 以上是總計價錢 -->
+           <c:forEach var="dd" items="${ShoppingCart.shoppingCart}" varStatus="str">
+              <!-- 以下是訂購的商品數量與商品名稱與價錢 ALL SPAN TAG-->
+              <div
+                class="d-flex justify-content-between"
+                style="align-items: center"
+              >
+                <span class="productNumber" style="width: 35px">${dd.value.quantity}</span>
+                <span class="productName" style="width: 300px;font-size: 12px"
+                  >${dd.value.drinkBean.product_name}&nbsp; ${dd.value.capacity}&nbsp;${dd.value.tempLevelBean.temp_level}&nbsp;${dd.value.sugarLevelBean.sugar_level}&nbsp;
 
-              <!-- 以下是訂購的商品數量與商品名稱與價錢 ALL SPAN TAG-->
-              <div
-                class="d-flex justify-content-between"
-                style="align-items: center"
-              >
-                <span class="productNumber" style="width: 35px">2</span>
-                <span class="productName" style="width: 300px; font-size: 10px"
-                  >伯爵紅茶拿鐵 M 微糖 微冰 白玉珍珠</span
-                >
-                <span class="productPricetotal" style="width: 35px">130</span>
+					<c:forEach var="cc" items="${ShoppingCart.itemToppings[dd.key]}">
+                       				 ${cc}
+                         </c:forEach>
+                        &nbsp; 
+                        <c:if test='${dd.value.message!=""}'>
+                        <span style="color:#F5C6AA;">傳情小貼紙：</span>${dd.value.message}&nbsp;
+                        </c:if>
+                        <c:if test='${dd.value.note!=""}'>
+                        <span style="color:#F5C6AA;">備註：</span>${dd.value.note}&nbsp;
+                        </c:if></span>
+                <span class="productPricetotal" style="width: 35px">$${dd.value.price}</span>
               </div>
               <!-- 以上是訂購的商品數量與商品名稱與價錢 ALL SPAN TAG-->
-              <!-- 以下是訂購的商品數量與商品名稱與價錢 ALL SPAN TAG-->
-              <div
-                class="d-flex justify-content-between"
-                style="align-items: center"
-              >
-                <span class="productNumber" style="width: 35px">2</span>
-                <span class="productName" style="width: 300px; font-size: 10px"
-                  >伯爵紅茶拿鐵 M 微糖 微冰 白玉珍珠</span
-                >
-                <span class="productPricetotal" style="width: 35px">130</span>
-              </div>
-              <!-- 以上是訂購的商品數量與商品名稱與價錢 ALL SPAN TAG-->
+           </c:forEach>
+           
             </div>
+            
+            
             <div class="row">
               <hr style="background-color: black" />
+              <c:if test="${orderBean.invitationDiscount ne '無折扣'}">
+               <div
+                style="display: flex; justify-content: space-between"
+              >
+                <p class="fw-bold">折扣</p>
+                <!-- SPAN allTotal -->
+                <span style="margin: 0px">-50</span>
+                <!-- SPAN allTotal -->
+              </div>
+              
+              </c:if>
+             
+              
               <div
                 class="total"
                 style="display: flex; justify-content: space-between"
               >
-                <p class="fw-bold">收費金額</p>
+                <p class="fw-bold">總計</p>
                 <!-- SPAN allTotal -->
-                <span class="fw-bold allTotal" style="margin: 0px"> 210 </span>
+                <span class="fw-bold allTotal" style="margin: 0px">$<fmt:formatNumber type="number" value="${orderBean.order_total}" maxFractionDigits="0"/></span>
                 <!-- SPAN allTotal -->
               </div>
               <div
@@ -175,8 +158,8 @@
                 <!-- SPAN PayMethod -->
                 <span
                   class="d-flex fw-bold PayMethod"
-                  style="margin: 0px; width: 100px"
-                  >信用卡支付
+                  style="width:auto"
+                  >${orderBean.payment}
                 </span>
                 <!-- SPAN PayMethod -->
               </div>
@@ -188,7 +171,7 @@
         <!-- End -->
       </div>
     </div>
-
+<c:remove var="ShoppingCart" scope="session" />
     <!-- 結束 -->
 
     
@@ -290,16 +273,17 @@
       crossorigin="anonymous"
     ></script>
     
-    
     <script type="text/javascript">
-    $(function () {
-    	$.ajax({
-            type: "POST",
-            url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/saveOrderServlet",
-            success: function (res) {
-            }
-          });
-      }
+
+	//複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+		document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+
 
 
     </script>

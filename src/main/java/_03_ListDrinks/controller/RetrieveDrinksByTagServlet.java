@@ -1,6 +1,7 @@
 package _03_ListDrinks.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -34,6 +35,39 @@ public class RetrieveDrinksByTagServlet extends HttpServlet {
 		String tagName = request.getParameter("tagName");
 		DrinkService drinkService = new DrinkServiceImpl();
 		List<DrinkBean> searchResultBeans = drinkService.findByTagName(tagName);
+		
+		
+if (session.getAttribute("A01") != null) {
+			
+			for (int i = 0; i < searchResultBeans.size(); i++) {
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("A01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("A01"));
+				}
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("B01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("B01"));
+				}
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("C01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("C01"));
+				}
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("D01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("D01"));
+				}
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("E01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("E01"));
+				}
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("F01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("F01"));
+				}
+				if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("G01")) {
+					searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("G01"));
+				}
+			
+			
+			}
+			Collections.sort(searchResultBeans);
+			}
+		
+		
 		
 		session.setAttribute("searchMethod", "tagSearch");
 		session.setAttribute("tagNameOrKeyword", tagName);

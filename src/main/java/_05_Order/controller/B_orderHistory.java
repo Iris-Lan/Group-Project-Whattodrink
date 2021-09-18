@@ -44,7 +44,7 @@ public class B_orderHistory extends HttpServlet {
 		
 		
 		//[{"length":2},  //越新的越上面，有可能length=0 不用顯示任何資料
-		// {"order_id":"E0120210906003","order_date":"2021-09-06 14:59:08","payment":"現金，限店家外送","order_quantity":3,"order_total":150,"orderStatus":"已領取","invitationDiscount":"無折扣"},
+		// {"order_id":"E0120210906003","order_date":"2021-09-06 14:59:08","payment":"現金","order_quantity":3,"order_total":150,"orderStatus":"已領取","invitationDiscount":"無折扣"},
 		// {"order_id":"E0120210905002","order_date":"2021-09-05 23:37:31","payment":"信用卡","order_quantity":5,"order_total":260,"orderStatus":"已領取","invitationDiscount":"已折扣50元"}]
 		
 	}

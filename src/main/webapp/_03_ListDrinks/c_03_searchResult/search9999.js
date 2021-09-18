@@ -45,15 +45,40 @@ var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
 	return new bootstrap.Popover(popoverTriggerEl);
 });
 
-//顯示更多
-$("#more").click(function(e) {
-	$.ajax({
-		url: "",
-		type: "GET",
-		data: "",
-		success(res) { },
-	});
-});
+
+//判斷是否為營業時間
+function checkAuditTime(beginTime,endTime) {
+	let nowDate=new Date();
+	let beginDate=new Date(nowDate);
+	let endDate=new Date(nowDate);
+	
+	let beginIndex=beginTime.lastIndexOf("\:");
+	let beginHour =beginTime.substring(0,beginIndex);
+	let beginMinute=beginTime.substring(beginIndex+1,beginIndex.length);
+	
+	beginDate.setHours(beginHour,beginMinute,0,0);
+	
+	
+	let endIndex=endTime.lastIndexOf("\:");
+	let endHour =endTime.substring(0,endIndex);
+	let endMinute=endTime.substring(endIndex+1,endIndex.length);
+	
+	endDate.setHours(endHour,endMinute,0,0);
+	
+	if(nowDate.getTime()-beginDate.getTime()>=0&&nowDate.getTime()<=endDate.getTime()){
+		return true;
+	}else{
+		return false;
+	}
+		
+		
+	}
+	
+const openinghoursModal = document.getElementById("openinghoursModal");
+const OpeninghoursModal = new bootstrap.Modal(openinghoursModal, { keyboard: false });
+
+
+
 
 
 //飲料名稱點擊選配料JS
@@ -67,6 +92,15 @@ const modal3 = new bootstrap.Modal(clearModal, { keyboard: false });
 
 $(".allshop img").click(function(e) {
 
+let startTime=e.target.previousElementSibling.previousElementSibling.previousElementSibling.value;	
+let endTime=e.target.previousElementSibling.previousElementSibling.value;	
+
+
+if(checkAuditTime(startTime,endTime)==false){
+	$('#openinghoursModalmodalbody').empty();
+	$('#openinghoursModalmodalbody').text(`營業時間為${startTime}~${endTime}`);
+	OpeninghoursModal.show();
+}else{
 	console.log(e.target.previousElementSibling.value);
 	$.ajax({
 		url: "https://whattodrink.herokuapp.com/_03_ListDrinks/DrinkDetail",
@@ -75,6 +109,7 @@ $(".allshop img").click(function(e) {
 		dataType: "json",
 		success(res) {
 			console.log(res);
+			
 			addon = document.getElementById('addon');
 			while (addon.hasChildNodes()) {
 				addon.removeChild(addon.firstChild);
@@ -89,6 +124,7 @@ $(".allshop img").click(function(e) {
 				sweetbtn.removeChild(sweetbtn.firstChild);
 			}
 
+			$('#quantity').val(1);
 
 			$('#productname').text(res.drinkNameAndCapacity[0] + res.drinkNameAndCapacity[1]);
 
@@ -135,6 +171,7 @@ $(".allshop img").click(function(e) {
 
 
 	addCartAlertModal.show();
+	}
 });
 
 // 購物車加減

@@ -30,7 +30,7 @@ import _07_Others.model.TempLimitBean;
 
 @Entity
 @Table(name = "product")
-public class DrinkBean implements Serializable{
+public class DrinkBean implements Serializable,Comparable<DrinkBean>{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -320,5 +320,9 @@ public class DrinkBean implements Serializable{
 	}
 
 
+	@Override
+	public int compareTo(DrinkBean o) {
+		return Double.compare(Double.parseDouble(this.getCompanyBean().getDistance()),Double.parseDouble(o.getCompanyBean().getDistance()));
+	}
 	
 }

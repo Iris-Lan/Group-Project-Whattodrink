@@ -35,8 +35,9 @@ public class PaymentDiscount extends HttpServlet {
 		
 		double sub_total = cart.getCartSubTotal();
 		double total = sub_total - 50;
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sub_total", (int)sub_total);
+		map.put("storeTel", cart.getShoppingCart().get(cart.getShoppingCart().keySet().iterator().next()).getDrinkBean().getCompanyBean().getTel());
 		map.put("total", (int)total);
 		map.put("hasDiscount", (bean.getInvitationCount() == 0 ? 0 : 1));
 		

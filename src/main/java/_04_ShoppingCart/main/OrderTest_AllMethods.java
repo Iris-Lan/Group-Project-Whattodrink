@@ -279,11 +279,6 @@ public class OrderTest_AllMethods {
 //		String date = new SimpleDateFormat("E yyyy-MM-dd ahh:mm:ss").format(ts);
 //		System.out.println(date);
 
-		ItemService itemService = new ItemServiceImpl();
-		OrderService orderService = new OrderServiceImpl();
-		ItemBean itemBean = itemService.findById(119);
-		OrderBean orderBean = orderService.findById("C0120210907001");
-		System.out.println(orderBean.getCompany_id());
 	}
 
 }

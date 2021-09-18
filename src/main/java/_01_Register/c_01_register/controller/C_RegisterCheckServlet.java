@@ -9,6 +9,9 @@ import javax.servlet.http.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import _00_init.utils.CreateVerificationCode;
+import _00_init.utils.SendingEmail;
+import _01_Register.c_01_register.model.CustomerBean;
 import _01_Register.c_01_register.service.CustomerService;
 import _01_Register.c_01_register.service.serviceImpl.CustomerServiceImpl;
 
@@ -41,41 +44,62 @@ public class C_RegisterCheckServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		// 讀取使用者輸入資料
-		customer_phone = request.getParameter("userPhone_login");
-		customer_email = request.getParameter("password_login");
+		customer_phone = request.getParameter("userID_register");
+		customer_email = request.getParameter("email");
 		
+		int step = Integer.parseInt(request.getParameter("step"));
 
 		
 		// 檢查使用者輸入資料：交由前端
 
 		// 產生CustomerDao物件，以便進行企業邏輯運算。
 		CustomerService customerService = new CustomerServiceImpl();
-		
-		
-			
-		if (!(customerService.existsByCustomerAccount(customer_phone)) && !(customerService.existsByCustomerEmail(customer_email)) ){
-			log.info("顧客會員註冊功能之檢查結果： 手機號碼合格、email合格 ");
-			// 之後補寄送mail功能
-			response.getWriter().write("1");
-			
-		} else if (customerService.existsByCustomerAccount(customer_phone) && !(customerService.existsByCustomerEmail(customer_email))) {
-			log.info("顧客會員註冊功能之檢查結果： 手機號碼不合格");
-			response.getWriter().write("2");
-						
-		} else if (!(customerService.existsByCustomerAccount(customer_phone)) && customerService.existsByCustomerEmail(customer_email) ) {
-			log.info("顧客會員註冊功能之檢查結果： email不合格");
-			response.getWriter().write("3");
-			
-		} else {
-			log.info("顧客會員註冊功能之檢查結果： 手機號碼不合格、email不合格");
-			response.getWriter().write("4");
-			
+
+		if (step == 1) {
+			if (!(customerService.existsByCustomerAccount(customer_phone))
+					&& !(customerService.existsByCustomerEmail(customer_email))) {
+				log.info("顧客會員註冊功能之檢查結果： 手機號碼合格、email合格 ");
+				response.getWriter().write("1");
+				// 之後補寄送mail功能
+//				CustomerBean customerBean = new CustomerBean();
+//				customerBean.setCustomer_account(customer_phone);
+//				customerBean.setEmail(customer_email);
+//				String customer_verification = CreateVerificationCode.getVerificationCode();
+//				customerBean.setCustomer_verification(customer_verification);
+//				customerService.save(customerBean);
+//				SendingVerificationCodeEmail.SendTo(customer_email, customer_verification);
+
+			} else if (customerService.existsByCustomerAccount(customer_phone)
+					&& !(customerService.existsByCustomerEmail(customer_email))) {
+				log.info("顧客會員註冊功能之檢查結果： 手機號碼不合格");
+				response.getWriter().write("2");
+
+			} else if (!(customerService.existsByCustomerAccount(customer_phone))
+					&& customerService.existsByCustomerEmail(customer_email)) {
+				log.info("顧客會員註冊功能之檢查結果： email不合格");
+				response.getWriter().write("3");
+
+			} else {
+				log.info("顧客會員註冊功能之檢查結果： 手機號碼不合格、email不合格");
+				response.getWriter().write("4");
+			}
+		} else if (step == 2) {
+			String verificationCode = request.getParameter("emailpassword_register");
+			if (customerService.existsByAccountAndVerificationCode(customer_phone, verificationCode)) {
+				response.getWriter().write("0");
+			} else {
+				response.getWriter().write("9");
+			}
+		} else if (step == 9) {
+			CustomerBean customerBean = new CustomerBean();
+			customerBean.setCustomer_account(customer_phone);
+			customerBean.setEmail(customer_email);
+			String customer_verification = CreateVerificationCode.getVerificationCode();
+			customerBean.setCustomer_verification(customer_verification);
+			customerService.save(customerBean);
+			SendingEmail.SendVerificationCodeTo(customer_email, "test777");
 		}
-		
-		
 	}
-	
-	
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -34,13 +34,26 @@ $("#register_next0").click(function (e) {
      $.ajax({
        url: "https://whattodrink.herokuapp.com/_01_register/register.do",
        type: "POST",
-       data: $("#register1").serialize(),
+       data: $("#register1").serialize()+"&"+"step=1",
        success(res) {
        console.log(res);
        
          if (res == 1) {
           registerForm1.style.display = "none";
           registerForm2.style.display = "flex";
+
+
+		$.ajax({
+		      url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+		      type: "POST",
+		      data: "step=9"+"&"+$("#register1").serialize(),
+		      success(res) {
+			
+						}
+				})
+
+
+
          }else if(res == 2){
            $("#register1_warn").html("此手機號碼已註冊過");
          }else if(res == 3){
@@ -60,22 +73,23 @@ $("#register_next0").click(function (e) {
 $("#register_next1").click(function (e) {
   if (document.getElementById("register2").checkValidity() == true) {
     e.preventDefault();
-//     $.ajax({
-//       url: "http://localhost:8080/whattodrink/_01_register/register.do",
-//       type: "POST",
-//       data: $("#register2").serialize(),
-//       success(res) {
-//       console.log(res);
-//         if (res != 0) {
-//           $("#register2_warn").html(res);
-//         }
-//         if (res == 0) {
+    $.ajax({
+      url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+      type: "POST",
+      data: $("#register2").serialize()+"&"+"step=2"+"&"+$("#register1").serialize(),
+      success(res) {
+      console.log(res);
+        if (res != 0) {
+          $("#register2_warn").html("驗證碼輸入錯誤");
+        }
+        if (res == 0) {
           registerForm1.style.display = "none";
           registerForm2.style.display = "none";
           registerForm3.style.display = "flex";
-//         }
-//       },
-//     });
+        
+}
+      },
+    });
   }
 });
 

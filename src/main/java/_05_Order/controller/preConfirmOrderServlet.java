@@ -55,7 +55,7 @@ public class preConfirmOrderServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
 		
-		//payment值: "現金，限店家外送" or "信用卡"
+		//payment值: "現金" or "信用卡"
 		//taxId值: "" or "統一編號，如: 88888888"
 		//invitationDiscount值: "no" or "yes"
 		//再次確認訂單.jsp 可以把 以上值 以及 領取時間 呈現出來 
@@ -68,7 +68,7 @@ public class preConfirmOrderServlet extends HttpServlet {
 		
 		
 //		String payment = "信用卡";
-//		String payment = "現金，限店家外送";
+//		String payment = "現金";
 //		String taxId = "";
 //		String invitationDiscount = "no";
 		

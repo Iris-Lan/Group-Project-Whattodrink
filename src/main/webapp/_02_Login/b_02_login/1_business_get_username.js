@@ -11,24 +11,27 @@ $(function () {
 
   $.validator.addMethod(
     "noEmail",
-    function (value, element) {
+    function () {
+      let flag = false;
       $.ajax({
         type: "GET",
-        url: "",
+        url: "https://whattodrink.herokuapp.com/B_GetAccount",
         data: $("#email").serialize(),
         dataType: "json",
+        async: false,
         success: function (res) {
+          console.log(res);
           if (res == "yes") {
-            return false;
+            flag = true;
           }
         },
       });
+      return flag;
     },
     `無此信箱，請聯繫<a class="text-decoration-none" href="mailto:whattodrink2021@whattodrink.com">今天喝什麼</a>`
   );
 
   $("#getUsername").validate({
-    // onsubmit: false,
     rules: {
       email: {
         required: true,
@@ -45,21 +48,16 @@ $(function () {
     },
   });
 
-  $("#next").submit(function (e) {
+  $("#next").click(function (e) {
     e.preventDefault();
     $ajax({
-      url: "",
+      url: "https://whattodrink.herokuapp.com/B_GetAccount",
       type: "POST",
-      data: {},
-      success(res) {
-        const email = document.getElementById("email");
-        const btn = document.getElementById("next");
-        const back = document.getElementById("back");
-        btn.addEventListener("click", function (e) {
-          e.preventDefault();
-          email.style.display = "none";
-          back.style.display = "block";
-        });
+      data: $("#email").serialize(),
+      success() {
+        $("#getUsername").addClass("d-none");
+        $("#back").removeClass("d-none");
+        $("#back").addClass("flex");
       },
     });
   });

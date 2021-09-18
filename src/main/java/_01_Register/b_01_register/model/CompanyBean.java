@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -28,7 +29,7 @@ import _07_Others.model.FavoriteBean;
 
 @Entity
 @Table(name="company")
-public class CompanyBean implements Serializable {
+public class CompanyBean implements Serializable,Comparable<CompanyBean> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -59,7 +60,8 @@ public class CompanyBean implements Serializable {
 	private String 			bg_filename;
 	private String          invitation;    		 //邀請碼
 	private String          business_name;    		 //公司行號
-	
+	@Transient
+	private String 			distance;
 
 	
 //	@JSONField(serialize = false)
@@ -382,6 +384,16 @@ public class CompanyBean implements Serializable {
 
 
 
+	public String getDistance() {
+		return distance;
+	}
+
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+
 	public Set<OrderBean> getOrders() {
 		return orders;
 	}
@@ -451,7 +463,10 @@ public class CompanyBean implements Serializable {
 		return builder.toString();
 	}
 
-
+	@Override
+	public int compareTo(CompanyBean o) {
+		return Double.compare(Double.parseDouble(this.getDistance()),Double.parseDouble(o.getDistance()));
+	}
 
 	
 }

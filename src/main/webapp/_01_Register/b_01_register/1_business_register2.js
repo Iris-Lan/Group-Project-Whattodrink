@@ -61,7 +61,7 @@ $(function () {
         required: true,
         smaeAccount: true,
         //   remote: {
-        //     url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterUpdateServlet.do",
+        //     url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterUpdateServlet.do",
         //     type: "POST",
         //     dataType: "json",
         //     data: {
@@ -124,7 +124,7 @@ $(function () {
       success(res) {
       	if(res == "InsertOK"){
 	        alert("註冊成功，前往登入頁");     	
-	        window.location.assign("../../_02_Login/b_02_login/1_business_login.jsp");      	
+	        window.location.assign("https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp");      	
       	}
       }
     });

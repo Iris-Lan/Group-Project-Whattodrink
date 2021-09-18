@@ -265,8 +265,8 @@
               <div class="row">
                 <div class="col d-flex justify-content-end">
                   <Input type='hidden' name='item_cal' id="${cart.key}item_cal" value='${cart.value.item_cal}' />
-                  <button class="btn">
-                    <i class="fas fa-plus addhealthReminder" id="${cart.key}addhealthReminder">&emsp;健康提醒</i>
+                  <button class="btn addhealthReminder">
+                    <i class="fas fa-plus" style="pointer-events:none;" id="${cart.key}addhealthReminder">&emsp;健康提醒</i>
                   </button>
                    <Input type='hidden' name='add_to_health' id="${cart.key}add_to_health" value='${cart.value.add_to_health}' />
                 </div>
@@ -352,13 +352,12 @@
               "
             >飲品名稱</div>
             <div
-            id="healthReminder_productcal"
               style="
                 margin-left:auto;
                 font-size: 20px;
                 margin-top: 5px;
               "
-            >熱量</div>
+            ><span id="healthReminder_productcal"></span>cal</div>
           </div>
           <div class="modal-footer">
             <button
@@ -441,7 +440,7 @@
      </div>
      <div class="modal-body d-flex justify-content-center">
       
-       <button type="button" class="btn btn-dark" style="width: 200px;">登入/註冊</button>
+       <button type="button" class="btn btn-dark" style="width: 200px;" onclick="LoginRegister()">登入/註冊</button>
        
       </div>
      </div>
@@ -673,7 +672,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-    <script src="<c:url value='/_04_ShoppingCart/shoppingcart66.js'/>"></script>
+    <script src="<c:url value='/_04_ShoppingCart/shoppingcart.js'/>"></script>
 
   </body>
 </html>

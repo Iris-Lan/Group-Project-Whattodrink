@@ -4,12 +4,19 @@ $(document).ready(function () {
     url: "https://whattodrink.herokuapp.com/BusinessReportServlet",
     dataType: "json",
     success: function (response) {
+	console.log(response);
       startTime = response.start_time;
       endTime = response.end_time;
       timeSession = response.countByHour;
       ordQuantity = response.orderCount;
       ordTotal = response.total;
-      ordAvg = ordTotal / ordQuantity;
+     
+	  if(ordQuantity==0&&ordTotal==0){
+		  alert();
+		  ordAvg=0;
+	  }else{
+	  	  ordAvg = ordTotal / ordQuantity;
+	  }
       quan = `<span class="ms-3">${ordQuantity}\ 筆</span>`;
       total = `<span class="ms-3">${ordTotal}\ 元</span>`;
       avg = `<span class="ms-3">${ordAvg}\ 元</span>`;

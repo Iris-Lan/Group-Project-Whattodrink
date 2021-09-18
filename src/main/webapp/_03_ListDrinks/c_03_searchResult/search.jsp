@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 
@@ -47,12 +47,14 @@
 
 	<c:forEach varStatus="stVar" var="bb" items="${searchResult}">
         <div class="allshop">
+        <Input type='hidden' name='startTime' value='${fn:substring(bb.companyBean.start_time,0,5)}'/>
+        <Input type='hidden' name='endTime' value='${fn:substring(bb.companyBean.end_time,0,5)}'/>
         <Input type='hidden' name='company' value='${bb.product_id}'/>
           <img src="<c:url value='/images/冷露歐蕾.jpg'/>" style="width: 180px;" alt="">
           <h5>${bb.product_name}${bb.capacity}</i>
           </h5>
           <p>$${bb.product_price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${bb.product_cal}cal</p>
-<%--           <p><i class="fas fa-street-view"></i>${bb.companyBean.distance}公尺</p> --%>
+          <p><i class="fas fa-street-view"></i>${bb.companyBean.distance}公尺</p>
           <p> <a href="<c:url value="/_03_ListDrinks/StorePage?companyId=${bb.companyBean.company_id}"/>" style="color: black;">${bb.companyBean.company_name}${bb.companyBean.trade_name}</a></p>
         </div>
     </c:forEach> 
@@ -61,11 +63,7 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
-    <div class="row">
-      <div class="col-sm-10 mx-auto d-flex justify-content-center">
-        <button type="button" class="btn btn-dark my-2" id="more">顯示更多</button>
-      </div>
-    </div>
+
 
   </div>
 
@@ -198,6 +196,8 @@
 	</div>
 
 	<!-- modify Modal END-->
+
+
 
  
 
@@ -348,6 +348,30 @@
     </div>
   </div>
   <!-- Modal(sharecode) end-->
+  
+  
+  
+  <!--opening hours Modal start-->
+<div class="modal fade" id="openinghoursModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" style="margin:0px">此商家目前尚未營業</h5>
+      </div>
+      <div class="modal-body" id="openinghoursModalmodalbody" style="text-align: center;">
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close" style="background-color:#FCD8D4">去別家逛逛</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--opening hours Modal end-->
+  
+  
+  
+  
+  
  <!-- footer end -->
     <footer id="footer">
       <div class="container-fluid">
@@ -417,7 +441,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<c:url value="/_03_ListDrinks/c_03_searchResult/search87.js"/>"></script>
+    <script src="<c:url value="/_03_ListDrinks/c_03_searchResult/search9999.js"/>"></script>
 
 
 </body>

@@ -65,7 +65,7 @@ public class C_AccountSettingServlet extends HttpServlet {
 		customerService.updateCustomer(customerBean);
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/_07_Others/c__07_others_acount/我的帳戶.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/_07_Others/c__07_others_acount/myAccount.jsp");
 		rd.forward(request, response);
 	}
 

@@ -23,6 +23,20 @@
 
     <link rel="stylesheet" href="<c:url value="/_07_Others/c__07_others_healthReminder/healthReminder.css"/>" />
   </head>
+  <style>
+    /* remove number input spinner */
+    /* Chrome, Safari, Edge, Opera */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  </style>
   <body>
 
  <jsp:include page="/_08_Fragment/top.jsp" />
@@ -256,7 +270,17 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script src="<c:url value="/_07_Others/c__07_others_healthReminder/healthReminder.js"/>"></script>
+    <script src="<c:url value="/_07_Others/c__07_others_healthReminder/healthReminder11.js"/>"></script>
+   <script type="text/javascript">
+ //複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+		document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+   </script>
    
   </body>
 </html>

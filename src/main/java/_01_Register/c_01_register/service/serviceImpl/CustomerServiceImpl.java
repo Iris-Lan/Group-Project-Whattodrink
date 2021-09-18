@@ -259,6 +259,23 @@ public class CustomerServiceImpl implements CustomerService {
 		log.info("顧客會員-Service: 更新顧客會員資料完成" );
 		
 	}
-	
+
+	@Override
+	public boolean existsByAccountAndVerificationCode(String customer_account, String verificationCode) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		boolean exist;
+		try {
+			tx = session.beginTransaction();
+			exist = customerDao.existsByAccountAndVerificationCode(customer_account, verificationCode);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return exist;
+	}
 
 }

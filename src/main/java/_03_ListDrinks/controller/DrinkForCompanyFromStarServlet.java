@@ -55,7 +55,7 @@ public class DrinkForCompanyFromStarServlet extends HttpServlet {
 		for (int i = 0; i < commentBeans.size(); i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("drinkName", drinkBean.getProduct_name());
-			map.put("drinkPicpath", drinkBean.getProduct_picpath());
+			map.put("drinkPicpath",commentBeans.get(i).getComment_picpath());
 			map.put("drinkComment", commentBeans.get(i).getFeedback());
 			map.put("drinkStar", commentBeans.get(i).getStar().intValue());
 			list.add(map);

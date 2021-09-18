@@ -65,6 +65,7 @@ public class saveOrderServlet extends HttpServlet {
 			bean = customerService.findByCustomerId(cart.getOrderBean().getCustomer_id());
 			bean.setInvitationCount(bean.getInvitationCount() - 1);
 			customerService.updateCustomer(bean);
+//			session.setAttribute("CLoginOK", bean);
 		}
 		
 		
@@ -93,7 +94,7 @@ public class saveOrderServlet extends HttpServlet {
 		System.out.println("itemSet: " + items);
 		System.out.println("itemToppingsMap: "+ longMap);
 		
-		session.removeAttribute("ShoppingCart");
+//		session.removeAttribute("ShoppingCart");
 		
 		
 		

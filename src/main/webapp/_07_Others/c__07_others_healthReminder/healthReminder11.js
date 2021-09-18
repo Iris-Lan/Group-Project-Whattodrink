@@ -53,6 +53,48 @@ $(document).ready(function () {
       }
 
       // 輸入體重
+      $("#weight").keydown(function(event) {
+		if (event.keyCode == 13) {
+			event.preventDefault();
+      var weight = $("#weight").val();
+      console.log($("#weight").val());
+      if (weight >= 40 && weight < 50) {
+        $("#run_time").text(Math.round((calTotal / 164) * 30));
+        $("#run_cal").text(Math.round(($("#run_time").text() / 30) * 164));
+        $("#bike_time").text(Math.round((calTotal / 80) * 30));
+        $("#bike_cal").text(Math.round(($("#bike_time").text() / 30) * 80));
+        $("#walk_time").text(Math.round((calTotal / 110) * 30));
+        $("#walk_cal").text(Math.round(($("#walk_time").text() / 30) * 110));
+      } else if (weight >= 50 && weight < 60) {
+        $("#run_time").text(Math.round((calTotal / 205) * 30));
+        $("#run_cal").text(Math.round(($("#run_time").text() / 30) * 205));
+        $("#bike_time").text(Math.round((calTotal / 100) * 30));
+        $("#bike_cal").text(Math.round(($("#bike_time").text() / 30) * 100));
+        $("#walk_time").text(Math.round((calTotal / 137.5) * 30));
+        $("#walk_cal").text(
+          Math.round(($("#walk_time").text() / 30) * 137.5)
+        );
+      } else if (weight >= 60 && weight < 70) {
+        $("#run_time").text(Math.round((calTotal / 246) * 30));
+        $("#run_cal").text(Math.round(($("#run_time").text() / 30) * 246));
+        $("#bike_time").text(Math.round((calTotal / 120) * 30));
+        $("#bike_cal").text(Math.round(($("#bike_time").text() / 30) * 120));
+        $("#walk_time").text(Math.round((calTotal / 165) * 30));
+        $("#walk_cal").text(Math.round(($("#walk_time").text() / 30) * 165));
+      } else if (weight >= 70) {
+        $("#run_time").text(Math.round((calTotal / 287) * 30));
+        $("#run_cal").text(Math.round(($("#run_time").text() / 30) * 287));
+        $("#bike_time").text(Math.round((calTotal / 140) * 30));
+        $("#bike_cal").text(Math.round(($("#bike_time").text() / 30) * 140));
+        $("#walk_time").text(Math.round((calTotal / 192.5) * 30));
+        $("#walk_cal").text(
+          Math.round(($("#walk_time").text() / 30) * 192.5)
+        );
+      }
+			
+			}
+			});
+      
       $("#weight").blur(function (e) {
         e.preventDefault();
         var weight = $("#weight").val();

@@ -203,5 +203,20 @@ public class CustomerDaoImpl implements CustomerDao {
 			session.update(cb);
 		}
 	}
+	
+	@Override
+	public boolean existsByAccountAndVerificationCode(String customer_account, String verificationCode) {
+		Session session = factory.getCurrentSession();
+		boolean exist = false;
+		String hql = "FROM CustomerBean c "
+				   + "WHERE c.customer_account = :customer_account "
+				   + "AND c.customer_verification = :customer_verification";
+		exist = !session.createQuery(hql, CustomerBean.class)
+					    .setParameter("customer_account", customer_account)
+					    .setParameter("customer_verification", verificationCode)
+					    .getResultList()
+					    .isEmpty();
+		return exist;
+	}
 
 }

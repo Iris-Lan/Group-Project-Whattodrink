@@ -83,7 +83,7 @@ $(function () {
 //  $("#account").submit(function (e) {
 //    e.preventDefault();
 //    $ajax({
-//      url: "http://localhost:8080/whattodrink/_02_Login/B_LoginServlet.do",
+//      url: "https://whattodrink.herokuapp.com/_02_Login/B_LoginServlet.do",
 //      type: "POST",
 //      data: {
 //        username: function () {

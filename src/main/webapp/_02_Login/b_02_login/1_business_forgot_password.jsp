@@ -55,6 +55,7 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
                 class="form-control form-control-lg"
                 type="email"
                 name="email"
+                id="email"
                 placeholder="信箱"
               />
             </div>
@@ -76,8 +77,10 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
                 name="variviedCode"
                 placeholder="驗證碼"
               />
-              <span class="text-secondary d-none" id="resend">
-                未收到驗證碼<a class="text-primary mx-1">重新發送</a>
+              <span class="text-secondary">
+                未收到驗證碼<a class="text-primary mx-1" id="resend"
+                  >重新發送</a
+                >
               </span>
             </div>
             <div>
@@ -88,25 +91,25 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
           </div>
         </form>
         <!-- 輸入密碼 -->
-         <form
+        <form
           id="resetPassword"
           class="row d-none"
           action="./1_business_login.html"
         >
           <div class="col-10 mx-auto">
             <h4 class="mb-4">請輸入新密碼</h4>
-            <div style="height: 18.5vh">
+            <div style="height: 23vh">
               <input
                 type="password"
                 name="password"
                 id="password"
-                class="form-control form-control-lg mb-3"
+                class="form-control form-control-lg"
                 placeholder="密碼"
               />
               <input
                 type="password"
                 name="password2"
-                class="form-control form-control-lg"
+                class="form-control form-control-lg mt-3"
                 placeholder="再次輸入密碼"
               />
             </div>
@@ -187,7 +190,7 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
       </div>
     </footer>
     <!-- footer end -->
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
@@ -196,6 +199,6 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script src="1_business_forgot_password.js"></script>
+    <script src="<c:url value="/_02_Login/b_02_login/1_business_forgot_password.js"/>"></script>
   </body>
 </html>

@@ -20,7 +20,12 @@ public class InvitationEnteringServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession(false);
+		CustomerBean customerBean = (CustomerBean) session.getAttribute("CLoginOK");
+		CustomerService customerService = new CustomerServiceImpl();
+		customerBean = customerService.findByCustomerId(customerBean.getCustomer_id());
+		session.setAttribute("CLoginOK", customerBean);
+		response.sendRedirect(request.getContextPath() + "/_07_Others/c__07_others_acount/myAccountCoupon.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,7 +40,6 @@ public class InvitationEnteringServlet extends HttpServlet {
 		}
 		
 		if (customerService.existsByInvitation(invitationCode)) {
-			
 			CustomerBean customerBean = (CustomerBean) session.getAttribute("CLoginOK");
 			customerBean.setInvited_by(invitationCode);
 			customerBean.setInvitationCount(customerBean.getInvitationCount() + 1);

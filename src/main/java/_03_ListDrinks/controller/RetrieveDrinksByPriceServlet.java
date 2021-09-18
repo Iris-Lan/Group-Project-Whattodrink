@@ -1,6 +1,7 @@
 package _03_ListDrinks.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -41,6 +42,33 @@ public class RetrieveDrinksByPriceServlet extends HttpServlet {
 		DrinkService drinkService = new DrinkServiceImpl();
 		if (searchMethod.compareTo("nativeSearch") == 0) {// 自然搜尋法
 			List<DrinkBean> searchResultBeans = drinkService.orderDrinksByPriceAndKeyword(tagNameOrKeyword);
+			
+			if (session.getAttribute("A01") != null) {
+				
+				for (int i = 0; i < searchResultBeans.size(); i++) {
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("A01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("A01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("B01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("B01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("C01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("C01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("D01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("D01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("E01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("E01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("F01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("F01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("G01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("G01"));
+					}
+				}
+			}
 			session.setAttribute("searchResult", searchResultBeans);
 			System.out.println("===========================");
 			System.out.println(searchResultBeans);
@@ -48,6 +76,33 @@ public class RetrieveDrinksByPriceServlet extends HttpServlet {
 			
 		} else if(searchMethod.compareTo("tagSearch") == 0){// 標籤搜尋法
 			List<DrinkBean> searchResultBeans = drinkService.orderDrinksByPriceAndTagName(tagNameOrKeyword);
+if (session.getAttribute("A01") != null) {
+				
+				for (int i = 0; i < searchResultBeans.size(); i++) {
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("A01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("A01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("B01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("B01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("C01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("C01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("D01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("D01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("E01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("E01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("F01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("F01"));
+					}
+					if(searchResultBeans.get(i).getCompanyBean().getCompany_id().equals("G01")) {
+						searchResultBeans.get(i).getCompanyBean().setDistance((String) session.getAttribute("G01"));
+					}
+				}
+			}
+			
 			session.setAttribute("searchResult", searchResultBeans);
 			System.out.println("===========================");
 			System.out.println(searchResultBeans);

@@ -1,6 +1,7 @@
 //載入頁面要資料
 $(document).ready(function () {
   $.ajax({
+	cache: false,
     type: "GET",
     url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet",
     dataType: "json",
@@ -30,8 +31,6 @@ function loadData(data) {
   $("#tel").val(tel);
   var pic1 = `<img src="../../${data.company_iconpath}" style="max-width: 100%; max-height: 100%" id="pic1"/>`;
   var pic2 = `<img src="../../${data.bg_iconpath}" style="max-width: 100%; max-height: 100%" id="pic2"/>`;
-  // var pic1 = `<img src="<c:url value="/${data.company_iconpath}"/>" style="max-width: 100%; max-height: 100%" />`;
-  // var pic2 = `<img src="<c:url value="/${data.bg_iconpath}"/>" style="max-width: 100%; max-height: 100%" />`;
   img1.insertAdjacentHTML("afterbegin", pic1);
   img2.insertAdjacentHTML("afterbegin", pic2);
 }

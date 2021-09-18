@@ -29,6 +29,6 @@ public interface CustomerService {
 	
 	public void updateCustomers(CustomerBean... customerBean);
 
-
+	public boolean existsByAccountAndVerificationCode(String customer_account, String verificationCode);
 
 }

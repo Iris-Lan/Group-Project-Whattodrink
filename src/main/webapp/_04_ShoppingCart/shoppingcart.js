@@ -34,15 +34,25 @@ $( ".item-select" ).change(function(e) {
 				e.target.parentElement.nextElementSibling.nextElementSibling.firstElementChild.innerText=`$${res[0]}`;
 				$('#subtotal').text(`總計$${res[1]}`);
 				$(`#${e.target.parentElement.nextElementSibling.firstElementChild.value}quantity`).attr("value",e.target.value);
+				
+				
+if(e.target.value==0){
+		
+		$(`#${e.target.parentElement.nextElementSibling.firstElementChild.value}item`).next().remove();
+		 $(`#${e.target.parentElement.nextElementSibling.firstElementChild.value}item`).remove();
+	let pp=$('#subtotal').text();
+	
+if(parseInt(pp.substring(3))==0){
+	window.location.assign("https://whattodrink.herokuapp.com/_00_Index/index.jsp");
+	}
+		
+	}
+				
 				}
 				
 	});
 	
-	if(e.target.value==0){
-		$(`#${e.target.parentElement.nextElementSibling.firstElementChild.value}item`).next().remove();
-		 $(`#${e.target.parentElement.nextElementSibling.firstElementChild.value}item`).remove();
-		
-	}
+	
 });
 
 
@@ -54,12 +64,15 @@ const modal = new bootstrap.Modal(messageDom, { keyboard: false });
 //點擊加入健康提醒按鈕
 $(".addhealthReminder").click(function (e) {
 
-  $('#ittkey').attr("value",e.target.parentElement.parentElement.parentElement.previousElementSibling.previousElementSibling.children[1].firstElementChild.value)
+  $('#ittkey').attr("value",e.target.parentElement.parentElement.previousElementSibling.previousElementSibling.children[1].firstElementChild.value)
 
-  $('#healthReminder_productname').text(e.target.parentElement.parentElement.parentElement.previousElementSibling.previousElementSibling.children[1].lastElementChild.innerText);
-  $('#healthReminder_productcal').text("一杯熱量約"+e.target.parentElement.previousElementSibling.value+"cal");
+  $('#healthReminder_productname').text(e.target.parentElement.parentElement.previousElementSibling.previousElementSibling.children[1].lastElementChild.innerText);
   
-let count1=parseInt(e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.children[1].value);
+
+
+
+  
+let count1=parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.children[1].value);
 
 //依飲品數量動態新增下拉選單
 while (floatingSelect.hasChildNodes()) {
@@ -69,22 +82,52 @@ for (i = 0; i <= count1 ; i++) {
 $("#floatingSelect").append(`<option value="${i}">${i}</option>`); 
 }
 
-$("#floatingSelect").val(e.target.parentElement.nextElementSibling.value);
+$("#floatingSelect").val(e.target.nextElementSibling.value);
 
+if($("#floatingSelect").val()>1){
+	let key= $('#ittkey').val();
+	let cal=$(`#${key}item_cal`).val();
+	let count=$("#floatingSelect").val();
+	$('#healthReminder_productcal').text(`${count}杯熱量約為${cal*count}`);
+}else{
+	let key= $('#ittkey').val();
+	let cal=$(`#${key}item_cal`).val();
+	$('#healthReminder_productcal').text(`1杯熱量約為${cal}`);
+}
   modal.show();
 
 
 })
 
 
+
+//健康提醒熱量試算
+
+$("#floatingSelect").change(function(){
+	
+	if($("#floatingSelect").val()>1){
+	let key= $('#ittkey').val();
+	let cal=$(`#${key}item_cal`).val();
+	let count=$("#floatingSelect").val();
+	$('#healthReminder_productcal').text(`${count}杯熱量約為${cal*count}`);
+}else{
+	let key= $('#ittkey').val();
+	let cal=$(`#${key}item_cal`).val();
+	$('#healthReminder_productcal').text(`1杯熱量約為${cal}`);
+}	
+	
+})
+
+
+
 //若頁面重整判斷有無加入健康提醒
 for(i=0;i<50;i++){
 if( parseInt($(`#${i}add_to_health`).val())>0){
 
-  $(`#${i}addhealthReminder`).attr("class", "fas fa-check-circle addhealthReminder"); 
+  $(`#${i}addhealthReminder`).attr("class", "fas fa-check-circle"); 
 
 }else{
-  $(`#${i}addhealthReminder`).attr("class", "fas fa-plus addhealthReminder"); 
+  $(`#${i}addhealthReminder`).attr("class", "fas fa-plus"); 
   
 
 };
@@ -104,10 +147,10 @@ $(`#${hh}add_to_health`).attr("value",c.target.parentElement.previousElementSibl
 
 if( parseInt($(`#${hh}add_to_health`).val())>0){
 
-  $(`#${hh}addhealthReminder`).attr("class", "fas fa-check-circle addhealthReminder"); 
+  $(`#${hh}addhealthReminder`).attr("class", "fas fa-check-circle"); 
 
 }else{
-  $(`#${hh}addhealthReminder`).attr("class", "fas fa-plus addhealthReminder"); 
+  $(`#${hh}addhealthReminder`).attr("class", "fas fa-plus"); 
   
 
 };
@@ -118,7 +161,7 @@ if( parseInt($(`#${hh}add_to_health`).val())>0){
        addToHealth:c.target.parentElement.previousElementSibling.firstElementChild.firstElementChild.value},
      dataType:"json",
      success(res) {
-	 console.log(res);
+ console.log(res);
 
 
 	 			}
@@ -352,7 +395,7 @@ if($('#message').val()==""){
 		  $(`#${e.target.previousElementSibling.value}topping_id`).text(selected);
           $(`#${e.target.previousElementSibling.value}temp_level`).text($('[name=ice]:checked').next().text());
           $(`#${e.target.previousElementSibling.value}sugar_level`).text($('[name=sweet]:checked').next().text());
-		  $(`#${e.target.previousElementSibling.value}itemprice`).text(res[0]);
+		  $(`#${e.target.previousElementSibling.value}itemprice`).text(`$${res[0]}`);
      
 let finaltopping11 ="";
 for (let i = 0; i < selected.length; i++) {
@@ -436,6 +479,8 @@ result=tt+" "+storage.getItem("time");
 });
 
 
-
+function LoginRegister(){
+	window.location.assign("https://whattodrink.herokuapp.com/_01_Register/c_01_register/LoginRegister.jsp");
+}
 
 

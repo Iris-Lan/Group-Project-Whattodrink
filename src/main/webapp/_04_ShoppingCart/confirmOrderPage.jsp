@@ -1,6 +1,8 @@
+<%@page import="_04_ShoppingCart.model.ShoppingCart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -29,60 +31,77 @@
           <div class="col-sm-1"></div>
           <div class="col-sm-10 col-md-8 mx-auto">
             <i class="far fa-bell fa-2x"></i>
-            <h2  class="d-inline"><b>&nbsp請再次確認訂單</b><div style="margin-top: 15px;">迷客夏Milk Shop・高雄慶豐店</div></h2>
+            <h3  class="d-inline"><b>&nbsp請再次確認訂單</b><div style="margin-top: 15px;">${ShoppingCart.companyName}・${ShoppingCart.companyTradeName}</div></h3>
             <div class="mt-3">
-                <i class="fas fa-map-marker-alt fa-1x" style="color:red"></i><span>&nbsp;&nbsp;</span><a href="" style="color: black;">高雄市鼓山區慶豐街8號</a>
+                <i class="fas fa-map-marker-alt fa-1x" style="color:red"></i><span>&nbsp;&nbsp;${ShoppingCart.companyAddress}</span>
             </div>
-            <div class="items mt-3">
+            <div class="items mt-2">
+   <c:if test='${ShoppingCart.taxId!=""}'>
+   <div class="row mb-2"><span>統一編號 : ${ShoppingCart.taxId}</span></div>
+   </c:if>
+             <c:forEach var="dd" items="${ShoppingCart.shoppingCart}">
+             <Input type='hidden' id="${dd.key}"name='topping' value='${ShoppingCart.itemToppings[dd.key]}' />
+                <div class="row">
+                    <div class="d-flex">
+                        <div class="col-1 ps-2">${dd.value.quantity}</div>
+                        <div class="col-2">${dd.value.drinkBean.product_name}&nbsp;${dd.value.capacity}</div>
+                        <div class="col-8">${dd.value.tempLevelBean.temp_level}&nbsp;${dd.value.sugarLevelBean.sugar_level}&nbsp;
+                        
+                        <c:forEach var="cc" items="${ShoppingCart.itemToppings[dd.key]}">
+                       				 ${cc}
+                         </c:forEach>
+                        &nbsp; 
+                        <c:if test='${dd.value.message!=""}'>
+                        <span style="color:#F5C6AA;">傳情小貼紙：</span>${dd.value.message}&nbsp;
+                        </c:if>
+                        <c:if test='${dd.value.note!=""}'>
+                        <span style="color:#F5C6AA;">備註：</span>${dd.value.note}&nbsp;
+                        </c:if></div>
+                        <div class="col-1 text-end pe-2">$${dd.value.price}</div>
+                    </div>
+                </div>
+                
+             </c:forEach>
+                
+                
+               <c:if test="${ShoppingCart.invitationDiscount!='no'}"> 
+                  <div class="row">
+                    <div class="d-flex">
+                        <div class="col-2"></div>
+                        <div class="col-4"></div>
+                        <div class="col-6 text-end pe-2">折扣&nbsp;-$50</div>
+                    </div>
+                </div>
+                 <hr style="border: 1px solid rgb(226, 103, 20) ;">
                 <div class="row">
                     <div class=" d-flex">
-                        <div class="col-1 ps-2">2</div>
-                        <div class="col-4">伯爵紅茶拿鐵</div>
-                        <div class="col-6">M 微糖 微冰 白玉珍珠(+10)</div>
-                        <div class="col-1 text-end pe-2">130</div>
+                        <div class="col  mb-2">總計</div>
+                        <div class="col text-end fw-bold">$<fmt:formatNumber type="number" value="${ShoppingCart.cartSubTotal-50}" maxFractionDigits="0"/></div>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class=" d-flex">
-                        <div class="col-1 ps-2">1</div>
-                        <div class="col-4">沉香烏龍</div>
-                        <div class="col-6">L 微糖 微冰 白玉珍珠(+10) *傳情小貼紙</div>
-                        <div class="col-1 text-end pe-2" >80</div>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                  <div class=" d-flex">
-                      <div class="col-1 ps-2">1</div>
-                      <div class="col-4">沉香烏龍</div>
-                      <div class="col-6">L 微糖 微冰 白玉珍珠(+10) *傳情小貼紙</div>
-                      <div class="col-1 text-end pe-2" >80</div>
-                  </div>
-              </div>
-              <div class="row mt-2">
-                <div class=" d-flex">
-                    <div class="col-1 ps-2">1</div>
-                    <div class="col-4">沉香烏龍</div>
-                    <div class="col-6">L 微糖 微冰 白玉珍珠(+10) *傳情小貼紙</div>
-                    <div class="col-1 text-end pe-2" >80</div>
-                </div>
-            </div>
+                
+                
+                
+                </c:if>
+        <c:if test="${ShoppingCart.invitationDiscount=='no'}"> 
                 <hr style="border: 1px solid rgb(226, 103, 20) ;">
                 <div class="row">
                     <div class=" d-flex">
                         <div class="col  mb-2">總計</div>
-                        <div class="col text-end fw-bold">210</div>
+                        <div class="col text-end fw-bold">$<fmt:formatNumber type="number" value="${ShoppingCart.cartSubTotal}" maxFractionDigits="0"/></div>
                     </div>
                 </div>
+                  </c:if>
                 <div class="row d-flex">
                     <div class="d-flex ">
                         <div class="col">付款方式</div>
-                        <div class="col text-end fw-bold">信用卡支付</div>
+                        <div class="col text-end fw-bold">${ShoppingCart.payment}</div>
                     </div> 
                 </div>
 
             </div>
             <div class="mt-4 d-flex justify-content-between">
-              <button type="button" style="width: 200px;" class="btn btn-dark my-2">取消</button>
+              <button type="button" id="cancle" style="width: 200px;" class="btn btn-dark my-2">取消</button>
               <button type="button" id="submit" style="width: 200px;" class="btn btn-dark my-2">確認訂單</button>
             </div>
           </div>
@@ -90,9 +109,6 @@
       </div>
 </div>
   <!-- 結束 -->
-
-<a href="<c:url value="/_05_Order/ConfirmOrderServlet" />">toPay</a>
-
 
 
    <!-- Modal(sharecode) start-->
@@ -187,19 +203,34 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="<c:url value='/_00_Index/index.js'/>"></script>
-  
-  
-<!--   <script type="text/javascript"> -->
-<!-- //   $( "#submit" ).click(function(e) { -->
+    
+  <script type="text/javascript">
 
-<!-- // 	   $.ajax({ -->
-<!-- // 	    url: "http://localhost:8080/whattodrink/_05_Order/ConfirmOrderServlet", -->
-<!-- // 	    type: "POST", -->
-<!-- // 	    success(res) {} -->
-<!-- // 		}); -->
-<!-- // 	}); -->
-<!--   </script> -->
+	//複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+		document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+
+
+  
+  $('#submit').click(function(){
+	  window.location.assign("https://whattodrink.herokuapp.com/_05_Order/ConfirmOrderServlet");
+	  
+	  
+	  })
+	  
+ $('#cancle').click(function(){
+	  window.location.assign("https://whattodrink.herokuapp.com/_00_Index/index.jsp");
+	  
+	  
+	  })
+	  
+
+  </script>
   
   
 </body>

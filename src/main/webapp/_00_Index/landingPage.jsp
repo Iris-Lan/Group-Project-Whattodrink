@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="<c:url value="/_00_Index/landingPage.css"/>">
 </head>
 
-<body>
+<body onLoad="setFocusToAddress()">
 
 
 <c:if test="${CLoginOK==null}">
@@ -167,9 +167,8 @@
           <form id="locationform">
             <div class="d-flex">
               <i class="fas fa-map-marker-alt fa-2x" style="position: relative;right: 15px;"></i>
-              <input type="text" class="form-control" id="location" placeholder="您在的位置"
+              <input type="text" class="form-control" id="location" name="location" placeholder="您在的位置"
                 style="background-color: rgba(255, 255, 255, 0.26);border: none;">
-             
             </div>
             <p class="ms-4 mt-2"><a href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>" style="color: #000;">登入</a>搜尋想喝飲品</p>
           </form>
@@ -201,7 +200,7 @@
       <div class="col-sm-1"></div>
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-          <img src="../images/milktea.jpg" class="card-img-top" alt="..." height="200px">
+          <img src="../images/landing0.png" class="card-img-top" alt="..." height="200px">
           <div class="card-body">
             <p class="card-text">分享你的邀請碼!雙方都能獲得50元優惠券 趕快來註冊吧
               </p>
@@ -210,7 +209,7 @@
       </div>
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-          <img src="../images/milktea1.jpg" class="card-img-top" alt="..." height="200px">
+          <img src="../images/landing2.png" class="card-img-top" alt="..." height="200px">
           <div class="card-body">
             <p class="card-text">雖然熱愛飲料，但也不忘保持健康，來看看今日的嗜糖紀錄吧 !</p>
           </div>
@@ -218,7 +217,7 @@
       </div>
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-          <img src="../images/milktea.jpg" class="card-img-top" alt="..." height="200px">
+          <img src="../images/landing3.png" class="card-img-top" alt="..." height="200px">
           <div class="card-body">
             <p class="card-text">買飲料但怕踩雷 ? 別擔心 ! 先來看看飲品評論吧</p>
           </div>
@@ -312,10 +311,8 @@
       let Address = document.getElementById("location").value;
       storage.setItem("Address", Address);
       initMap();
-function initMap() {
-   
       
-        
+function initMap() {
          destination1=['台北市中正區新生南路一段52之3號','台北市中正區八德路一段82巷9弄18號','台北市中正區八德路一段82巷9弄20之1號','台北市中山區遼寧街38號','台北市大安區市民大道三段136號','台北市中正區青島東路21之10號','台北市大安區新生南路一段1號'];
 
          
@@ -343,15 +340,9 @@ function initMap() {
                       console.log(response);  
                     },
                   });
-                  
+                window.location.assign("https://whattodrink.herokuapp.com/_00_Index/index.jsp");
               }
-
-
         );
-        
-
-      
-    
   }
 
 
@@ -359,19 +350,16 @@ function initMap() {
 
 
 
-
-
-
-
-
-
-      // $("locationform").submit();
-
-
     }
    })
     </script>
 
+<script type="text/javascript">
+//由<body>的onLoad事件處理函數觸發此函數
+function setFocusToAddress(){   
+	 document.forms[0].location.focus();  
+}
+</script>
 
 </body>
 

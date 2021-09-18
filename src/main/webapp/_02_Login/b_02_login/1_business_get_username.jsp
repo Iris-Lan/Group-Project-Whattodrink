@@ -55,6 +55,7 @@
                 class="form-control form-control-lg"
                 type="email"
                 name="email"
+                id="email"
                 placeholder="信箱"
               />
             </div>
@@ -65,13 +66,13 @@
             </div>
           </div>
         </form>
-        <div class="col-sm-10 mx-auto mt-5" style="display: none" id="back">
+        <div class="col-sm-10 mx-auto mt-5 d-none" id="back">
           <h4 class="mb-4 d-flex justify-content-center align-items-center">
             帳號已寄到您的信箱
           </h4>
           <a
             class="d-flex justify-content-center align-items-center"
-            href="./1_business_login.html"
+            href="<c:url value="/_02_Login/b_02_login/1_business_login.jsp"/>"
             ><span>回登入頁</span></a
           >
         </div>
@@ -151,6 +152,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script src="1_business_get_username.js"></script>
+    <script src="<c:url value="/_02_Login/b_02_login/1_business_get_username.js"/>"></script>
   </body>
 </html>

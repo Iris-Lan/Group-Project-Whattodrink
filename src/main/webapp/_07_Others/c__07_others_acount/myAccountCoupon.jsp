@@ -25,8 +25,8 @@
 </head>
 
 <body>
-	
- <jsp:include page="/_08_Fragment/top.jsp" />
+
+	<jsp:include page="/_08_Fragment/top.jsp" />
 
 	<!-- 內容開始 -->
 
@@ -47,17 +47,18 @@
 			<!-- 側選欄end -->
 
 			<!-- 本體start -->
-			
-		
+
+
 			<div class="col-sm-6 mx-auto d-flex justify-content-center">
 				<div class="box d-flex flex-column">
 					<div style="margin-top: 25px; text-align: center;">
 						<c:choose>
 							<c:when test="${CLoginOK.invited_by==null}">
-								<form action="<c:url value="/C_AccountSettingServlet"/>"
+								<form method="post"
+									action="<c:url value="/InvitationEnteringServlet"/>"
 									id="acountform">
 									<h5 style="margin-right: 10px;">請輸入好友邀請碼</h5>
-									<input type="text" name="Invitationcode" id="Invitationcode">
+									<input type="text" name="invitationCode" id="Invitationcode">
 									<button type="submit" style="width: 200px;"
 										class="btn btn-dark my-2" id="save">提交邀請碼</button>
 								</form>
@@ -71,17 +72,22 @@
 						</c:choose>
 
 
-						<h6 style="margin: 10px">恭喜你獲得好友專屬50元優惠</h6>
+						<h6 style="margin: 10px">${invitationCode}</h6>
+						<c:remove var="invitationCode" scope="session" />
 					</div>
 
+					<c:if test="${CLoginOK.invitationCount>0}">
+						<c:forEach begin="1" end="${CLoginOK.invitationCount}" >
+							<div class="bb" id="bb">
+								<div style="text-align: center;">
+									<h5>邀請碼折扣</h5>
+									<p>50元</p>
+								</div>
+							</div>
+						</c:forEach>
 
-					<div class="bb" id="bb">
-						<div style="text-align: center;">
-							<h5>邀請碼折扣</h5>
-							<p>50元</p>
-						</div>
+					</c:if>
 
-					</div>
 
 
 
@@ -158,28 +164,34 @@
 	<!-- footer end -->
 
 
-	 <!-- Modal(sharecode) start-->
-   <div class="modal fade" id="sharecode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">分享你的邀請碼給好友吧</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex justify-content-center" style="padding-top: 30px;">
-          <i class="fas fa-gift fa-lg"
-            id="Invitationcode">&nbsp;&nbsp;&nbsp;&nbsp;${CLoginOK.invitation}&nbsp;</i>
-          <button type="button" class="btn" style="position: relative;bottom: 9px;" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="已複製">
-            <i class="far fa-copy fa-lg" onclick="copy()"></i>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">完成</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal(sharecode) end-->
+	<!-- Modal(sharecode) start-->
+	<div class="modal fade" id="sharecode" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">分享你的邀請碼給好友吧</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body d-flex justify-content-center"
+					style="padding-top: 30px;">
+					<i class="fas fa-gift fa-lg" id="Invitationcode">&nbsp;&nbsp;&nbsp;&nbsp;${CLoginOK.invitation}&nbsp;</i>
+					<button type="button" class="btn"
+						style="position: relative; bottom: 9px;" data-bs-container="body"
+						data-bs-toggle="popover" data-bs-placement="right"
+						data-bs-content="已複製">
+						<i class="far fa-copy fa-lg" onclick="copy()"></i>
+					</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-bs-dismiss="modal"
+						aria-label="Close">完成</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal(sharecode) end-->
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

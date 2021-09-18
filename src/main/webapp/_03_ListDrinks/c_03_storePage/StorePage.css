@@ -68,7 +68,9 @@ border-bottom-left-radius: 0px;
   font-size: 20px;  
 }
 
-
+.dropdown-item:active{
+background-color:transparent;	
+}
 
 
 /* category */

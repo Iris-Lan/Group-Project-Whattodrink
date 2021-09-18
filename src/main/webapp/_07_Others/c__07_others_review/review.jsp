@@ -31,24 +31,24 @@
   <body>
  
   <jsp:include page="/_08_Fragment/top.jsp" />
- 
+
    <!-- 開始 -->
   <div class="container-fluid">
     <div class="row">
 
       <div class="col-sm-1"></div>
-
-      <form action="" method="GET">
           <div class="col-sm-10 mx-auto">
         <br>
         <!-- title框開始 -->
         <div class="EvaluationTittle">
           <h4><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;評價</h4>
-          <p>
-            <h5>迷客夏 Milk Shop.高雄慶豐店感謝您的訂購</h5>
-          </p>
+          
+            <h5>${itemBeans[0].orderBean.companyBean.company_name} | ${itemBeans[0].orderBean.companyBean.trade_name}感謝您的訂購</h5>
+          
           <p>和大家分享這杯飲料吧 </p>
         </div>
+
+        
         <!-- title框結束 -->
 
         <div class="d-flex justify-content-center">
@@ -56,116 +56,67 @@
             <!-- row 是裝本體的外框 -->
             <div class="row3" style="display: flex; flex-direction: row;">
 
+             <c:forEach varStatus="stVar" var="bb" items="${itemBeans}">
              
+             <c:if test="${bb.drinkBean.enabled==false}">
+                  <div class="row">
+                  <p class="fw-bold fs-5 m-0">${bb.drinkBean.product_name}${bb.capacity}</p>
+                <img src="<c:url value="/images/notcomment.png"/>" style="width:170px;height:170px;padding:0px;">
+                  </div>
+             </c:if>
+             
+             
+             
+             <c:if test="${bb.drinkBean.enabled==true}">
+             <form id="form${stVar.count}" enctype="multipart/form-data" method="POST" name="fileinfo">
+				
               <div class="row mb-3 rr">
                 <!-- 以下商品名跟星星 -->
                 <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
+                  <p class="fw-bold fs-5 m-0">${bb.drinkBean.product_name}${bb.capacity}</p>
+                  <Input type='hidden' name='product_id' value='${bb.product_id}'/>
+                  <Input type='hidden' name='order_id' value='${bb.order_id}' />
+                  <Input type='hidden' name='item_id' value='${bb.item_id}' />
+                  <Input type='hidden' name='customer_id' value='${bb.orderBean.customer_id}' />
                   <div class="rate1">
-                    <input type="radio" id="star5" name="rate" value="5" />
-                    <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
-                    <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
-                    <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
-                    <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
-                    <label for="star1" title="text">1 star</label>
+                    <input type="radio" id="star5${stVar.count}" name="star" value="5" checked="checked"/>
+                    <label for="star5${stVar.count}">5 stars</label>
+                    <input type="radio" id="star4${stVar.count}" name="star" value="4" />
+                    <label for="star4${stVar.count}">4 stars</label>
+                    <input type="radio" id="star3${stVar.count}" name="star" value="3" />
+                    <label for="star3${stVar.count}">3 stars</label>
+                    <input type="radio" id="star2${stVar.count}" name="star" value="2" />
+                    <label for="star2${stVar.count}">2 stars</label>
+                    <input type="radio" id="star1${stVar.count}" name="star" value="1" />
+                    <label for="star1${stVar.count}">1 star</label>
                   </div>
                 </div>
                 <!-- 以上商品名跟星星 -->
                 <!-- 以下這格裝了圖片跟輸入文字框 -->
                 <div class="pictureText" style="display: flex">
-                  <div class="col-sm-6" style="display: flex; align-items: center;">
+                  <div class="col-sm-6" style="display: flex; align-items: center;" >
                     <div id="newImg1"></div>
                   </div>
                   <!-- 如果用格子裝textarea會對不齊圖片 -->
                   <!-- <div class="accordion-body"> -->
-                  <textarea name="talk" cols="20" rows="7" placeholder="限制30字"></textarea>
+                  <textarea name="talk" cols="20" rows="7" placeholder="限制30字" required></textarea>
                   <!-- </div> -->
                 </div>
                 <!-- 以上這格裝了圖片跟輸入文字框 -->
                 <!-- 這是上傳檔案鍵 -->
-                <div><label class="btn" style="border: #ccc 1px solid;"><input id="upload_img1" style="display:none;" type="file"><i
+                <div><label class="btn" style="border: #ccc 1px solid;"><input id="upload_img${stVar.count}" style="display:none;" type="file" accept="image/*"><i
                       class="fa fa-photo"></i> 上傳圖片</label></div>
                 <!-- 這是上傳檔案鍵 -->
               </div>
               
-              <div class="row mb-3 rr">
-                <!-- 以下商品名跟星星 -->
-                <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
-
-                  <div class="rate1">
-                    <input type="radio" id="star05" name="rate0" value="5" />
-                    <label for="star05" title="text">5 stars</label>
-                    <input type="radio" id="star04" name="rate0" value="4" />
-                    <label for="star04" title="text">4 stars</label>
-                    <input type="radio" id="star03" name="rate0" value="3" />
-                    <label for="star03" title="text">3 stars</label>
-                    <input type="radio" id="star02" name="rate0" value="2" />
-                    <label for="star02" title="text">2 stars</label>
-                    <input type="radio" id="star01" name="rate0" value="1" />
-                    <label for="star01" title="text">1 star</label>
-                  </div>
-
-                </div>
-                <!-- 以上商品名跟星星 -->
-                <!-- 以下這格裝了圖片跟輸入文字框 -->
-                <div class="pictureText" style="display: flex">
-                  <div class="col-sm-6" style="display: flex;align-items: center;">
-                    <div id="newImg2"></div>
-                  </div>
-                  <!-- 如果用格子裝textarea會對不齊圖片 -->
-                  <!-- <div class="accordion-body col-sm-6"> -->
-                  <textarea name="talk" cols="20" rows="7" placeholder="限制30字"></textarea>
-                  <!-- </div> -->
-                </div>
-                <!-- 以上這格裝了圖片跟輸入文字框 -->
-                <!-- 這是上傳檔案鍵 -->
-                <div><label class="btn" style="border: #ccc 1px solid;"><input id="upload_img2" style="display:none;" type="file"><i
-                      class="fa fa-photo"></i> 上傳圖片</label></div>
-                <!-- 這是上傳檔案鍵 -->
-              </div>
-
-               <div class="row mb-3 rr">
-                <!-- 以下商品名跟星星 -->
-                <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
-
-                  <div class="rate1">
-                    <input type="radio" id="star005" name="rate1" value="5" />
-                    <label for="star005" title="text">5 stars</label>
-                    <input type="radio" id="star004" name="rate1" value="4" />
-                    <label for="star004" title="text">4 stars</label>
-                    <input type="radio" id="star003" name="rate1" value="3" />
-                    <label for="star003" title="text">3 stars</label>
-                    <input type="radio" id="star002" name="rate1" value="2" />
-                    <label for="star02" title="text">2 stars</label>
-                    <input type="radio" id="star001" name="rate1" value="1" />
-                    <label for="star001" title="text">1 star</label>
-                  </div>
-
-                </div>
-                <!-- 以上商品名跟星星 -->
-                <!-- 以下這格裝了圖片跟輸入文字框 -->
-                <div class="pictureText" style="display: flex">
-                  <div class="col-sm-6" style="display: flex;align-items: center;">
-                    <div id="newImg3"></div>
-                  </div>
-                  <!-- 如果用格子裝textarea會對不齊圖片 -->
-                  <!-- <div class="accordion-body col-sm-6"> -->
-                  <textarea name="talk" cols="20" rows="7" placeholder="限制30字"></textarea>
-                  <!-- </div> -->
-                </div>
-                <!-- 以上這格裝了圖片跟輸入文字框 -->
-                <!-- 這是上傳檔案鍵 -->
-                <div><label class="btn" style="border: #ccc 1px solid;"><input id="upload_img3" style="display:none;" type="file"><i
-                      class="fa fa-photo"></i> 上傳圖片</label></div>
-                <!-- 這是上傳檔案鍵 -->
-              </div>
-
+                 </form>
+             
+             </c:if>
+             
+				
+                 
+                 
+              </c:forEach>
 
 
 
@@ -178,12 +129,12 @@
         
         <!-- 以上商品body -->
         <div class="mt-5 d-flex justify-content-center">
-          <button type="submit" class="btn btn-dark mx-auto" style="width: 200px">
+          <button type="submit" class="btn btn-dark mx-auto" style="width: 200px" id="submitbtn">
             完成
           </button>
         </div>
           </div>
-      </form>
+        
       <div class="col-sm-1"></div>
 
     </div>
@@ -283,6 +234,9 @@
 
 
 <script>
+
+
+
   (function ($) {
     var compressRatio = 0.8, // 圖片壓縮比例
       imgNewWidth = 200, // 圖片新寬度
@@ -305,6 +259,11 @@
       }
 
 
+      if (this.files.length==0) {
+     $(c.target.parentNode.parentNode.previousElementSibling.firstElementChild.firstElementChild).empty();
+        }
+      
+      
       function getFileInfo(evt) {
       dataUrl = evt.target.result,
 
@@ -337,7 +296,7 @@
       // 顯示新圖片
       newImg1 = canvas.toDataURL("image/jpeg", compressRatio);
       html = "";
-      html += "<img src='" + newImg1 + "'/>";
+      html += "<img src='" + newImg1 + "' />";
       // html += "<p>圖片尺寸 " + imgNewWidth + "x" + imgNewHeight + "</p>";
       // html += "<p>檔案大小約 " + Math.round(0.75 * newImg.length / 1000) + "k</p>"; // 出處 https://stackoverflow.com/questions/18557497/how-to-get-html5-canvas-todataurl-file-size-in-javascript
       
@@ -360,5 +319,106 @@
   })(jQuery);
 </script>
     
+    
+    
+    
+<script type="text/javascript">
+$('#submitbtn').click(function(e){
+
+	    e.preventDefault();
+
+
+	var formData = new FormData();
+
+	
+	$('input[name=customer_id]').each(function(){
+		formData.append('customer_id',$(this).val());
+	})
+	
+	
+		$('input[name=order_id]').each(function(){
+		formData.append('order_id',$(this).val());
+	})
+	
+	
+	
+	$('input[name=item_id]').each(function(){
+		formData.append('item_id',$(this).val());
+	})
+	
+	
+		$('input[name=product_id]').each(function(){
+		formData.append('product_id',$(this).val());
+	})
+	
+	
+	$('[name="star"]:checked').each(function(){
+		formData.append('star',$(this).val());
+		
+	})
+	
+	
+	
+	$('textarea[name=talk]').each(function(){
+		formData.append('comment',$(this).val());
+	})
+
+	
+	$.each($("input[type=file]"), function(i, obj) {
+		if(obj.files.length==1){
+        $.each(obj.files,function(j, file){
+        	formData.append('photo['+j+']', file);
+        	formData.append('upload',1);
+        	
+        })
+		}else{
+			formData.append('upload',0);
+			formData.append('photo[0]', 0);
+		}
+		
+		
+		
+});
+
+// console.log(formData.getAll('comment'));
+// console.log(formData.getAll('star'));
+// console.log(formData.getAll('item_id'));
+	
+
+    $.ajax({
+        url: 'https://whattodrink.herokuapp.com/AddCommentsServlet',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,                    
+        type: 'post',
+       success: function(data){
+    	   window.location.assign("https://whattodrink.herokuapp.com/_05_Order/c_05_order/myOrder.jsp");
+        }
+});
+
+
+
+
+	
+
+});
+
+
+
+</script>   
+
+<script type="text/javascript">
+	
+	//複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+	  document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+	  return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+	</script>
+	 
   </body>
 </html>

@@ -34,5 +34,7 @@ public interface CustomerDao {
 	public CustomerBean findByInvitation(String invitation);
 	
 	public void updateCustomers(CustomerBean... customerBean);
+	
+	public boolean existsByAccountAndVerificationCode(String customer_account, String verificationCode);
 
 }

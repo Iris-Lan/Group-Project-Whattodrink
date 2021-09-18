@@ -299,8 +299,7 @@ public class CompanyDaoImpl implements Serializable, CompanyDao {
 			map.put("order_id", obj[0]);
 			String time = (String) obj[1];
 			map.put("scheduled_time", time.substring(11));
-			String str = (String) obj[2];
-			map.put("payment", (str.equals("現金，限店家外送") ? "現金" : str));
+			map.put("payment", obj[2]);
 			map.put("order_quantity", obj[3]);
 			map.put("order_total", obj[4]);
 			map.put("orderStatus", obj[5]);
@@ -332,8 +331,7 @@ public class CompanyDaoImpl implements Serializable, CompanyDao {
 			Timestamp ts = (Timestamp) obj[1];
 			String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 			map.put("order_date", date);
-			String str = (String) obj[2];
-			map.put("payment", (str.equals("現金，限店家外送") ? "現金" : str));
+			map.put("payment", obj[2]);
 			map.put("order_quantity", obj[3]);
 			map.put("order_total", obj[4]);
 			map.put("orderStatus", obj[5]);

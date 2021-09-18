@@ -82,6 +82,45 @@ public class IndexFilter implements Filter {
 		
 		CompanyService companyService = new CompanyServiceImpl();
 		List<CompanyBean> companyBeans = companyService.findAllByHitRank();
+		
+		if (((HttpServletRequest) request).getSession(false) != null) {
+			HttpSession session = ((HttpServletRequest) request).getSession(false);
+			if (session.getAttribute("A01") != null) {
+				String A01 = (String) session.getAttribute("A01");
+				String B01 = (String) session.getAttribute("B01");
+				String C01 = (String) session.getAttribute("C01");
+				String D01 = (String) session.getAttribute("D01");
+				String E01 = (String) session.getAttribute("E01");
+				String F01 = (String) session.getAttribute("F01");
+				String G01 = (String) session.getAttribute("G01");
+
+				for (int i = 0; i < companyBeans.size(); i++) {
+
+					if (companyBeans.get(i).getCompany_id().equals("A01")) {
+						companyBeans.get(i).setDistance(A01);
+					}
+					if (companyBeans.get(i).getCompany_id().equals("B01")) {
+						companyBeans.get(i).setDistance(B01);
+					}
+					if (companyBeans.get(i).getCompany_id().equals("C01")) {
+						companyBeans.get(i).setDistance(C01);
+					}
+					if (companyBeans.get(i).getCompany_id().equals("D01")) {
+						companyBeans.get(i).setDistance(D01);
+					}
+					if (companyBeans.get(i).getCompany_id().equals("E01")) {
+						companyBeans.get(i).setDistance(E01);
+					}
+					if (companyBeans.get(i).getCompany_id().equals("F01")) {
+						companyBeans.get(i).setDistance(F01);
+					}
+					if (companyBeans.get(i).getCompany_id().equals("G01")) {
+						companyBeans.get(i).setDistance(G01);
+					}
+				}
+			}
+		}
+		
 		request.setAttribute("companyList", companyBeans);
 		
 		CommentService commentService = new CommentServiceImpl();

@@ -3,12 +3,17 @@ $(document).ready(function () {
     type: "GET",
     url: "https://whattodrink.herokuapp.com/PaymentDiscount",
     dataType: "json",
-    async:false,
+    async: false,
     success: function (response) {
       var sub_total = response.sub_total;
+      str = `<span style="font-size: 14px;" id="storeTel"><br>店家電話：${response.storeTel}</span>`;
+      storeTel.insertAdjacentHTML("afterend", str);
       $("#total").text(sub_total);
       if (response.hasDiscount != 0) {
         $("#discount").removeClass("d-none");
+        if (sub_total < 100) {
+          $("input[value=yes]").attr("disabled", "disabled");
+        }
         $("input[name=invitationDiscount]").change(function () {
           $("#counting").addClass("d-none");
           if ($("input[value=yes]").is(":checked") == true) {
@@ -37,9 +42,11 @@ $(document).ready(function () {
         taxId: taxId,
         invitationDiscount: discount,
       },
-      success: function(){
-      	window.location.assign("https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp");
-      }
+      success: function () {
+        window.location.assign(
+          "https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
+        );
+      },
     });
   });
 });

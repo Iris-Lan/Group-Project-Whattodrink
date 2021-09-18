@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,119 +21,116 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <link rel="stylesheet"
-	href="<c:url value="/_03_ListDrinks/c_03_storePage/StorePage1.css"/>" />
+	href="<c:url value="/_03_ListDrinks/c_03_storePage/StorePage.css"/>" />
 
 </head>
 
 <body>
-	
-
-<!-- hamburger menu1 start-->
- 
- <c:if test="${CLoginOK==null}">
-  <div
-  class="offcanvas offcanvas-start d-flex flex-column"
-  id="hamburgerMenu"
-  style="width: 300px; padding: 10px"
-  tabindex="-1"
->
-  <div class="offcanvas-header">
-    <button
-      type="button"
-      class="btn btn-close text-reset"
-      data-bs-dismiss="offcanvas"
-    ></button>
-  </div>
-  <div class="offcanvas-body lh-base">
-    <div class="d-block" style="height: 70vh">
-      <h6 class="fw-normal">
-          <a href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>"><button type="submit" style="width: 200px;" class="btn btn-dark my-2">登入</button></a>
-      </h6>
-      <h6 class="fw-normal">
-        <a class="link-dark text-decoration-none" href="<c:url value="/_01_Register/b_01_register/1_business_register_1.jsp"/>">建立企業帳戶</a>
-      </h6>
-      <h6 class="fw-normal">
-        <a class="link-dark text-decoration-none" href="<c:url value="/_02_Login/b_02_login/1_business_login.jsp"/>">登入您的商店</a>
-      </h6>
-
-    </div>
-    <div class="d-flex flex-column">
-      <a href="" class="logo"><img src="<c:url value="/images/logo.png"/>" alt="logo" class="small-logo"/></a>
-      <a href="" class="text-dark text-decoration-none app_download"
-        ><span
-          class="border border-1 rounded-1 p-1 border-dark"
-          style="width: fit-content"
-          ><i class="fab fa-google-play me-1"></i>應用程式</span
-        ></a
-      >
-    </div>
-  </div>
-</div>
-</c:if>
-  <!-- hamburger menu1 end-->
 
 
+	<!-- hamburger menu1 start-->
 
-
-
-<!-- hamburger menu start-->
-<c:if test="${CLoginOK!=null}">
-
-<div class="offcanvas offcanvas-start d-flex flex-column"
-	id="hamburgerMenu" style="width: 300px; padding: 10px" tabindex="-1">
-	<div class="offcanvas-header">
-		<button type="button" class="btn btn-close text-reset"
-			data-bs-dismiss="offcanvas"></button>
-	</div>
-	<div class="offcanvas-body lh-base ">
-		<div class="d-block atext" style="height: 70vh">
-			<div style="display: flex;">
-				<i class="fas fa-user-circle mb-4" style="font-size: xxx-large"></i>
-				<h6 style="margin-top: 15px; margin-left: 15px;">${CLoginOK.customer_name}
-					今天喝什麼?</h6>
+	<c:if test="${CLoginOK==null}">
+		<div class="offcanvas offcanvas-start d-flex flex-column"
+			id="hamburgerMenu" style="width: 300px; padding: 10px" tabindex="-1">
+			<div class="offcanvas-header">
+				<button type="button" class="btn btn-close text-reset"
+					data-bs-dismiss="offcanvas"></button>
 			</div>
+			<div class="offcanvas-body lh-base">
+				<div class="d-block" style="height: 70vh">
+					<h6 class="fw-normal">
+						<a
+							href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>"><button
+								type="submit" style="width: 200px;" class="btn btn-dark my-2">登入</button></a>
+					</h6>
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none"
+							href="<c:url value="/_01_Register/b_01_register/1_business_register_1.jsp"/>">建立企業帳戶</a>
+					</h6>
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none"
+							href="<c:url value="/_02_Login/b_02_login/1_business_login.jsp"/>">登入您的商店</a>
+					</h6>
 
-			<h6 class="fw-normal">
-				<a class="link-dark text-decoration-none"
-					href="<c:url value="/_07_Others/c__07_others_acount/myAccount.jsp"/>"><i
-					class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;帳戶資訊</a>
-			</h6>
-			<h6 class="fw-normal">
-				<a class="link-dark text-decoration-none"
-					href="<c:url value="/_05_Order/c_05_order/myOrder.jsp"/>"><i
-					class="fas fa-list-ul"></i>&nbsp;&nbsp;&nbsp;我的訂單</a>
-			</h6>
-			<h6 class="fw-normal">
-				<a class="link-dark text-decoration-none"
-					href="<c:url value="//ShowMyFavoriteServlet"/>"><i
-					class="fas fa-heart"></i>&nbsp;&nbsp;&nbsp;我的最愛</a>
-			</h6>
-			<h6 class="fw-normal">
-				<a class="link-dark text-decoration-none" href="#sharecode"
-					data-bs-toggle="modal"><i class="fas fa-gift"></i>&nbsp;&nbsp;&nbsp;分享邀請碼</a>
-			</h6>
-			<h6 class="fw-normal">
-				<a class="link-dark text-decoration-none"
-					href="<c:url value="/_07_Others/c__07_others_healthReminder/healthReminder.jsp"/>"><i
-					class="far fa-bell"></i>&nbsp;&nbsp;&nbsp;健康提醒</a>
-			</h6>
+				</div>
+				<div class="d-flex flex-column">
+					<a href="" class="logo"><img
+						src="<c:url value="/images/logo.png"/>" alt="logo"
+						class="small-logo" /></a> <a href=""
+						class="text-dark text-decoration-none app_download"><span
+						class="border border-1 rounded-1 p-1 border-dark"
+						style="width: fit-content"><i
+							class="fab fa-google-play me-1"></i>應用程式</span></a>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	<!-- hamburger menu1 end-->
 
-			<h6 class="fw-normal">
-				<a class="link-secondary text-decoration-none" href="">登出</a>
-			</h6>
+
+
+
+
+	<!-- hamburger menu start-->
+	<c:if test="${CLoginOK!=null}">
+
+		<div class="offcanvas offcanvas-start d-flex flex-column"
+			id="hamburgerMenu" style="width: 300px; padding: 10px" tabindex="-1">
+			<div class="offcanvas-header">
+				<button type="button" class="btn btn-close text-reset"
+					data-bs-dismiss="offcanvas"></button>
+			</div>
+			<div class="offcanvas-body lh-base ">
+				<div class="d-block atext" style="height: 70vh">
+					<div style="display: flex;">
+						<i class="fas fa-user-circle mb-4" style="font-size: xxx-large"></i>
+						<h6 style="margin-top: 15px; margin-left: 15px;">${CLoginOK.customer_name}
+							今天喝什麼?</h6>
+					</div>
+
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none"
+							href="<c:url value="/_07_Others/c__07_others_acount/myAccount.jsp"/>"><i
+							class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;帳戶資訊</a>
+					</h6>
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none"
+							href="<c:url value="/_05_Order/c_05_order/myOrder.jsp"/>"><i
+							class="fas fa-list-ul"></i>&nbsp;&nbsp;&nbsp;我的訂單</a>
+					</h6>
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none"
+							href="<c:url value="//ShowMyFavoriteServlet"/>"><i
+							class="fas fa-heart"></i>&nbsp;&nbsp;&nbsp;我的最愛</a>
+					</h6>
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none" href="#sharecode"
+							data-bs-toggle="modal"><i class="fas fa-gift"></i>&nbsp;&nbsp;&nbsp;分享邀請碼</a>
+					</h6>
+					<h6 class="fw-normal">
+						<a class="link-dark text-decoration-none"
+							href="<c:url value="/_07_Others/c__07_others_healthReminder/healthReminder.jsp"/>"><i
+							class="far fa-bell"></i>&nbsp;&nbsp;&nbsp;健康提醒</a>
+					</h6>
+
+					<h6 class="fw-normal">
+						<a class="link-secondary text-decoration-none" href="">登出</a>
+					</h6>
+				</div>
+				<div class="d-flex flex-column">
+					<a href="<c:url value='/_00_Index/index.jsp'/>" class="logo"><img
+						src="<c:url value="/images/logo.png"/>" alt="logo"
+						class="small-logo" /></a> <a href=""
+						class="text-dark text-decoration-none app_download"><span
+						class="border border-1 rounded-1 p-1 border-dark"
+						style="width: fit-content"><i
+							class="fab fa-google-play me-1"></i>應用程式</span></a>
+				</div>
+			</div>
 		</div>
-		<div class="d-flex flex-column">
-			<a href="<c:url value='/_00_Index/index.jsp'/>" class="logo"><img
-				src="<c:url value="/images/logo.png"/>" alt="logo"
-				class="small-logo" /></a> <a href=""
-				class="text-dark text-decoration-none app_download"><span
-				class="border border-1 rounded-1 p-1 border-dark"
-				style="width: fit-content"><i class="fab fa-google-play me-1"></i>應用程式</span></a>
-		</div>
-	</div>
-</div>
-</c:if>
-<!-- hamburger menu end-->
+	</c:if>
+	<!-- hamburger menu end-->
 
 	<!-- Menu Start -->
 	<nav id="menu"
@@ -144,23 +143,22 @@
 			<!-- lift menu -->
 			<ul class="navbar-nav me-md-auto left-menu">
 				<li class="nav-item"><a class="nav-link"
-					href="<c:url value="/_00_Index/index.jsp"/>"><img
-						id="logo" src="<c:url value="/images/logo.png"/>" alt="" /></a>
-				</li>
+					href="<c:url value="/_00_Index/index.jsp"/>"><img id="logo"
+						src="<c:url value="/images/logo.png"/>" alt="" /></a></li>
 			</ul>
 			<ul class="navbar-nav mx-md-auto flex-row hide show7">
 				<li class="nav-item show7-1"><a class="nav-link btn"
 					data-bs-toggle="collapse" href="#collapseExample0" role="button"
-					aria-expanded="false" aria-controls="collapseExample0">
-						<i class="fas fa-map-marker-alt fa-lg"></i>
+					aria-expanded="false" aria-controls="collapseExample0"> <i
+						class="fas fa-map-marker-alt fa-lg"></i>
 				</a></li>
 				<li class="nav-item show7-1"><a class="nav-link btn"
 					data-bs-toggle="collapse" href="#collapseExample1" role="button"
-					aria-expanded="false" aria-controls="collapseExample1">
-						<i class="fas fa-search fa-lg"></i>
+					aria-expanded="false" aria-controls="collapseExample1"> <i
+						class="fas fa-search fa-lg"></i>
 				</a></li>
-				<li class="nav-item show7-1"><a class="nav-link" onclick="doo3()"><i
-						class="fas fa-shopping-cart fa-lg"></i></a></li>
+				<li class="nav-item show7-1"><a class="nav-link"
+					onclick="doo3()"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
 
 				<li class="nav-item show7-1"><a class="nav-link"
 					href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>""
@@ -170,34 +168,34 @@
 
 			<ul class="navbar-nav mx-md-auto flex-row hide7">
 
-			<li class="nav-item me-1">
-				<form action="" id="locationform0">
-					<input type="text" class="form-control" id="location0"
-						placeholder="您現在的位置"
-						style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
-				</form>
+				<li class="nav-item me-1">
+					<form action="" id="locationform0">
+						<input type="text" class="form-control" id="location0"
+							placeholder="您現在的位置"
+							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
+					</form>
 
-			</li>
-			<li class="nav-item"><i class="fas fa-map-marker-alt fa-lg"
-				style="position: relative; right: 30px; top: 8px; color: rgb(80, 77, 77);"></i>
-			</li>
-		</ul>
+				</li>
+				<li class="nav-item"><i class="fas fa-map-marker-alt fa-lg"
+					style="position: relative; right: 30px; top: 8px; color: rgb(80, 77, 77);"></i>
+				</li>
+			</ul>
 			<!-- right menu -->
 			<ul class="navbar-nav ms-ms-auto ms-md-auto hide7" id="menuright">
 				<li class="nav-item">
-				<form
-					action="<c:url value='/_03_listDrinks/RetrieveDrinksByNative'/>"
-					method="POST" id="searchform1">
-					<input type="text" class="form-control" id="search"
-						placeholder="好想喝..." name="keyword"
-						style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
-				</form>
-			</li>
+					<form
+						action="<c:url value='/_03_listDrinks/RetrieveDrinksByNative'/>"
+						method="POST" id="searchform1">
+						<input type="text" class="form-control" id="search"
+							placeholder="好想喝..." name="keyword"
+							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
+					</form>
+				</li>
 				<li class="nav-item"><a class="nav-link" href="#"><i
 						class="fas fa-search fa-lg"></i></a></li>
 
-				<li class="nav-item"><a class="nav-link cart-icon" onclick="doo3()"><i
-						class="fas fa-shopping-cart fa-lg"></i></a></li>
+				<li class="nav-item"><a class="nav-link cart-icon"
+					onclick="doo3()"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>"><i
 						class="fas fa-sign-in-alt fa-lg"></i></a></li>
@@ -207,39 +205,39 @@
 			<div class="col-sm-1"></div>
 		</div>
 		<div class="collapse hide show7" id="collapseExample0">
-				<ul class="navbar-nav mx-md-auto flex-row">
-			<li class="nav-item me-1">
-				<form action="" id="locationform1">
-					<input type="text" class="form-control" id="location1"
-						placeholder="您現在的位置"
-						style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
-				</form>
+			<ul class="navbar-nav mx-md-auto flex-row">
+				<li class="nav-item me-1">
+					<form action="" id="locationform1">
+						<input type="text" class="form-control" id="location1"
+							placeholder="您現在的位置"
+							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
+					</form>
 
-			</li>
-			<li class="nav-item "><i class="fas fa-map-marker-alt fa-lg"
-				style="position: relative; right: 30px; top: 8px; color: rgb(80, 77, 77);"></i>
-			</li>
-		</ul>
+				</li>
+				<li class="nav-item "><i class="fas fa-map-marker-alt fa-lg"
+					style="position: relative; right: 30px; top: 8px; color: rgb(80, 77, 77);"></i>
+				</li>
+			</ul>
 		</div>
 		<div class="collapse hide show7" id="collapseExample1">
 			<ul class="navbar-nav mx-md-auto flex-row">
-			<li class="nav-item">
-				<form
-					action="<c:url value='/_03_listDrinks/RetrieveDrinksByNative'/>"
-					method="POST" id="searchform2">
+				<li class="nav-item">
+					<form
+						action="<c:url value='/_03_listDrinks/RetrieveDrinksByNative'/>"
+						method="POST" id="searchform2">
 
-					<input type="text" class="form-control" name="keyword" id=""
-						placeholder="好想喝..."
-						style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
-				</form>
+						<input type="text" class="form-control" name="keyword" id=""
+							placeholder="好想喝..."
+							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
+					</form>
 
-			</li>
-			<li class="nav-item"><a class="nav-link" onclick="doo2()"><i
-					class="fas fa-search fa-lg"
-					style="position: relative; right: 35px;"></i></a></li>
+				</li>
+				<li class="nav-item"><a class="nav-link" onclick="doo2()"><i
+						class="fas fa-search fa-lg"
+						style="position: relative; right: 35px;"></i></a></li>
 
 
-		</ul>
+			</ul>
 		</div>
 	</nav>
 
@@ -247,25 +245,29 @@
 
 	<!-- 開始 -->
 	<!-- Store Picture START -->
-	<div class="container-fluid bg-light storeimage" style="background-image: 
- linear-gradient(rgba(0, 0, 0, 0.3),rgba(0,0,0,0.3)), url(<c:url value="/${storeCategoryBeans[0].companyBean.bg_iconpath}"/>);">
+	<c:set var="radom" value="<%=Math.random()%>" />
+	<div class="container-fluid bg-light storeimage"
+		style="background-image:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0,0,0,0.3)), url(<c:url value="/${storeCategoryBeans[0].companyBean.bg_iconpath}?rr=${radom}"/>);">
 		<div class="col-sm-2 ps-md-4 pt-3">
-			<a href="" style="text-decoration: none; color: black"><i
-				class="fas fa-chevron-left"></i> 上一頁</a>
+			<a href="<c:url value="/_00_Index/index.jsp"/>"
+				style="text-decoration: none; color: white"><i
+				class="fas fa-chevron-left"></i>上一頁</a>
 		</div>
 		<div class="row">
 			<div class="col-sm-10 mx-auto">
 				<h3>
 					<div style="margin-top: 15px">
-					<c:if test="${CLoginOK!=null}">
-				<i onclick="change(this)" class="far fa-heart fa-lg" style="color: pink" id="${storeCategoryBeans[0].companyBean.company_id}"></i>
-					</c:if>
-					<span style="color: white;">${storeCategoryBeans[0].companyBean.company_name} | ${storeCategoryBeans[0].companyBean.trade_name}</span>
+						<c:if test="${CLoginOK!=null}">
+							<i onclick="change(this)" class="far fa-heart fa-lg"
+								style="color: pink"
+								id="${storeCategoryBeans[0].companyBean.company_id}"></i>
+						</c:if>
+						<span style="color: white;">${storeCategoryBeans[0].companyBean.company_name}
+							| ${storeCategoryBeans[0].companyBean.trade_name}</span>
 					</div>
 				</h3>
 				<div class="mt-3 ps-2">
-					<i class="fas fa-star text-warning"></i><span style="color: white">4.9</span><i
-						class="fas fa-map-marker-alt fa-1x ms-4 text-danger"></i><span>&nbsp;</span>
+					<i class="fas fa-map-marker-alt fa-1x text-danger"></i><span>&nbsp;</span>
 					<button
 						style="border: none; background: transparent; text-decoration: underline; color: rgb(255, 255, 255);"
 						id="addressMaps" class="addressMaps">${storeCategoryBeans[0].companyBean.company_address}</button>
@@ -283,13 +285,15 @@
 								<button type="button" class="btn-close ms-0 "
 									data-bs-dismiss="modal" aria-label="Close"></button>
 								<h5 class="modal-title ms-4 pb-0" id="exampleModalLabel">
-									<i class="fas fa-map-marker-alt fa-1x text-danger"></i>${storeCategoryBeans[0].companyBean.company_name} | ${storeCategoryBeans[0].companyBean.trade_name}
+									<i class="fas fa-map-marker-alt fa-1x text-danger"></i>${storeCategoryBeans[0].companyBean.company_name}
+									| ${storeCategoryBeans[0].companyBean.trade_name}
 								</h5>
 							</div>
 							<div class="modal-body mb-2 pt-0">
 								<div id="storeMapsBody">
-								<iframe src="https://maps.google.com?output=embed&q=${storeCategoryBeans[0].companyBean.company_address}"
-								width="100%" height="100%" frameborder="0"></iframe>
+									<iframe
+										src="https://maps.google.com?output=embed&q=${storeCategoryBeans[0].companyBean.company_address}"
+										width="100%" height="100%" frameborder="0"></iframe>
 								</div>
 							</div>
 						</div>
@@ -297,10 +301,14 @@
 				</div>
 				<!-- 彈跳maps end -->
 
-
+				<Input type='hidden' name='start_time'
+					value='${fn:substring(storeCategoryBeans[0].companyBean.start_time,0,5)}' />
+				<Input type='hidden' name='end_time'
+					value='${fn:substring(storeCategoryBeans[0].companyBean.end_time,0,5)}' />
 				<div class="mt-3 mb-4 ps-2">
-					<i class="far fa-clock"></i><span style="color: white">營業時間
-						9:30 - 22:00</span>
+					<i class="far fa-clock" style="color: white"></i><span
+						style="color: white">&nbsp;營業時間
+						${fn:substring(storeCategoryBeans[0].companyBean.start_time,0,5)}-${fn:substring(storeCategoryBeans[0].companyBean.end_time,0,5)}</span>
 				</div>
 			</div>
 		</div>
@@ -324,103 +332,101 @@
 						id="category${stVar.index}">${aa.category_name}</a>
 
 				</c:forEach>
-			
-			
-			<c:if test="${storeCategoryBeans.size()<6}">
-			
-					<a class="fs-5" href="#categoryBody12"
-						id="category12">塑膠袋</a>
-							
+
+
+				<c:if test="${storeCategoryBeans.size()<6}">
+
+					<a class="fs-5" href="#categoryBody12" id="category12">塑膠袋</a>
+
 				</c:if>
-				
-				
+
+
 				<c:if test="${storeCategoryBeans.size()>5}">
-				<div class="btn-group">
-					<a class="fs-5 d-flex" href="" data-bs-toggle="dropdown">顯示更多<i
-						class="fas fa-sort-down "></i></a>
-					<ul class="dropdown-menu dropdown-menu-sm-end">
-						<c:forEach varStatus="stVar" var="aa" begin="6" end="11"
-							items="${storeCategoryBeans}">
+					<div class="btn-group">
+						<a class="fs-5 d-flex" href="" data-bs-toggle="dropdown">顯示更多<i
+							class="fas fa-sort-down "></i></a>
+						<ul class="dropdown-menu dropdown-menu-sm-end">
+							<c:forEach varStatus="stVar" var="aa" begin="6" end="11"
+								items="${storeCategoryBeans}">
+								<li class="d-flex justify-content-center"><a
+									class="dropdown-item fs-5" style="width: fit-content;"
+									href="#categoryBody${stVar.index}" id="category${stVar.index}">${aa.category_name}</a></li>
+							</c:forEach>
 							<li class="d-flex justify-content-center"><a
 								class="dropdown-item fs-5" style="width: fit-content;"
-								href="#categoryBody${stVar.index}" id="category${stVar.index}">${aa.category_name}</a></li>
-						</c:forEach>
-						<li class="d-flex justify-content-center"><a
-							class="dropdown-item fs-5" style="width: fit-content;"
-							href="#categoryBody12" id="category12">塑膠袋</a></li>
-					</ul>
-				</div>
-				
+								href="#categoryBody12" id="category12">塑膠袋</a></li>
+						</ul>
+					</div>
+
 				</c:if>
-				
+
 			</div>
 		</div>
 		<!-- additional cartIcon -->
 		<ul class="navbar-nav">
 			<li class="nav-item special-cartIcon" id="special-cartIcon"><a
-				class="nav-link"  onclick="doo3()"><i class="fas fa-shopping-cart"></i></a></li>
+				class="nav-link" onclick="doo3()"><i
+					class="fas fa-shopping-cart"></i></a></li>
 		</ul>
 	</div>
 	<div class="col-sm-10 mx-auto" style="border-top: solid 1px black"></div>
 	<!-- Store Category END -->
 
 	<!-- Store drink START -->
-	<c:forEach varStatus="varStatusName" var="bb" begin="0" end="${storeCategoryBeans.size()-1}" >	
+	<c:forEach varStatus="varStatusName" var="bb" begin="0"
+		end="${storeCategoryBeans.size()-1}">
 		<div class="container-fluid">
-		<div class="row" id="categoryBody${varStatusName.index}">
-			<div class="col-sm-10 mx-auto">
-				<p style="font: bold 25px Tahoma; margin-top: 30px">${storeCategoryBeans[varStatusName.index].category_name}</p>
-				<div class="row">
-			
-			
-			<c:set var="category_id_start" value="${storeCategoryBeans[0].category_id}" scope="session"/>
-			
-			
-			<c:forEach varStatus="ss" var="cc" items="${storeDrinkBeans}">
-				
-			
-				
-				<c:if
-					test="${cc.category_id==(varStatusName.index+(category_id_start))}">
-					
-					
-					
-					<!-- card1 -->
-					<div class="col-sm-4">
-						<div class="card mb-3">
-							<div class="row">
-								<div class="col-lg-6">
-									<img class="ratio ratio-4x4"
-										src="https://picsum.photos/180/180/?blur=2" alt="..." />
-								</div>
-								<div class="col-lg-6">
-									<div class="card-body ">
-										<div class="mb-2">
-										<Input type='hidden' name='company' value='${cc.product_id}'/>
-											<h6 class="card-title fw-bold  addButton">${cc.product_name}${cc.capacity}</h6>
+			<div class="row" id="categoryBody${varStatusName.index}">
+				<div class="col-sm-10 mx-auto">
+					<p style="font: bold 25px Tahoma; margin-top: 30px">${storeCategoryBeans[varStatusName.index].category_name}</p>
+					<div class="row drink">
+
+
+						<c:set var="category_id_start"
+							value="${storeCategoryBeans[0].category_id}" scope="session" />
+
+
+						<c:forEach varStatus="ss" var="cc" items="${storeDrinkBeans}">
+							<c:if test="${cc.category_id==(varStatusName.index+(category_id_start))}">
+							<!-- card1 -->
+								<div class="col-sm-4">
+									<div class="card mb-3">
+										<div class="row">
+											<div class="col-lg-6">
+												<img class="ratio ratio-4x4"
+													src="https://picsum.photos/180/180/?blur=2"/>
+											</div>
+											<div class="col-lg-6">
+												<div class="card-body">
+													<div class="mb-2">
+														<Input type='hidden' name='product_id'
+															value='${cc.product_id}' />
+														<h6 class="card-title fw-bold  addButton">${cc.product_name}${cc.capacity}</h6>
+													</div>
+													<div>${cc.product_cal}cal</div>
+													<div>$${cc.product_price}元</div>
+													<c:if test="${cc.avgStar>0}">
+														<div>
+															<i class="fas fa-star text-warning comment"></i><span
+																class="point comment" style="cursor: pointer;">${cc.avgStar}</span>
+														</div>
+													</c:if>
+
+												</div>
+											</div>
 										</div>
-										<div>${cc.product_cal }cal</div>
-										<div>$${cc.product_price }元</div>
-										<div><i class="fas fa-star text-warning"></i><span class="point" style="cursor: pointer;">4.9</span></div>
 									</div>
 								</div>
-							</div>
-						</div>
+							</c:if>
+						</c:forEach>
 					</div>
-					
-				</c:if>
-				
-			</c:forEach>
-			
-			
 				</div>
 			</div>
+			<div class="col-sm-10 mx-auto mt-3"
+				style="border-top: solid 1px black"></div>
 		</div>
-		<div class="col-sm-10 mx-auto mt-3"
-			style="border-top: solid 1px black"></div>
-	</div>
-			
-			
+
+
 	</c:forEach>
 
 	<!-- Store drink END -->
@@ -478,19 +484,19 @@
 								<div class="accordion-body">
 									<div class="btn-group" role="group"
 										aria-label="Basic radio toggle button group" id="icebtn">
-<!-- 										<input type="radio" class="btn-check" name="ice" id="ice1" -->
-<!-- 											autocomplete="off" checked /> <label -->
-<!-- 											class="btn btn-outline-dark" for="ice1">完全去冰</label> <input -->
-<!-- 											type="radio" class="btn-check" name="ice" id="ice2" -->
-<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
-<!-- 											for="ice2">去冰</label> <input type="radio" class="btn-check" -->
-<!-- 											name="ice" id="ice3" autocomplete="off" /> <label -->
-<!-- 											class="btn btn-outline-dark" for="ice3">微冰</label> <input -->
-<!-- 											type="radio" class="btn-check" name="ice" id="ice4" -->
-<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
-<!-- 											for="ice4">少冰</label> <input type="radio" class="btn-check" -->
-<!-- 											name="ice" id="ice5" autocomplete="off" /> <label -->
-<!-- 											class="btn btn-outline-dark" for="ice5">正常冰</label> -->
+										<!-- 										<input type="radio" class="btn-check" name="ice" id="ice1" -->
+										<!-- 											autocomplete="off" checked /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="ice1">完全去冰</label> <input -->
+										<!-- 											type="radio" class="btn-check" name="ice" id="ice2" -->
+										<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
+										<!-- 											for="ice2">去冰</label> <input type="radio" class="btn-check" -->
+										<!-- 											name="ice" id="ice3" autocomplete="off" /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="ice3">微冰</label> <input -->
+										<!-- 											type="radio" class="btn-check" name="ice" id="ice4" -->
+										<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
+										<!-- 											for="ice4">少冰</label> <input type="radio" class="btn-check" -->
+										<!-- 											name="ice" id="ice5" autocomplete="off" /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="ice5">正常冰</label> -->
 									</div>
 								</div>
 							</div>
@@ -510,19 +516,19 @@
 								<div class="accordion-body">
 									<div class="btn-group" role="group"
 										aria-label="Basic radio toggle button group" id="sweetbtn">
-<!-- 										<input type="radio" class="btn-check" name="sweet" id="sweet1" -->
-<!-- 											autocomplete="off" checked /> <label -->
-<!-- 											class="btn btn-outline-dark" for="sweet1">無糖</label> <input -->
-<!-- 											type="radio" class="btn-check" name="sweet" id="sweet2" -->
-<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
-<!-- 											for="sweet2">微糖</label> <input type="radio" class="btn-check" -->
-<!-- 											name="sweet" id="sweet3" autocomplete="off" /> <label -->
-<!-- 											class="btn btn-outline-dark" for="sweet3">半糖</label> <input -->
-<!-- 											type="radio" class="btn-check" name="sweet" id="sweet4" -->
-<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
-<!-- 											for="sweet4">少糖</label> <input type="radio" class="btn-check" -->
-<!-- 											name="sweet" id="sweet5" autocomplete="off" /> <label -->
-<!-- 											class="btn btn-outline-dark" for="sweet5">全糖</label> -->
+										<!-- 										<input type="radio" class="btn-check" name="sweet" id="sweet1" -->
+										<!-- 											autocomplete="off" checked /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="sweet1">無糖</label> <input -->
+										<!-- 											type="radio" class="btn-check" name="sweet" id="sweet2" -->
+										<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
+										<!-- 											for="sweet2">微糖</label> <input type="radio" class="btn-check" -->
+										<!-- 											name="sweet" id="sweet3" autocomplete="off" /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="sweet3">半糖</label> <input -->
+										<!-- 											type="radio" class="btn-check" name="sweet" id="sweet4" -->
+										<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
+										<!-- 											for="sweet4">少糖</label> <input type="radio" class="btn-check" -->
+										<!-- 											name="sweet" id="sweet5" autocomplete="off" /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="sweet5">全糖</label> -->
 									</div>
 								</div>
 							</div>
@@ -541,18 +547,18 @@
 								<div class="accordion-body">
 									<div class="btn-group" role="group"
 										aria-label="Basic radio toggle button group" id="addon">
-<!-- 										<input type="checkbox" class="btn-check" name="addon" -->
-<!-- 											id="addon1" autocomplete="off" checked /> <label -->
-<!-- 											class="btn btn-outline-dark" for="addon1">珍珠+10</label> <input -->
-<!-- 											type="checkbox" class="btn-check" name="addon" id="addon2" -->
-<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
-<!-- 											for="addon2">椰果+10</label> <input type="checkbox" -->
-<!-- 											class="btn-check" name="addon" id="addon3" autocomplete="off" /> -->
-<!-- 										<label class="btn btn-outline-dark" for="addon3">布丁+10</label> -->
+										<!-- 										<input type="checkbox" class="btn-check" name="addon" -->
+										<!-- 											id="addon1" autocomplete="off" checked /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="addon1">珍珠+10</label> <input -->
+										<!-- 											type="checkbox" class="btn-check" name="addon" id="addon2" -->
+										<!-- 											autocomplete="off" /> <label class="btn btn-outline-dark" -->
+										<!-- 											for="addon2">椰果+10</label> <input type="checkbox" -->
+										<!-- 											class="btn-check" name="addon" id="addon3" autocomplete="off" /> -->
+										<!-- 										<label class="btn btn-outline-dark" for="addon3">布丁+10</label> -->
 
-<!-- 										<input type="checkbox" class="btn-check" name="addon" -->
-<!-- 											id="addon4" autocomplete="off" /> <label -->
-<!-- 											class="btn btn-outline-dark" for="addon4">寒天+10</label> -->
+										<!-- 										<input type="checkbox" class="btn-check" name="addon" -->
+										<!-- 											id="addon4" autocomplete="off" /> <label -->
+										<!-- 											class="btn btn-outline-dark" for="addon4">寒天+10</label> -->
 
 									</div>
 								</div>
@@ -587,7 +593,8 @@
 								class="accordion-collapse collapse show"
 								aria-labelledby="panelsStayOpen-heading5">
 								<div class="accordion-body">
-									<textarea id="message" name="talk" cols="45" rows="3" placeholder="限制30字"></textarea>
+									<textarea id="message" name="talk" cols="45" rows="3"
+										placeholder="限制30字"></textarea>
 								</div>
 							</div>
 						</div>
@@ -599,205 +606,140 @@
 							<tr>
 								<td class="d-flex justify-content-between align-items-center">
 									<input class="min" name="" type="button" /> <input
-									class="text_box" name="" type="text" id="quantity" value="1" /> <input
-									class="add" name="" type="button" />
+									class="text_box" name="" type="text" id="quantity" value="1" />
+									<input class="add" name="" type="button" />
 								</td>
 							</tr>
 						</table>
 					</div>
 
-					<button type="button" class="btn btn-dark" style="width: 300px;" id="submitbtn">完成</button>
+					<button type="button" class="btn btn-dark" style="width: 300px;"
+						id="submitbtn">完成</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- modify Modal END-->
-	
- <!-- Modal(sharecode) start-->
-   <div class="modal fade" id="sharecode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">分享你的邀請碼給好友吧</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex justify-content-center" style="padding-top: 30px;">
-          <i class="fas fa-gift fa-lg"
-            id="Invitationcode">&nbsp;&nbsp;&nbsp;&nbsp;${CLoginOK.invitation}&nbsp;</i>
-          <button type="button" class="btn" style="position: relative;bottom: 9px;" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="已複製">
-            <i class="far fa-copy fa-lg" onclick="copy()"></i>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">完成</button>
-        </div>
+
+	<!-- Modal(sharecode) start-->
+	<div class="modal fade" id="sharecode" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">分享你的邀請碼給好友吧</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body d-flex justify-content-center"
+					style="padding-top: 30px;">
+					<i class="fas fa-gift fa-lg" id="Invitationcode">&nbsp;&nbsp;&nbsp;&nbsp;${CLoginOK.invitation}&nbsp;</i>
+					<button type="button" class="btn"
+						style="position: relative; bottom: 9px;" data-bs-container="body"
+						data-bs-toggle="popover" data-bs-placement="right"
+						data-bs-content="已複製">
+						<i class="far fa-copy fa-lg" onclick="copy()"></i>
+					</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-bs-dismiss="modal"
+						aria-label="Close">完成</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal(sharecode) end-->
+
+<!--opening hours Modal start-->
+<div class="modal fade" id="openinghoursModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">目前商家尚未營業</h5>
+      </div>
+      <div class="modal-body" id="openinghoursModalmodalbody" style="text-align: center;">
+      </div>
+      <div class="modal-footer">
+        <a href="<c:url value='/_00_Index/index.jsp'/>"><button type="button" class="btn" style="background-color:#FCD8D4">去別家逛逛</button></a>
       </div>
     </div>
   </div>
-  <!-- Modal(sharecode) end-->
+</div>
+<!--opening hours Modal end-->
 
 
 
 
-<!-- nocart Modal -->
- <div
- class="modal fade"
- id="NocartModal"
- tabindex="-1"
- aria-labelledby="exampleModalLabel"
- aria-hidden="true"
->
- <div class="modal-dialog">
-   <div class="modal-content">
-     <div class="modal-header">
-       <h5 class="modal-title" style="margin-left: auto;">購物還空空的哦</h5>
-       <button
-         type="button"
-         class="btn-close"
-         data-bs-dismiss="modal"
-         aria-label="Close"
-       ></button>
-     </div>
-     <div class="modal-body d-flex justify-content-center">
-      
-       <button type="button" class="btn btn-dark" style="width: 200px;" data-bs-dismiss="modal">快去逛逛吧</button>
-       
-      </div>
-     </div>
-   
-   </div>
- </div>
- 
- 
- <!-- nocart Modal -->
+	<!-- nocart Modal -->
+	<div class="modal fade" id="NocartModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" style="margin-left: auto;">購物還空空的哦</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body d-flex justify-content-center">
+
+					<button type="button" class="btn btn-dark" style="width: 200px;"
+						data-bs-dismiss="modal">快去逛逛吧</button>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- nocart Modal -->
 
 
 
 
-<!-- clear shopping Modal start-->
-  <div class="modal fade" id="clearModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">啟動新購物車?</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body d-flex justify-content-center">
-          
-          <div>
-            您的購物車已包含其他店家的飲品，是否清空購物車，<br>改成這項飲品?
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            取消
-          </button>
-          <button type="button" class="btn btn-dark" id="clearbtn">更新購物車</button>
-        </div>
-    
-    
-    </div>
-  </div>
-  </div>
-<!-- clear shopping Modal end-->
+	<!-- clear shopping Modal start-->
+	<div class="modal fade" id="clearModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">啟動新購物車?</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body d-flex justify-content-center">
 
- <!-- review Modal -->
-  <div class="modal fade" id="review" tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">關於此飲品的評價</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-10 mx-auto">
-              <div class="row mb-3">
-                <div class="col-sm-6">
-                  <img
-                    class="ratio ratio-4x3"
-                    src="https://picsum.photos/400/300/?blur=2"
-                    style="max-width: fit-content"
-                  />
-                </div>
-                <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
-                  <div class="rating_stars my-1">
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                  </div>
-                  <p class="m-0">洛神味很讚讚</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-10 mx-auto">
-              <div class="row mb-3">
-                <div class="col-sm-6">
-                  <img
-                    class="ratio ratio-4x3"
-                    src="https://picsum.photos/400/300/?blur=2"
-                    style="max-width: fit-content"
-                  />
-                </div>
-                <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
-                  <div class="rating_stars my-1">
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                  </div>
-                  <p class="m-0">好ㄏ</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- <!-- review Modal -->
+					<div>
+						您的購物車已包含其他店家的飲品，是否清空購物車，<br>改成這項飲品?
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-dark" id="clearbtn">更新購物車</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!-- clear shopping Modal end-->
+
+	<!-- review Modal -->
+	<div class="modal fade" id="review" tabindex="-1">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">關於此飲品的評價</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body" id="review_body"></div>
+			</div>
+		</div>
+	</div>
+	<!-- review Modal -->
 
 
 	<!-- footer end -->
@@ -807,9 +749,8 @@
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="footer-content logo col-sm-5 m-0">
-					<a href=""><img
-						src="<c:url value="/images/logo.png"/>" alt="logo"
-						class="small-logo" /></a>
+					<a href=""><img src="<c:url value="/images/logo.png"/>"
+						alt="logo" class="small-logo" /></a>
 					<div class="app_download">
 						<a href="" class="text-dark text-decoration-none"><span
 							class="border border-1 rounded-1 p-1 border-dark"><i
@@ -820,8 +761,7 @@
 				<div class="footer-content col-sm-2">
 					<a href="" class="link-dark text-decoration-none">關於我們</a> <a
 						href="<c:url value="/_01_Register/b_01_register/1_business_register_1.jsp"/>"
-						class="link-dark text-decoration-none">建立企業帳戶</a>
-					<a
+						class="link-dark text-decoration-none">建立企業帳戶</a> <a
 						href="<c:url value="/_02_Login/b_02_login/1_business_login.jsp"/>"
 						class="link-dark text-decoration-none">登入您的商店</a>
 				</div>
@@ -866,8 +806,12 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	 <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDx1N-wHeMdqX-ZieKXx2BeYnLz1drNa6U&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 	<script
-		src="<c:url value="/_03_ListDrinks/c_03_storePage/StorePage55.js"/>"></script>
+		src="<c:url value="/_03_ListDrinks/c_03_storePage/StorePage1.js"/>"></script>
 
 	<!-- 飲料名稱點擊選配料JS start-->
 	<script>
@@ -904,7 +848,8 @@
 								  while (sweetbtn.hasChildNodes()) {
 								    sweetbtn.removeChild(sweetbtn.firstChild);
 								  }
-
+								
+								  $('#quantity').val(1);
 
 								$('#productname').text(res.drinkNameAndCapacity[0]+res.drinkNameAndCapacity[1]);
 								
@@ -1102,7 +1047,7 @@
 
 
 	<!-- storeMaps start -->
-	
+
 	<script>
       const storeMaps = document.getElementById('storeMaps');
       const mapsModal = new bootstrap.Modal(storeMaps, {keyboard: true});
@@ -1117,8 +1062,8 @@
 	<!-- storeMaps end -->
 
 
-<!-- 點擊購物車判斷&跳轉 -->
-<script>
+	<!-- 點擊購物車判斷&跳轉 -->
+	<script>
 	
 	function doo3() {
 
@@ -1141,7 +1086,7 @@
 }	
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 let ee="${favoritecompany}";
 let ee1 = ee.split(',');
 
@@ -1151,14 +1096,127 @@ $(`#\${ee1[i]}`).attr("class","fas fa-heart fa-lg");
 }
 </script>
 
-<script>
+	<script>
 // 點星星跳出評論
 const review = document.getElementById("review");
 const reviewmodal = new bootstrap.Modal(review, { keyboard: false });
 
-$(".point").click(function () {
+$(".comment").click(function (e) {
+	
+	$('#review_body').empty();
+	
+	
+	$.ajax({
+	    url: "https://whattodrink.herokuapp.com/DrinkForCompanyFromStarServlet",
+	    type: "POST",
+		data: {product_id:e.target.parentElement.parentElement.firstElementChild.firstElementChild.value},
+		dataType:"json",
+	    success(res) {
+		console.log(res);
+			let str=""
+		
+	for(i=0;i<res.length;i++){
+		
+		let star=""
+			for(j=0;j<parseInt(res[i].drinkStar);j++){
+				star+=`<i class="fas fa-star"></i>`; 
+				}
+		
+		console.log(star);
+		str+=`<div class="row">
+		<div class="col-sm-10 mx-auto">
+		<div class="row mb-3">
+			<div class="col-sm-6">
+				<img class="ratio ratio-4x3"
+					src="\${res[i].drinkPicpath!=undefined?`https://whattodrink.herokuapp.com/\${res[i].drinkPicpath}`:`https://whattodrink.herokuapp.com/images/none.png`}"
+					style="max-width: fit-content" />
+			</div>
+			<div class="col-sm-6">
+				<p class="fw-bold fs-5 m-0">\${res[i].drinkName}</p>
+				<div class="rating_stars my-1"><p class="text-warning text-decoration-none">\${star}</p></div>
+				<p class="m-0">\${res[i].drinkComment!=undefined?res[i].drinkComment:''}</p>
+			</div>
+		</div>
+	</div>
+</div>`;
+		
+	}
+		
+		$('#review_body').append(str);
+	
+	
+		
+					}
+		});
+	
+	
+	
   reviewmodal.show();
 });
+</script>
+
+
+<!-- 判斷是否為營業時間 -->
+<script type="text/javascript">
+function checkAuditTime(beginTime,endTime) {
+	let nowDate=new Date();
+	let beginDate=new Date(nowDate);
+	let endDate=new Date(nowDate);
+	
+	let beginIndex=beginTime.lastIndexOf("\:");
+	let beginHour =beginTime.substring(0,beginIndex);
+	let beginMinute=beginTime.substring(beginIndex+1,beginIndex.length);
+	
+	beginDate.setHours(beginHour,beginMinute,0,0);
+	
+	
+	let endIndex=endTime.lastIndexOf("\:");
+	let endHour =endTime.substring(0,endIndex);
+	let endMinute=endTime.substring(endIndex+1,endIndex.length);
+	
+	endDate.setHours(endHour,endMinute,0,0);
+	
+	if(nowDate.getTime()-beginDate.getTime()>=0&&nowDate.getTime()<=endDate.getTime()){
+		return true;
+	}else{
+		return false;
+	}
+		
+		
+	}
+	
+const openinghoursModal = document.getElementById("openinghoursModal");
+const OpeninghoursModal = new bootstrap.Modal(openinghoursModal, { keyboard: false });
+
+let startTime=$('input[name="start_time"]').val();	
+let endTime=$('input[name="end_time"]').val();	
+
+if(checkAuditTime(startTime,endTime)==false){
+	$('#openinghoursModalmodalbody').empty();
+	$('#openinghoursModalmodalbody').text(`營業時間為\${startTime}~\${endTime}`);
+	OpeninghoursModal.show();
+}
+
+</script>
+<!-- 判斷空飲料分類 -->
+<script type="text/javascript">
+
+$('.drink').each(function () {
+	console.log($.trim($(this).text()).length);
+    if($.trim($(this).text()).length==0){
+    	$(this).append(`<div class="col-9 col-md-4">
+    						<div class="card mb-3">
+    							<div class="row p-3">
+    								<h5 class="fw-bold" style="color:#da5d0a;">待商家新增中</h5>
+    								<h6>
+    									此分類目前尚無飲品。
+    								</h6>
+    							</div>
+    						</div>
+    					</div>`);
+    }
+});
+
 </script>
 
 

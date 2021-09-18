@@ -21,11 +21,12 @@ public class CustomerRegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		CustomerService cs = new CustomerServiceImpl();
-		CustomerBean customerBean = new CustomerBean();
 		
 		String customer_phone = request.getParameter("userID_register");
 		String customer_email = request.getParameter("email");
 		String customer_password = request.getParameter("password1_register");
+
+		CustomerBean customerBean = cs.findByCustomerAccount(customer_phone);
 		customerBean.setCustomer_account(customer_phone);
 		customerBean.setEmail(customer_email);
 		customerBean.setCustomer_password(customer_password);
@@ -46,7 +47,7 @@ public class CustomerRegisterServlet extends HttpServlet {
 		}
 		customerBean.setInvitation(invitation);
 		customerBean.setInvitationCount(0);
-		cs.save(customerBean);
+		cs.updateCustomer(customerBean);
 		
 		response.getWriter().write("0");
 		return;

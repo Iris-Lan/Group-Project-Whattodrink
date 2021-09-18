@@ -79,7 +79,7 @@ $(function () {
 //  $("#next").submit(function (e) {
 //    e.preventDefault();
 //    $ajax({
-//      url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterCheckServlet.do",
+//      url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterCheckServlet.do",
 //      type: "POST",
 //      data: $("#email").serialize(),
 //      success(res) {},

@@ -22,11 +22,11 @@
 	href="<c:url value="/_00_Index/slick/slick11.css"/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/_00_Index/slick/slick-theme.css"/>">
-<link rel="stylesheet" href="<c:url value="/_00_Index/index2.css"/>">
+<link rel="stylesheet" href="<c:url value="/_00_Index/index.css"/>">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"
-		type="text/javascript"></script>
-	<script src="<c:url value="/_00_Index/slick/slick.js"/>"
-		type="text/javascript" charset="utf-8"></script>
+	type="text/javascript"></script>
+<script src="<c:url value="/_00_Index/slick/slick.js"/>"
+	type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
@@ -141,6 +141,7 @@
 	<!-- category End -->
 
 	<!-- 即時飲品評價開始 -->
+	<c:set var="radom" value="<%=Math.random()%>"/>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-1"></div>
@@ -154,12 +155,55 @@
 
 				<div class="regular instance">
 
-					<c:forEach varStatus="stVar" begin="0" end="4">
+					<c:forEach varStatus="stVar" begin="0" end="8">
 						<c:set value="${stVar.count}" var="indextest" />
+						
+						
+						<c:if test="${drinkArray[indextest-1].enabled==false}">
+						
 						<div class="d-flex flex-row">
+							<c:if test="${commentArray[indextest-1].comment_picpath!=null}">
 							<img
-								src="<c:url value="/${commentArray[indextest-1].comment_picpath}"/>"
-								style="width: 130px;">
+								src="<c:url value="/${commentArray[indextest-1].comment_picpath}?tt=${radom}"/>"
+								style="width: 130px;height: 130px;filter: brightness(70%);">
+							</c:if>
+							<c:if test="${commentArray[indextest-1].comment_picpath==null}">
+							<img
+								src="<c:url value="/images/none.png"/>"
+								style="width: 130px;height: 130px;filter: brightness(70%);">
+							</c:if>
+							
+							<h5>
+								<a style="color:#9D9D9D"
+									href="<c:url value="/_03_ListDrinks/StorePage?companyId=${drinkArray[indextest-1].companyBean.company_id}"/>"><b>${drinkArray[indextest-1].companyBean.company_name}-${drinkArray[indextest-1].companyBean.trade_name}</b></a>
+									<br><span style="color:#9D9D9D">${drinkArray[indextest-1].product_name}(此飲品目前無法供應)</span><br>
+
+								<c:set value="${commentArray[indextest-1].star}" var="star" />
+
+								<c:forEach begin="1" end="${star}">
+									<i class="fas fa-star" style="color:#9D9D9D"></i>
+								</c:forEach>
+
+								<br> <span style="color:#9D9D9D">${commentArray[indextest-1].feedback}</span>
+							</h5>
+						</div>
+						
+						</c:if>
+						
+						<c:if test="${drinkArray[indextest-1].enabled==true}">
+						
+						<div class="d-flex flex-row">
+							<c:if test="${commentArray[indextest-1].comment_picpath!=null}">
+							<img
+								src="<c:url value="/${commentArray[indextest-1].comment_picpath}?tt=${radom}"/>"
+								style="width: 130px;height: 130px;">
+							</c:if>
+							<c:if test="${commentArray[indextest-1].comment_picpath==null}">
+							<img
+								src="<c:url value="/images/none.png"/>"
+								style="width: 130px;height: 130px;">
+							</c:if>
+							
 							<h5>
 								<a style="color: black"
 									href="<c:url value="/_03_ListDrinks/StorePage?companyId=${drinkArray[indextest-1].companyBean.company_id}"/>"><b>${drinkArray[indextest-1].companyBean.company_name}-${drinkArray[indextest-1].companyBean.trade_name}</b></a><br>${drinkArray[indextest-1].product_name}<br>
@@ -173,6 +217,10 @@
 								<br> <span>${commentArray[indextest-1].feedback}</span>
 							</h5>
 						</div>
+						
+						
+						</c:if>
+						
 					</c:forEach>
 
 
@@ -206,32 +254,16 @@
 					<c:forEach varStatus="stVar" var="bb" items="${companyList}">
 						<div class="hot">
 
-<%-- 							<c:if test="${CLoginOK!=null}"> --%>
-<%-- 								<c:forEach varStatus="stVar" var="ff" items="${favoriteBeans}"> --%>
-<%-- 									<c:if test="${bb.company_id==ff.company_id}"> --%>
-<!-- 										<i onclick="change1(this)" class="fas fa-heart fa-lg heart"></i> -->
-<%-- 									</c:if> --%>
-<%-- 									<c:if test="${bb.company_id!=ff.company_id}"> --%>
-<!-- 										<i onclick="change1(this)" class="far fa-heart fa-lg heart"></i> -->
-<%-- 									</c:if> --%>
-<%-- 								</c:forEach> --%>
-<%-- 							</c:if> --%>
-
 
 
 							<a style="color: black"
 								href="<c:url value="/_03_ListDrinks/StorePage?companyId=${bb.company_id}"/>"><img
-								src="<c:url value="/${bb.company_iconpath}"/>" alt=""></a>
-							<h5 style="margin: 5px 0px 0px 0px;">${bb.company_name}<i
-									class="fas fa-star fa-lg"
-									style="position: absolute; left: 10px; top: 14px; color: #F5C6AA;"></i>
+								src="<c:url value="/${bb.company_iconpath}?tt=${radom}"/>" alt=""></a>
+							<h5 style="margin: 5px 0px 0px 0px;">${bb.company_name}
 							</h5>
-							<p class="point0">4.2</p>
-							<Input type='hidden' name='company' value='${bb.company_address}'
-								class='hotcompanyAddress' /> <Input type='hidden'
-								name='companyid' value='${bb.company_id}' />
+						<Input type='hidden' name='companyid' value='${bb.company_id}' />
 							<p style="margin: 0px;">
-								<i class="fas fa-street-view"></i>公尺
+								<i class="fas fa-street-view"></i>${bb.distance}公尺
 								${bb.trade_name}
 							</p>
 						</div>
@@ -260,9 +292,10 @@
 					<p style="font-size: 28px;">所有店家</p>
 					<p style="font-size: 22px;">分類</p>
 					<form id="businessescategory">
-						<input type="radio" name="category" value="Taipei" checked>專屬推薦<br>
-						<input type="radio" name="category" value="Taoyuan">距離<br>
-						<input type="radio" name="category" value="Taoyuan">評分<br>
+						<input type="radio" name="category" value="hot"
+							onclick="popular()" checked>專屬推薦<br> <input
+							type="radio" name="category" value="distance"
+							onclick="distance()">距離<br>
 					</form>
 
 				</div>
@@ -270,26 +303,23 @@
 			</div>
 
 			<div
-				class="col-sm-8 mx-auto d-flex flex-wrap justify-content-start lign-items-start">
+				class="col-sm-8 mx-auto d-flex flex-wrap justify-content-start lign-items-start companylist">
 				<c:forEach varStatus="stVar" var="aa" items="${companyList}">
 					<div class="allshop">
 						<div class="product-favorite">
 
 							<c:if test="${CLoginOK!=null}">
-								<i id="${aa.company_id}" onclick="change(this)" class="far fa-heart fa-lg heart"></i>
+								<i id="${aa.company_id}" onclick="change(this)"
+									class="far fa-heart fa-lg heart"></i>
 							</c:if>
 
 
 						</div>
 						<a style="color: black"
 							href="<c:url value="/_03_ListDrinks/StorePage?companyId=${aa.company_id}"/>"><img
-							src="<c:url value="/${aa.company_iconpath}"/>" alt=""></a>
-						<h5>${aa.company_name}<i class="fas fa-star fa-lg"
-								style="position: absolute; right: 8px; top: 169px; color: #F5C6AA;"></i>
-						</h5>
-						<p class="point">4.5</p>
-						<Input type='hidden' name='companyAaddress'
-							value='${aa.company_address}' class='companyAddress' /> <Input
+							src="<c:url value="/${aa.company_iconpath}?tt=${radom}"/>"></a>
+						<h5>${aa.company_name}</h5>
+						<Input
 							type='hidden' name='companyid' value='${aa.company_id}' />
 						<p>
 
@@ -327,11 +357,7 @@
 				</c:forEach>
 				<div class="col-sm-1"></div>
 			</div>
-			<div class="row">
-				<div class="col-sm-10 mx-auto d-flex justify-content-center">
-					<button type="button" class="btn btn-dark my-2" id="more">顯示更多</button>
-				</div>
-			</div>
+
 
 		</div>
 	</div>
@@ -426,28 +452,138 @@
 	</footer>
 	<!-- footer end -->
 
-
+  
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 
+	<script src="<c:url value="/_00_Index/index1.js"/>"></script>
 
-	<script src="<c:url value="/_00_Index/index11.js"/>"></script>
-	<!--   <script -->
-	<!--       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDx1N-wHeMdqX-ZieKXx2BeYnLz1drNa6U&callback=initMap&libraries=&v=weekly" -->
-	<!--       async -->
-	<!--     ></script> -->
-	<!-- 	<script src="map.js"></script> -->
 
-<script type="text/javascript">
+	<script type="text/javascript">
 let ee="${favoritecompany}";
 let ee1 = ee.split(',');
 
 for(i=0;i<ee1.length;i++){
-	console.log(ee1[i]);
 $(`#\${ee1[i]}`).attr("class","fas fa-heart fa-lg heart");
 }
+
+
+
+//依照距離排序
+function distance() {
+	$.ajax({
+
+		url: "https://whattodrink.herokuapp.com/Orderbydistance",
+		type: "post",
+		dataType : 'json',
+		success(res) {
+			console.log(res);
+			$('.companylist').empty();
+			let str = "";
+			if(${CLoginOK==null}){
+			for (let i = 0; i < res.Company_nameJson.length; i++) {
+
+				str += `<div class="allshop">
+						<div class="product-favorite">
+						</div>
+						<a style="color: black"
+							href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+							src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
+						<h5>\${res.Company_nameJson[i]}</h5>
+						<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
+					</div>`
+			}
+			}else{
+				for (let i = 0; i < res.Company_nameJson.length; i++) {
+
+					str += `<div class="allshop">
+							<div class="product-favorite">
+							<i id="\${res.Company_idJson[i]}" onclick="change(this)" class="far fa-heart fa-lg heart"></i>
+							</div>
+							<a style="color: black"
+								href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+								src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
+							<h5>\${res.Company_nameJson[i]}</h5>
+							<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
+						</div>`
+				
+			}
+				
+				
+			}
+			
+			
+	$('.companylist').append(str);
+
+	for(i=0;i<ee1.length;i++){
+
+				$(`#\${ee1[i]}`).attr("class","fas fa-heart fa-lg heart");
+				}
+		}
+	});
+
+	
+};
+
+//依照熱門排序
+function popular() {
+	$.ajax({
+
+		url: "https://whattodrink.herokuapp.com/OrderbyPopular",
+		type: "post",
+		dataType : 'json',
+		success(res) {
+			console.log(res);
+			$('.companylist').empty();
+			let str = "";
+			if(${CLoginOK==null}){
+			for (let i = 0; i < res.Company_nameJson.length; i++) {
+
+				str += `<div class="allshop">
+						<div class="product-favorite">
+						</div>
+						<a style="color: black"
+							href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+							src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
+						<h5>\${res.Company_nameJson[i]}</h5>
+						<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
+					</div>`
+			}
+			}else{
+				for (let i = 0; i < res.Company_nameJson.length; i++) {
+
+					str += `<div class="allshop">
+							<div class="product-favorite">
+							<i id="\${res.Company_idJson[i]}" onclick="change(this)" class="far fa-heart fa-lg heart"></i>
+							</div>
+							<a style="color: black"
+								href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+								src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
+							<h5>\${res.Company_nameJson[i]}</h5>
+							<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
+						</div>`
+				
+			}
+				
+				
+			}
+			
+			
+	$('.companylist').append(str);
+
+	for(i=0;i<ee1.length;i++){
+				$(`#\${ee1[i]}`).attr("class","fas fa-heart fa-lg heart");
+				}
+		}
+	});
+
+	
+};
+
+
+
 </script>
 
 </body>
