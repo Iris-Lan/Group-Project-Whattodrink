@@ -58,7 +58,7 @@
         </div>
         <div class="col-sm-1"></div>
       </div>
-      <form action="http://localhost:8080/whattodrink/AddAddOnServlet" method="POST" enctype="multipart/form-data">
+      <form action="https://whattodrink.herokuapp.com/AddAddOnServlet" method="POST" enctype="multipart/form-data">
         <div class="p-0 mx-1 col-sm-10 mx-auto">
           <div
             class="p-0 bg-white col-sm-5"

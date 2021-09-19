@@ -5,7 +5,7 @@ function change1(heart) {
   	 console.log(heart.nextElementSibling.value);
 
    $.ajax({
-            url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
+            url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
             type: "post",
             data: {
               company_id : heart.nextElementSibling.value

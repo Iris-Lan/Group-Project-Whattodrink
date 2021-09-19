@@ -291,7 +291,7 @@
 	function doo3() {
 
 		$.ajax({
-		    url: "http://localhost:8080/whattodrink/_04_ShoppingCart/RetrieveShoppingCart",
+		    url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/RetrieveShoppingCart",
 		    type: "POST",
 		    success(res) {
 			console.log(res);
@@ -301,7 +301,7 @@
 						nocartModal.show();
 						
 					}else{
-						window.location.assign("http://localhost:8080/whattodrink/_04_ShoppingCart/shoppingcart.jsp");		
+						window.location.assign("https://whattodrink.herokuapp.com/_04_ShoppingCart/shoppingcart.jsp");		
 					}
 			
 						}
@@ -366,7 +366,7 @@
 			             
 			           $.ajax({
 			               type: "POST",
-			               url: "http://localhost:8080/whattodrink/DistanceServlet",
+			               url: "https://whattodrink.herokuapp.com/DistanceServlet",
 			               data:str,
 			               success: function (response) {
 			                 console.log(response);  
@@ -417,7 +417,7 @@
 			             
 			           $.ajax({
 			               type: "POST",
-			               url: "http://localhost:8080/whattodrink/DistanceServlet",
+			               url: "https://whattodrink.herokuapp.com/DistanceServlet",
 			               data:str,
 			               success: function (response) {
 			                 console.log(response);

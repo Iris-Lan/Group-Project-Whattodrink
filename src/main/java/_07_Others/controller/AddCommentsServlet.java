@@ -68,7 +68,6 @@ public class AddCommentsServlet extends HttpServlet {
 			commentBean.setStar(BigDecimal.valueOf(Double.parseDouble(request.getParameterValues("star")[i])));
 			
 			if (!request.getParameterValues("comment")[i].isEmpty() && request.getParameterValues("comment")[i].trim().length() > 0) {
-				
 //			if (!request.getParameterValues("comment")[i].isBlank()) {
 				commentBean.setFeedback(request.getParameterValues("comment")[i]);
 			}

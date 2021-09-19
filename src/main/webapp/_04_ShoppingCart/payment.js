@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/PaymentDiscount",
+    url: "https://whattodrink.herokuapp.com/PaymentDiscount",
     dataType: "json",
     async: false,
     success: function (response) {
@@ -36,7 +36,7 @@ $(document).ready(function () {
     var discount = $("input[ name=invitationDiscount]:checked").val();
     $.ajax({
       type: "POST",
-      url: "http://localhost:8080/whattodrink/_05_Order/preConfirmOrderServlet",
+      url: "https://whattodrink.herokuapp.com/_05_Order/preConfirmOrderServlet",
       data: {
         payment: payment,
         taxId: taxId,
@@ -44,7 +44,7 @@ $(document).ready(function () {
       },
       success: function () {
         window.location.assign(
-          "http://localhost:8080/whattodrink/_04_ShoppingCart/confirmOrderPage.jsp"
+          "https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
         );
       },
     });

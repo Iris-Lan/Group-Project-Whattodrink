@@ -11,7 +11,7 @@
         "id": 1,
         "name": "五十嵐",
         "site": "台北市中正區新生南路一段52之3號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=A01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=A01"
       }
     },
     {
@@ -24,7 +24,7 @@
         "id": 2,
         "name": "萬波",
         "site": "台北市中正區八德路一段82巷9弄18號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=B01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=B01"
       }
     },
     {
@@ -37,7 +37,7 @@
         "id": 3,
         "name": "可不可熟成紅茶",
         "site": "台北市中正區八德路一段82巷9弄20之1號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=C01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=C01"
       }
     },
     {
@@ -50,7 +50,7 @@
         "id": 4,
         "name": "迷克夏",
         "site": "台北市中山區遼寧街38號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=D01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=D01"
       }
     },
     {
@@ -63,7 +63,7 @@
         "id": 5,
         "name": "清心福全",
         "site": "台北市大安區市民大道三段136號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=E01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=E01"
       }
     },
     {
@@ -76,7 +76,7 @@
         "id": 6,
         "name": "CoCo",
         "site": "台北市中正區青島東路21之10號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=F01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=F01"
       }
     },
     {
@@ -89,7 +89,7 @@
         "id": 7,
         "name": "ComeBuy",
         "site": "台北市大安區新生南路一段1號",
-        "web": "http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=G01"
+        "web": "https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=G01"
       }
     }
   ]

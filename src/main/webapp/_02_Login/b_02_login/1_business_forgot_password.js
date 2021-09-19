@@ -29,7 +29,7 @@ $(function () {
       let flag = false;
       $.ajax({
         type: "GET",
-        url: "http://localhost:8080/whattodrink/B_GetAccount",
+        url: "https://whattodrink.herokuapp.com/B_GetAccount",
         data: $("#input_email").serialize(),
         dataType: "json",
 		async: false,
@@ -51,7 +51,7 @@ $(function () {
       let flag = false;
       $.ajax({
         type: "POST",
-        url: "http://localhost:8080/whattodrink/B_GetPassword2",
+        url: "https://whattodrink.herokuapp.com/B_GetPassword2",
         data: $("#variviedCode").serialize(),
         dataType: "json",
         success: function (res) {
@@ -127,7 +127,7 @@ $(function () {
     $("#variviedCode").addClass("flex");
     $.ajax({
       type: "POST",
-      url: "http://localhost:8080/whattodrink/B_GetPassword",
+      url: "https://whattodrink.herokuapp.com/B_GetPassword",
       data: $("#input_email").serialize(),
       dataType: "json",
       success: function () {},
@@ -137,7 +137,7 @@ $(function () {
       //兩分鐘重寄驗證碼
       $.ajax({
         type: "POST",
-        url: "http://localhost:8080/whattodrink/B_GetPassword",
+        url: "https://whattodrink.herokuapp.com/B_GetPassword",
         data: $("#input_email").serialize(),
         dataType: "json",
         async: false,
@@ -157,7 +157,7 @@ $(function () {
       //發出重寄驗證碼請求
       $.ajax({
         type: "POST",
-        url: "http://localhost:8080/whattodrink/B_GetPassword",
+        url: "https://whattodrink.herokuapp.com/B_GetPassword",
         data: $("#input_email").serialize(),
         dataType: "json",
         async: false,
@@ -168,7 +168,7 @@ $(function () {
         //兩分鐘重寄驗證碼
         $.ajax({
           type: "POST",
-          url: "http://localhost:8080/whattodrink/B_GetPassword",
+          url: "https://whattodrink.herokuapp.com/B_GetPassword",
           data: $("#input_email").serialize(),
           dataType: "json",
           async: false,
@@ -187,7 +187,7 @@ $(function () {
   $("#next2").click(function (e) {
     e.preventDefault();
     $.ajax({
-      url: "http://localhost:8080/whattodrink/B_GetPassword2",
+      url: "https://whattodrink.herokuapp.com/B_GetPassword2",
       type: "POST",
       data: $("#variviedCode").serialize(),
 	  dataType: "json",
@@ -206,7 +206,7 @@ $(function () {
   $("#resetPassword").click(function (e) {
     e.preventDefault();
     $.ajax({
-      url: "http://localhost:8080/whattodrink/B_GetPassword3",
+      url: "https://whattodrink.herokuapp.com/B_GetPassword3",
       type: "POST",
       data: $("#resetPassword").serialize(),
       dataType: "json",
@@ -216,7 +216,7 @@ $(function () {
 	        Swal.fire("更新成功，回到登入頁");
 			setTimeout(function () {
 		        window.location.assign(
-		          "http://localhost:8080/whattodrink/_02_Login/b_02_login/1_business_login.jsp"
+		          "https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp"
 		        );
 		    }, 5000);
 

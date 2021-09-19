@@ -105,9 +105,9 @@
 	<input type="button" id='deleteCartOrderBean' value="清空cartOrderBean" />
 	<input type="button" id='deleteCart' value="清空購物車" />
 	<input type="button" id='deleteKey' value="刪除特定key的購物車列 測試key2" />
-	<a href="http://localhost:8080/whattodrink/_00_Index/index.jsp">index</a>
-	<a href="http://localhost:8080/whattodrink/_01_Register/c_01_register/LoginRegister.jsp">登入</a>
-	<a href="http://localhost:8080/whattodrink/LogoutServlet">登出</a>
+	<a href="https://whattodrink.herokuapp.com/_00_Index/index.jsp">index</a>
+	<a href="https://whattodrink.herokuapp.com/_01_Register/c_01_register/LoginRegister.jsp">登入</a>
+	<a href="https://whattodrink.herokuapp.com/LogoutServlet">登出</a>
 <!-- 	<input type="button" id='logout' value="登出" /> -->
 
 
@@ -158,7 +158,7 @@
 	<script type="text/javascript">
 		$("#drinkDetail").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/_03_ListDrinks/DrinkDetail",
+				url: "https://whattodrink.herokuapp.com/_03_ListDrinks/DrinkDetail",
 				type: "POST",
 				data: {"productId" : "4"},
 				dataType:"json",
@@ -185,7 +185,7 @@
 		
 		$("#deleteCart").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/_04_ShoppingCart/deleteCartServlet",
+				url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/deleteCartServlet",
 				type: "POST",
 				data: {"deleteCart" : "deleteCart"},
 				dataType:"json",
@@ -198,7 +198,7 @@
 		
 		$("#deleteKey").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/_04_ShoppingCart/deleteCartServlet",
+				url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/deleteCartServlet",
 				type: "POST",
 				data: {"deleteSingle" : "2"},
 				dataType:"json",
@@ -210,7 +210,7 @@
 		});
 		$("#orderHistory").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/B_orderHistory",
+				url: "https://whattodrink.herokuapp.com/B_orderHistory",
 				type: "POST",
 				dataType:"json",
 				async: false,
@@ -223,7 +223,7 @@
 		});
 		$("#Bitems").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/B_item",
+				url: "https://whattodrink.herokuapp.com/B_item",
 				type: "POST",
 				dataType:"json",
 				async: false,
@@ -239,7 +239,7 @@
 		});
 		$("#orders").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/B_order",
+				url: "https://whattodrink.herokuapp.com/B_order",
 				type: "POST",
 				dataType:"json",
 				async: false,
@@ -251,7 +251,7 @@
 		});
 		$("#changeItemStatus").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/B_itemStatusChange",
+				url: "https://whattodrink.herokuapp.com/B_itemStatusChange",
 				type: "POST",
 				dataType:"json",
 				data: {"item_id": "120", "itemStatus":"已完成"},
@@ -263,7 +263,7 @@
 		});
 		$("#orderHistoryDelete").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/B_orderHistoryDelete",
+				url: "https://whattodrink.herokuapp.com/B_orderHistoryDelete",
 				type: "POST",
 				dataType:"json",
 				data: {"order_id": "C0120210907001"},
@@ -275,7 +275,7 @@
 		});
 		$("#orderHistoryItemDetail").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/B_orderHistoryItemDetail",
+				url: "https://whattodrink.herokuapp.com/B_orderHistoryItemDetail",
 				type: "POST",
 				dataType:"json",
 				data: {"order_id": "E0120210906003"},
@@ -291,7 +291,7 @@
 		});
 		$("#addInvitation").click(function(){
 			$.ajax({
-				url: "http://localhost:8080/whattodrink/InvitationEnteringServlet",
+				url: "https://whattodrink.herokuapp.com/InvitationEnteringServlet",
 				type: "POST",
 				dataType:"json",
 				data: {"invitationCode": "aJDxmai2"},
