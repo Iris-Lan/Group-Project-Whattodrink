@@ -51,6 +51,7 @@ public class B_GetPassword3 extends HttpServlet {
 		CompanyService companyService = new CompanyServiceImpl();
 
 		String inputEmail = (String) session.getAttribute("inputEmail");
+		System.out.println(inputEmail);
 		if(inputEmail == null) {
 			response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/_02_Login/b_02_login/1_business_forgot_password.jsp"));
 			return;
@@ -68,7 +69,8 @@ public class B_GetPassword3 extends HttpServlet {
 //			response.getWriter().print(gson.toJson("密碼僅為大小寫字母與數字混和且長度不能小於八個字元"));
 //			return;
 //		}
-		if(password.equals(password2)) {
+		
+		if(password.equals(password2) && password.trim().length() > 0) {
 			CompanyBean bean =  companyService.findByCompanyEmail(inputEmail);
 			bean.setCompany_password(password);
 			companyService.updateCompany(bean);

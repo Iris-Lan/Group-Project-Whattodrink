@@ -386,14 +386,14 @@ $('#submitbtn').click(function(e){
 	
 
     $.ajax({
-        url: 'https://whattodrink.herokuapp.com/AddCommentsServlet',
+        url: 'http://localhost:8080/whattodrink/AddCommentsServlet',
         cache: false,
         contentType: false,
         processData: false,
         data: formData,                    
         type: 'post',
        success: function(data){
-    	   window.location.assign("https://whattodrink.herokuapp.com/_05_Order/c_05_order/myOrder.jsp");
+    	   window.location.assign("http://localhost:8080/whattodrink/_05_Order/c_05_order/myOrder.jsp");
         }
 });
 

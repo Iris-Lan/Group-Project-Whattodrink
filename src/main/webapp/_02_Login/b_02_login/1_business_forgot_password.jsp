@@ -55,7 +55,6 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
                 class="form-control form-control-lg"
                 type="email"
                 name="email"
-                id="email"
                 placeholder="信箱"
               />
             </div>
@@ -98,7 +97,7 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
         >
           <div class="col-10 mx-auto">
             <h4 class="mb-4">請輸入新密碼</h4>
-            <div style="height: 23vh">
+            <div style="height: 60%">
               <input
                 type="password"
                 name="password"

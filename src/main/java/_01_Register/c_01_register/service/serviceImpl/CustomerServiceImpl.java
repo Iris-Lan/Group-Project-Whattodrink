@@ -277,5 +277,42 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		return exist;
 	}
+	
+	@Override
+	public boolean existsByEmailAndVerificationCode(String email, String verificationCode) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		boolean exist;
+		try {
+			tx = session.beginTransaction();
+			exist = customerDao.existsByEmailAndVerificationCode(email, verificationCode);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return exist;
+	}
+
+	@Override
+	public CustomerBean findByEmail(String email) {
+		log.info("顧客會員-登入功能-Service: 由Email找出對應的會員");
+		CustomerBean customerBean = null;
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			customerBean = customerDao.findByEmail(email);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null) 
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return customerBean;
+	}
 
 }

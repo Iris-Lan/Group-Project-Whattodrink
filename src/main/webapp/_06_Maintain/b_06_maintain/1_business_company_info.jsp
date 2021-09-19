@@ -210,7 +210,7 @@
         </div>
       </div>
       <form
-        action="https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=3"
+        action="http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=3"
         method="POST"
         enctype="multipart/form-data"
       >
@@ -248,7 +248,7 @@
         </div>
       </div>
       <form
-        action="https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=4"
+        action="http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=4"
         method="POST"
         enctype="multipart/form-data"
       >

@@ -218,5 +218,37 @@ public class CustomerDaoImpl implements CustomerDao {
 					    .isEmpty();
 		return exist;
 	}
+	
+	@Override
+	public boolean existsByEmailAndVerificationCode(String email, String verificationCode) {
+		Session session = factory.getCurrentSession();
+		boolean exist = false;
+		String hql = "FROM CustomerBean c "
+				   + "WHERE c.email = :email "
+				   + "AND c.customer_verification = :customer_verification";
+		exist = !session.createQuery(hql, CustomerBean.class)
+					    .setParameter("email", email)
+					    .setParameter("customer_verification", verificationCode)
+					    .getResultList()
+					    .isEmpty();
+		return exist;
+	}
+
+	@Override
+	public CustomerBean findByEmail(String email) {
+		log.info("顧客會員-忘記密碼功能-DAO: 以Email搜尋會員資料");
+		CustomerBean customerBean = null;
+		Session session = factory.getCurrentSession();
+		String hql = "FROM CustomerBean c WHERE c.email = :email ";
+		try {
+			customerBean = (CustomerBean) session.createQuery(hql)
+												 .setParameter("email", email)
+												 .getSingleResult();
+		} catch (NoResultException e) {
+			customerBean = null;
+		}
+		log.info("顧客會員-忘記密碼功能-DAO: 取得某個顧客會員的資料, customerBean = " + customerBean);
+		return customerBean;
+	}
 
 }

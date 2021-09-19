@@ -112,7 +112,7 @@ function change(heart) {
 	if (heart.className == "far fa-heart fa-lg heart") {
 		console.log('空心轉實心');
 		$.ajax({
-			url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
+			url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
 			type: "post",
 			data: {
 				company_id: heart.id
@@ -129,7 +129,7 @@ function change(heart) {
 		console.log('實星轉空星');
 		$.ajax({
 
-			url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
+			url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
 			type: "post",
 			data: {
 				company_id: heart.id

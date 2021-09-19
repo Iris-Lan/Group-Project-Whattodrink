@@ -68,7 +68,7 @@
           <p class="fs-6">商品圖上傳</p>
         </div>
       </div>
-      <form action="https://whattodrink.herokuapp.com/AddProductServlet" method="POST" enctype="multipart/form-data" id="proImg">
+      <form action="http://localhost:8080/whattodrink/AddProductServlet" method="POST" enctype="multipart/form-data" id="proImg">
         <div class="p-0 mx-1 col-sm-10 mx-auto">
           <div
             class="p-0 bg-white col-sm-5"

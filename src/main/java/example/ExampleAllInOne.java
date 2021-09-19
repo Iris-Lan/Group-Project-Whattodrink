@@ -170,8 +170,8 @@ public class ExampleAllInOne {
 			itemName+= "已使用好友邀請碼折扣    -50元";
 		}
 		obj.setItemName(itemName);
-		obj.setReturnURL("https://whattodrink.herokuapp.com/_04_ShoppingCart/CheckingMacValue");
-		obj.setOrderResultURL("https://whattodrink.herokuapp.com/_04_ShoppingCart/saveOrderServlet");
+		obj.setReturnURL("http://localhost:8080/whattodrink/_04_ShoppingCart/CheckingMacValue");
+		obj.setOrderResultURL("http://localhost:8080/whattodrink/_04_ShoppingCart/saveOrderServlet");
 		obj.setNeedExtraPaidInfo("N");
 		String form = all.aioCheckOut(obj, null);
 		return form;

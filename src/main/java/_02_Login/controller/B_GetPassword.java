@@ -41,12 +41,14 @@ public class B_GetPassword extends HttpServlet {
 		System.out.println("email:" + email);
 		String code = CreateVerificationCode.getVerificationCode();
 		session.setAttribute("code", code);
+		System.out.println("code:" + code);
 		session.setAttribute("inputEmail", email);
 		SendingEmail.SendVerificationCodeTo(email, code);
 		try {
 			new Thread(() -> {
 				try {
-					Thread.sleep(120000);
+//					Thread.sleep(120000);
+					Thread.sleep(30000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

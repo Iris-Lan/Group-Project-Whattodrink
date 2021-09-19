@@ -2,7 +2,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "https://whattodrink.herokuapp.com/AddCategoryServlet",
+    url: "http://localhost:8080/whattodrink/AddCategoryServlet",
     dataType: "json",
     success: function (response) {
      // console.log(response);
@@ -32,7 +32,7 @@ $("#send").click(function (e) {
   var name4 = $("#name4").val();
   var name5 = $("#name5").val();
   $.ajax({
-    url: "https://whattodrink.herokuapp.com/AddCategoryServlet",
+    url: "http://localhost:8080/whattodrink/AddCategoryServlet",
     data: {
       name1: name1,
       name2: name2,

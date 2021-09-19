@@ -15,7 +15,7 @@ $('#companyinfo').append(`${namecompany}-${trade_name}`);
 
 $('#gobackshop').click(function(){
 	
-	window.location.assign(`https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=${company_id}`);
+	window.location.assign(`http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=${company_id}`);
 	
 });
 
@@ -23,7 +23,7 @@ $('#gobackshop').click(function(){
 $( ".item-select" ).change(function(e) {
 
    $.ajax({
-    url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/UpdateItemQuantityServlet",
+    url: "http://localhost:8080/whattodrink/_04_ShoppingCart/UpdateItemQuantityServlet",
     type: "POST",
     data: {cartKey:e.target.parentElement.nextElementSibling.firstElementChild.value,
 			quantity:e.target.value},
@@ -43,7 +43,7 @@ if(e.target.value==0){
 	let pp=$('#subtotal').text();
 	
 if(parseInt(pp.substring(3))==0){
-	window.location.assign("https://whattodrink.herokuapp.com/_00_Index/index.jsp");
+	window.location.assign("http://localhost:8080/whattodrink/_00_Index/index.jsp");
 	}
 		
 	}
@@ -155,7 +155,7 @@ if( parseInt($(`#${hh}add_to_health`).val())>0){
 
 };
    $.ajax({
-     url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/AddToHealthServlet",
+     url: "http://localhost:8080/whattodrink/_04_ShoppingCart/AddToHealthServlet",
      type: "POST",
      data: {cartKey:c.target.nextElementSibling.value,
        addToHealth:c.target.parentElement.previousElementSibling.firstElementChild.firstElementChild.value},
@@ -247,7 +247,7 @@ $(".itemtile").click(function (e) {
 $('#itemkeyyy').attr("value",e.target.parentElement.firstElementChild.value);
 
   $.ajax({
-    url: "https://whattodrink.herokuapp.com/_03_ListDrinks/DrinkDetail",
+    url: "http://localhost:8080/whattodrink/_03_ListDrinks/DrinkDetail",
     type: "POST",
     data: {productId:e.target.previousElementSibling.value},
     dataType:"json",
@@ -354,7 +354,7 @@ $("#submitbtn").click(function (e) {
           });
 
       $.ajax({
-      url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/UpdateItemServlet",
+      url: "http://localhost:8080/whattodrink/_04_ShoppingCart/UpdateItemServlet",
       type: "POST",
       data: {
         cartKey:e.target.previousElementSibling.value,
@@ -459,7 +459,7 @@ if(result=="selectTime"){
 result=tt+" "+storage.getItem("time");
 }
 	 $.ajax({
-      url: "https://whattodrink.herokuapp.com/_05_Order/PaymentServlet",
+      url: "http://localhost:8080/whattodrink/_05_Order/PaymentServlet",
       type: "POST",
       data: {
         scheduled_time:result
@@ -469,7 +469,7 @@ result=tt+" "+storage.getItem("time");
 			if(res=="nologin"){
 	  			modal3.show();
 	 		   }else{
-		window.location.assign("https://whattodrink.herokuapp.com/_04_ShoppingCart/payment.jsp");
+		window.location.assign("http://localhost:8080/whattodrink/_04_ShoppingCart/payment.jsp");
 		
 	}
 	    } 
@@ -480,7 +480,7 @@ result=tt+" "+storage.getItem("time");
 
 
 function LoginRegister(){
-	window.location.assign("https://whattodrink.herokuapp.com/_01_Register/c_01_register/LoginRegister.jsp");
+	window.location.assign("http://localhost:8080/whattodrink/_01_Register/c_01_register/LoginRegister.jsp");
 }
 
 
