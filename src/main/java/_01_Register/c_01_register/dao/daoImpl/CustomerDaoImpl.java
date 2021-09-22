@@ -292,7 +292,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public List<Map<String, Object>> findAllCurrentOrdersByCustomerId(Integer customer_id) {
 		Session session = factory.getCurrentSession();
 
-		// o.orderStatus = '接單' 改成 o.orderStatus in ('待製作','可領取')
+		// o.orderStatus = '接單' 改成 o.orderStatus in ('待製作','可領取','待確認')
 		String hql = "SELECT o.order_id, o.order_date, o.orderStatus, o.companyBean.company_name, o.companyBean.trade_name, o.companyBean.company_iconpath "
 				+ "FROM OrderBean o WHERE o.customer_id = :customer_id AND o.orderStatus in ('待製作','可領取','待確認') AND ifnull(o.order_text, ' ') != '商家刪除資料' ORDER BY o.order_date DESC";
 		List<Object[]> temp = session.createQuery(hql, Object[].class).setParameter("customer_id", customer_id)
