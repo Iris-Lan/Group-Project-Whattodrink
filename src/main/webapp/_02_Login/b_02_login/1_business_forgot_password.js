@@ -32,11 +32,12 @@ $(function () {
         url: "https://whattodrink.herokuapp.com/B_GetAccount",
         data: $("#input_email").serialize(),
         dataType: "json",
-		async: false,
+        async: false,
         success: function (res) {
           console.log(res);
           if (res == "yes") {
-            flag = true; 
+            flag = true;
+            $("#next").removeAttr("disabled");
           }
         },
       });
@@ -44,7 +45,6 @@ $(function () {
     },
     `無此信箱，請聯繫<a class="text-decoration-none" href="mailto:whattodrink2021@whattodrink.com">今天喝什麼</a>`
   );
-
   $.validator.addMethod(
     "wrongCode",
     function () {
@@ -54,10 +54,12 @@ $(function () {
         url: "https://whattodrink.herokuapp.com/B_GetPassword2",
         data: $("#variviedCode").serialize(),
         dataType: "json",
+        async: false,
         success: function (res) {
           console.log(res);
-          if (res == "驗證碼錯誤") {
+          if (res == "yes") {
             flag = true;
+            $("#next2").removeAttr("disabled");
           }
         },
       });
@@ -65,6 +67,7 @@ $(function () {
     },
     `驗證碼錯誤，請重新輸入`
   );
+
 
   $("#input_email").validate({
     rules: {
@@ -83,7 +86,7 @@ $(function () {
     },
   });
 
-  $("variviedCode").validate({
+  $("#variviedCode").validate({
     rules: {
       variviedCode: {
         required: true,
@@ -143,7 +146,7 @@ $(function () {
         async: false,
         success: function () {},
       });
-    }, 30000);
+    }, 120000);
     console.log(timeoutID);
     $("#next2").click(function (e) {
       e.preventDefault();
@@ -174,7 +177,7 @@ $(function () {
           async: false,
           success: function () {},
         });
-      }, 30000);
+      }, 120000);
       console.log(timeoutID2);
       $("#next2").click(function (e) {
         e.preventDefault();
@@ -190,9 +193,9 @@ $(function () {
       url: "https://whattodrink.herokuapp.com/B_GetPassword2",
       type: "POST",
       data: $("#variviedCode").serialize(),
-	  dataType: "json",
+      dataType: "json",
       success(res) {
-	    console.log(res);
+        console.log(res);
         if (res == "yes") {
           $("#input_email").addClass("d-none");
           $("#variviedCode").addClass("d-none");
@@ -211,16 +214,15 @@ $(function () {
       data: $("#resetPassword").serialize(),
       dataType: "json",
       success(res) {
-		console.log(res);
-		if(res == "yes"){
-	        Swal.fire("更新成功，回到登入頁");
-			setTimeout(function () {
-		        window.location.assign(
-		          "https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp"
-		        );
-		    }, 5000);
-
-		}
+        console.log(res);
+        if (res == "yes") {
+          Swal.fire("更新成功，回到登入頁");
+          setTimeout(function () {
+            window.location.assign(
+              "https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp"
+            );
+          }, 5000);
+        }
       },
     });
   });

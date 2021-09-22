@@ -94,4 +94,22 @@ public class CommentServiceImpl implements CommentService {
 		return list;
 	}
 
+
+	@Override
+	public List<CommentBean> findCommentBeansByOrderId(String order_id) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<CommentBean> list = null;
+		try {
+			tx = session.beginTransaction();
+			list = commentDao.findCommentBeansByOrderId(order_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return list;
+	}
 }

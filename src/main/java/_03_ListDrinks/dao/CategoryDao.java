@@ -11,6 +11,8 @@ public interface CategoryDao {
 
 	List<CategoryBean> findByCompanyId(String companyId);
 	
+	List<CategoryBean> findByCategoryNameAndCompanyId(String category_name, String company_id);
+	
 	void save(CategoryBean categoryBean);
 
 	void updateCategory(CategoryBean categoryBean);

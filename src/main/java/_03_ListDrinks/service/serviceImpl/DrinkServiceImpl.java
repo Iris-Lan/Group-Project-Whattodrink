@@ -232,6 +232,74 @@ public class DrinkServiceImpl implements DrinkService {
 			throw new RuntimeException(ex);
 		}		
 	}
+	
+	@Override
+	public void updateTopping(ToppingBean toppingBean) {
+		log.info("DrinkService-更新配料");
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			drinkdao.updateTopping(toppingBean);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}		
+	};
+
+	@Override
+	public void updateSugarLimitBean(SugarLimitBean sugarLimitBean) {
+		log.info("DrinkService-更新甜度限制");
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			drinkdao.updateSugarLimitBean(sugarLimitBean);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+	};
+
+	@Override
+	public void updateTempLimitBean(TempLimitBean tempLimitBean) {
+		log.info("DrinkService-更新溫度限制");
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			drinkdao.updateTempLimitBean(tempLimitBean);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+	};
+	
+	@Override
+	public void deleteTagByProductId(Integer product_id) {
+		log.info("DrinkService-刪除標籤");
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			drinkdao.deleteTagByProductId(product_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+	}
 
 	@Override
 	public void deleteDrink(Integer product_id) {
@@ -496,6 +564,45 @@ public class DrinkServiceImpl implements DrinkService {
 //		}		
 		return list;
 	}
+	
+	@Override
+	public Long determineTempLimitsByProductId(Integer productId) {
+		log.info("DrinkService-依照produtId搜尋結果數目判斷該產品冷熱飲");
+		Long count;
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			count = drinkdao.determineTempLimitsByProductId(productId);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}		
+		return count;
+	}
+	
+	@Override
+	public List<Integer> determineSugarLimitsByProductId(Integer productId){
+		log.info("DrinkService-依照produtId找出對應販售的甜度List<Integer>");
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<Integer> list = null;
+		try {
+			tx = session.beginTransaction();
+			list = drinkdao.determineSugarLimitsByProductId(productId);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}		
+		return list;
+	};
+	
 
 	@Override
 	public List<SugarLimitBean> findSugarLimitsByProductId(int productId) {
@@ -652,7 +759,45 @@ public class DrinkServiceImpl implements DrinkService {
 	}
 
 
+	@Override
+	public List<SugarLimitBean> findSugarLimitsByProductIdWithTx(Integer productId){		
+		log.info("DrinkService-依照produtId找List<SugarLimitBean>");
+		List<SugarLimitBean> list = null;
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = drinkdao.findSugarLimitsByProductId(productId);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}		
+		return list;
+	};
+
 	
+	@Override
+	public List<TempLimitBean> findTempLimitsByProductIdWithTx(Integer productId){	
+		log.info("DrinkService-依照produtId找List<TempLimitBean>");
+		List<TempLimitBean> list = null;
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			list = drinkdao.findTempLimitsByProductId(productId);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}		
+		return list;
+	};
+
 
 
 }

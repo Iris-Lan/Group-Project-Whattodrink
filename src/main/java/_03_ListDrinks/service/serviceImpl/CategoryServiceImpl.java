@@ -112,5 +112,23 @@ public class CategoryServiceImpl implements Serializable, CategoryService {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<CategoryBean> findByCategoryNameAndCompanyId(String category_name, String company_id) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<CategoryBean> list;
+		try {
+			tx = session.beginTransaction();
+			list = categoryDao.findByCategoryNameAndCompanyId(category_name, company_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return list;
+	}
 
 }

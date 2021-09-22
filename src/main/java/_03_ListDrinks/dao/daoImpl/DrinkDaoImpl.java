@@ -172,7 +172,9 @@ public class DrinkDaoImpl implements Serializable, DrinkDao {
 	public void deleteDrink(Integer product_id) {
 		Session session = factory.getCurrentSession();
 
-		String hql = "DELETE FROM DrinkBean d WHERE d.product_id = :product_id";
+//		String hql = "DELETE FROM DrinkBean d WHERE d.product_id = :product_id";
+		String hql = "UPDATE DrinkBean d SET d.enabled = FALSE WHERE d.product_id = :product_id";
+
 		session.createQuery(hql) 
 			   .setParameter("product_id", product_id)
 			   .executeUpdate();	
@@ -183,13 +185,13 @@ public class DrinkDaoImpl implements Serializable, DrinkDao {
 	public void deleteToppingById(Integer topping_id) {
 		Session session = factory.getCurrentSession();
 
-		String hql = "DELETE FROM ToppingBean t WHERE t.topping_id = :topping_id";
+//		String hql = "DELETE FROM ToppingBean t WHERE t.topping_id = :topping_id";
+		String hql = "UPDATE ToppingBean t SET t.enabled = FALSE WHERE t.topping_id = :topping_id";
 		session.createQuery(hql) 
 			   .setParameter("topping_id", topping_id)
 			   .executeUpdate();	
 		log.info("飲品-維護功能-DAO: 刪除topping_id為 " + topping_id + " 的ToppingBean");
 	};
-
 
 
 
@@ -433,6 +435,61 @@ public class DrinkDaoImpl implements Serializable, DrinkDao {
 		return list;
 	}
 
+	@Override
+	public void updateTopping(ToppingBean toppingBean) {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(toppingBean);
+		log.info("飲品-維護功能-DAO: 修改toppingBean： " + toppingBean);
+	};
+	
+	@Override
+	public void updateSugarLimitBean(SugarLimitBean sugarLimitBean) {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(sugarLimitBean);
+		log.info("飲品-維護功能-DAO: 修改sugarLimitBean： " + sugarLimitBean);
+	};
 
+	@Override
+	public void updateTempLimitBean(TempLimitBean tempLimitBean) {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(tempLimitBean);
+		log.info("飲品-維護功能-DAO: 修改tempLimitBean： " + tempLimitBean);
+	};
+	
+	@Override
+	public void deleteTagByProductId(Integer product_id) {
+		Session session = factory.getCurrentSession();
+		String hql = "DELETE FROM TagBean t WHERE t.product_id = :product_id";
+
+		session.createQuery(hql) 
+			   .setParameter("product_id", product_id)
+			   .executeUpdate();	
+		log.info("飲品-維護功能-DAO: 刪除product_id為 " + product_id + " 的tagBean");
+	};
+	
+	@Override
+	public Long determineTempLimitsByProductId(Integer productId) {
+		Session session = factory.getCurrentSession();
+		Long count;
+		
+		String hql = "SELECT COUNT(*) FROM TempLimitBean t WHERE t.product_id = :id AND t.enabled = true ";
+		count = session.createQuery(hql, Long.class) 
+					  .setParameter("id", productId)
+					  .getSingleResult();
+		return count;		
+	};
+
+	
+	@Override
+	public List<Integer> determineSugarLimitsByProductId(Integer productId) {
+		Session session = factory.getCurrentSession();
+		List<Integer> list = new ArrayList<>();
+
+		String hql = "SELECT t.sugar_id FROM SugarLimitBean t WHERE t.product_id = :id AND t.enabled = true";
+		list = session.createQuery(hql, Integer.class) 
+					  .setParameter("id", productId)
+					  .getResultList();
+		return list;
+	};
 
 }

@@ -59,7 +59,12 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
               />
             </div>
             <div>
-              <button id="next" type="submit" class="btn btn-dark w-100 fs-5">
+              <button
+                id="next"
+                type="submit"
+                class="btn btn-dark w-100 fs-5"
+                disabled
+              >
                 下一步
               </button>
             </div>
@@ -76,14 +81,19 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
                 name="variviedCode"
                 placeholder="驗證碼"
               />
-              <span class="text-secondary">
+              <p class="text-secondary">
                 未收到驗證碼<a class="text-primary mx-1" id="resend"
                   >重新發送</a
                 >
-              </span>
+              </p>
             </div>
             <div>
-              <button type="submit" class="btn btn-dark w-100 fs-5" id="next2">
+              <button
+                type="submit"
+                class="btn btn-dark w-100 fs-5"
+                id="next2"
+                disabled
+              >
                 下一步
               </button>
             </div>

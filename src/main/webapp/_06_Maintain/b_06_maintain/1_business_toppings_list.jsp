@@ -225,7 +225,13 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="alter" tabindex="-1">
+    <div
+      class="modal fade"
+      id="alter"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -237,7 +243,12 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form
+              action="https://whattodrink.herokuapp.com/UpdateToppingServlet2"
+              method="POST"
+              enctype="multipart/form-data"
+              class="tr"
+            >
               <div class="d-flex align-items-center mb-3">
                 <span class="fs-6 me-3">配料圖片</span>
                 <div style="width: 300px">
@@ -269,7 +280,7 @@
                 <input
                   class="form-control form-control-sm me-3"
                   style="width: 100px"
-                  type="text"
+                  type="number"
                   id="addOnTotal"
                   name="toppingPrice"
                 />
@@ -277,7 +288,7 @@
                 <input
                   class="form-control form-control-sm"
                   style="width: 100px"
-                  type="text"
+                  type="number"
                   id="addOnCal"
                   name="toppingCal"
                 />

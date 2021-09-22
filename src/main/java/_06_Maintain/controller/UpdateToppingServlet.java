@@ -70,25 +70,42 @@ public class UpdateToppingServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.info("企業用戶顯示配料列表之Controller-POST方法開始");
-
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json;charset=UTF-8");
+		HttpSession session = request.getSession(false);
+		CompanyBean companyBean = (CompanyBean) session.getAttribute("BLoginOK");
+		String company_id = companyBean.getCompany_id();
+		System.out.println("1. ===========================");
+		log.info("company_id: " + company_id);
+		System.out.println("2. ===========================");
 		
 		
+		if (request.getParameter("toppingId").length() != 0) {
+			Integer topping_id = Integer.parseInt(request.getParameter("toppingId"));
+			DrinkService drinkService = new DrinkServiceImpl();
+			ToppingBean toppingBean = drinkService.findToppingBeanById(topping_id);
+			System.out.println("3. ===========================");
+			log.info("toppingBean: " + toppingBean);
+			System.out.println("4. ===========================");		
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("toppingId", toppingBean.getTopping_id());
+			map.put("toppingName",toppingBean.getTopping_name());
+			map.put("toppingPrice", toppingBean.getTopping_price());
+			map.put("toppingCal", toppingBean.getTopping_cal());
+			map.put("picPath", toppingBean.getTopping_picpath());	
+			
+			response.getWriter().print(JSON.toJSONString(map));
+			System.out.println("5. ===========================");
+			System.out.println(JSON.toJSONString(map));
+			System.out.println("6. ===========================");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			System.out.println("7. ===========================");
+			System.out.println("topping_id: " + topping_id + "已送出該筆topping_id所對應之細項。");
+			System.out.println("8. ===========================");	
+		}
 		log.info("企業用戶顯示配料列表之Controller-POST方法開結束始");		
 
 	}

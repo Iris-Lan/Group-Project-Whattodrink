@@ -66,5 +66,19 @@ public class CategoryDaoImpl implements Serializable, CategoryDao {
 		return categoryList;
 	}
 	
+	@Override
+	public List<CategoryBean> findByCategoryNameAndCompanyId(String category_name, String company_id) {
+		
+		Session session = factory.getCurrentSession();
+		List<CategoryBean> categoryBeans = new ArrayList<CategoryBean>();
+
+		String hql = "FROM CategoryBean c WHERE c.category_name LIKE :category_name AND c.company_id = :company_id";
+		categoryBeans = session.createQuery(hql, CategoryBean.class)
+						.setParameter("category_name", category_name)
+						.setParameter("company_id", company_id)
+					  	.getResultList();
+		return categoryBeans;
+	}
+	
 
 }

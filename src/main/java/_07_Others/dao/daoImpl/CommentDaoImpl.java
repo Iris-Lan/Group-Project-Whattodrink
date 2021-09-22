@@ -61,5 +61,16 @@ public class CommentDaoImpl implements CommentDao {
 		commentList = session.createQuery(hql, CommentBean.class).setParameter("product_id", product_id).getResultList();
 		return commentList;
 	}
+	
+	@Override
+	public List<CommentBean> findCommentBeansByOrderId(String order_id) {
+		Session session = factory.getCurrentSession();
+		List<CommentBean> commentList = new ArrayList<>();
+
+		String hql = "FROM CommentBean cb WHERE cb.order_id = :order_id";
+		commentList = session.createQuery(hql, CommentBean.class).setParameter("order_id", order_id).getResultList();
+		return commentList;
+	}
+
 
 }

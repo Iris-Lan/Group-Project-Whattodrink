@@ -1,6 +1,8 @@
 package _06_Maintain.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,17 +74,23 @@ public class DeleteProductServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
-
-		Integer product_id = Integer.parseInt(request.getParameter("proId"));
-//		DrinkBean drinkBean = new DrinkBean();
-//		drinkBean.setProduct_id(product_id);
 		
-		DrinkService drinkService = new DrinkServiceImpl();
-		drinkService.deleteDrink(product_id);
-		System.out.println("7. ===========================");
-		System.out.println("product_id: " + product_id + "已刪除。");
-		System.out.println("8. ===========================");		
-		log.info("企業用戶刪除飲品之Controller-POST方法結束");
+		
+		if (request.getParameter("proId").length() != 0) {
+			Integer product_id = Integer.parseInt(request.getParameter("proId"));
+			DrinkService drinkService = new DrinkServiceImpl();
+			drinkService.deleteDrink(product_id);	
+			// date
+			Date date = new Date();
+			Timestamp ts = new Timestamp(date.getTime());
+			DrinkBean drinkBean = drinkService.findById(product_id);
+			drinkBean.setAlter_date(ts);
+			drinkService.updateDrink(drinkBean);
+			System.out.println("7. ===========================");
+			System.out.println("product_id: " + product_id + "已刪除(enabled欄位改為FALSE)。");
+			System.out.println("8. ===========================");	
+			response.getWriter().print("yes");
+			log.info("企業用戶刪除飲品之Controller-POST方法結束");		
+		}	
 	}
-
 }

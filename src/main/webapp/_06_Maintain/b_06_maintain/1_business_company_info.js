@@ -29,6 +29,7 @@ function loadData(data) {
   $("#num").val(num);
   $("#tax_id_number").val(tax_id_number);
   $("#tel").val(tel);
+
   var pic1 = `<img src="../../${data.company_iconpath}" style="max-width: 100%; max-height: 100%" id="pic1"/>`;
   var pic2 = `<img src="../../${data.bg_iconpath}" style="max-width: 100%; max-height: 100%" id="pic2"/>`;
   img1.insertAdjacentHTML("afterbegin", pic1);

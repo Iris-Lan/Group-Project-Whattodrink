@@ -1,5 +1,8 @@
 package _01_Register.c_01_register.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import _01_Register.c_01_register.model.CustomerBean;
 
 public interface CustomerDao {
@@ -41,4 +44,10 @@ public interface CustomerDao {
 
 	public CustomerBean findByEmail(String email);
 
+	
+	//0919 Yu
+	
+	List<Map<String, Object>> findAllHistoryOrdersByCustomerId(Integer customer_id);
+	
+	List<Map<String, Object>> findAllCurrentOrdersByCustomerId(Integer customer_id);
 }

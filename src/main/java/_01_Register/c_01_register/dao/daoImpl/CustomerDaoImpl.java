@@ -1,7 +1,13 @@
 package _01_Register.c_01_register.dao.daoImpl;
 
-import javax.persistence.NoResultException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
+import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 
 import org.hibernate.Session;
@@ -12,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import _00_init.utils.HibernateUtils;
 import _01_Register.c_01_register.dao.CustomerDao;
 import _01_Register.c_01_register.model.CustomerBean;
+import _07_Others.service.CommentService;
+import _07_Others.service.serviceImpl.CommentServiceImpl;
 
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -251,4 +259,59 @@ public class CustomerDaoImpl implements CustomerDao {
 		return customerBean;
 	}
 
+	
+	@Override
+	public List<Map<String, Object>> findAllHistoryOrdersByCustomerId(Integer customer_id) {
+		Session session = factory.getCurrentSession();
+
+		String hql = "SELECT o.order_id, o.order_date, o.orderStatus, o.companyBean.company_name, o.companyBean.trade_name, o.companyBean.company_iconpath, o.customer_id "
+				+ "FROM OrderBean o WHERE o.customer_id = :customer_id AND o.orderStatus = '已領取' AND ifnull(o.order_text, ' ') != '商家刪除資料' ORDER BY o.order_date DESC";
+		List<Object[]> temp = session.createQuery(hql, Object[].class).setParameter("customer_id", customer_id)
+				.getResultList();
+		List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
+		CommentService commentService = new CommentServiceImpl();
+
+		for (Object[] obj : temp) {
+			Map<String, Object> map = new LinkedHashMap<>();
+			String ordId = (String) obj[0];
+			map.put("ordId", ordId);
+			Timestamp ts = (Timestamp) obj[1];
+			String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
+			map.put("ordTime", date);
+			map.put("ordState", obj[2]);
+			map.put("storeName", obj[3]);
+			map.put("branchName", obj[4]);
+			map.put("picPath", obj[5]);
+			map.put("review", "???");
+			list.add(map);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> findAllCurrentOrdersByCustomerId(Integer customer_id) {
+		Session session = factory.getCurrentSession();
+
+		// o.orderStatus = '接單' 改成 o.orderStatus in ('待製作','可領取')
+		String hql = "SELECT o.order_id, o.order_date, o.orderStatus, o.companyBean.company_name, o.companyBean.trade_name, o.companyBean.company_iconpath "
+				+ "FROM OrderBean o WHERE o.customer_id = :customer_id AND o.orderStatus in ('待製作','可領取','待確認') AND ifnull(o.order_text, ' ') != '商家刪除資料' ORDER BY o.order_date DESC";
+		List<Object[]> temp = session.createQuery(hql, Object[].class).setParameter("customer_id", customer_id)
+				.getResultList();
+		List<Map<String, Object>> list = new LinkedList<Map<String, Object>>();
+
+		for (Object[] obj : temp) {
+			Map<String, Object> map = new LinkedHashMap<>();
+			String ordId = (String) obj[0];
+			map.put("ordId", ordId);
+			Timestamp ts = (Timestamp) obj[1];
+			String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
+			map.put("ordTime", date);
+			map.put("ordState", obj[2]);
+			map.put("storeName", obj[3]);
+			map.put("branchName", obj[4]);
+			map.put("picPath", obj[5]);
+			list.add(map);
+		}
+		return list;
+	}
 }

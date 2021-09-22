@@ -175,7 +175,7 @@
           <div class="col-sm-1"></div>
           <div class="footer-content logo col-sm-5 m-0">
             <a href=""
-              ><img src="./image/logo.png" alt="logo" class="small-logo"
+              ><img src="<c:url value="/images/logo.png"/>" alt="logo" class="small-logo"
             /></a>
             <div class="app_download">
               <a href="" class="text-dark text-decoration-none"

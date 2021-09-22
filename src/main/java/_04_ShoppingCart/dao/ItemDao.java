@@ -23,7 +23,7 @@ public interface ItemDao {
 
 	void updateItemBean(ItemBean itemBean);
 
-	
+	List<ItemToppingBean> findByItemId(Integer item_id);
 
 //	void deleteOrderItemById(Integer item_id);
 	

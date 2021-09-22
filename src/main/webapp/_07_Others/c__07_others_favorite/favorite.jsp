@@ -15,6 +15,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" type="text/css" href="<c:url value="/_07_Others/c__07_others_favorite/favorite1.css"/>">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -146,17 +147,42 @@
       </div>
     </footer>
   <!-- footer end -->
-<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-		
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
     
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
 
-  <script src="<c:url value="/_07_Others/c__07_others_favorite/favorite1.js"/>"></script>
-  
+//動態移除
+  function change1(heart) {
+    	
+    	 console.log(heart.nextElementSibling.value);
+
+     $.ajax({
+              url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
+              type: "post",
+              data: {
+                company_id : heart.nextElementSibling.value
+              },
+              success: function () {
+                heart.parentElement.parentElement.remove();
+              }})
+
+
+            }
+
+
+	//複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+		document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+
+
+  </script>
 
 </body>
 

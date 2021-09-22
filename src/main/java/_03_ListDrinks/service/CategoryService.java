@@ -17,5 +17,5 @@ public interface CategoryService {
 
 	void deleteCategory(int category_id);
 
-
+	List<CategoryBean> findByCategoryNameAndCompanyId(String category_name, String company_id);
 }

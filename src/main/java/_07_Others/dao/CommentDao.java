@@ -11,6 +11,8 @@ public interface CommentDao {
 
 	void save(CommentBean commentBean);
 
+	List<CommentBean> findCommentBeansByOrderId(String order_id);
+	
 	
 	// yu
 	BigDecimal avgStarForDrink(Integer product_id);

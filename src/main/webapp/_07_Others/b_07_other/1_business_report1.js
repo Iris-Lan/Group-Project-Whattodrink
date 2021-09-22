@@ -12,7 +12,7 @@ $(document).ready(function () {
       ordTotal = response.total;
      
 	  if(ordQuantity==0&&ordTotal==0){
-		  alert();
+//		  alert();
 		  ordAvg=0;
 	  }else{
 	  	  ordAvg = ordTotal / ordQuantity;

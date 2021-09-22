@@ -1,5 +1,8 @@
 package _01_Register.c_01_register.service;
 
+import java.util.List;
+import java.util.Map;
+
 import _01_Register.c_01_register.model.CustomerBean;
 
 public interface CustomerService {
@@ -34,5 +37,11 @@ public interface CustomerService {
 	public boolean existsByEmailAndVerificationCode(String email, String verificationCode);
 
 	public CustomerBean findByEmail(String email);
+	
+	// 0919
+	//	
+	List<Map<String, Object>> findAllHistoryOrdersByCustomerId(Integer customer_id);
+
+	List<Map<String, Object>> findAllCurrentOrdersByCustomerId(Integer customer_id);
 
 }

@@ -51,19 +51,40 @@ public class B_RegisterCheckServlet extends HttpServlet {
 		System.out.println(storeEmail + " " + storeInvitationCode);
 		
 		//確認email
-		if(companyService.findByCompanyEmail(storeEmail) != null && storeInvitationCode == null) {	
+		if(companyService.findByCompanyEmail(storeEmail) != null) {	
 			session.setAttribute("successEmail", storeEmail);
 			response.getWriter().print(gson.toJson("yes"));
-		}else if(storeEmail == null && storeInvitationCode == null){
+			return;
+		}
+//		else if(storeInvitationCode == null){
+//			response.getWriter().print(gson.toJson("no"));
+//			return;
+//		}
+		
+		//確認邀請碼
+		if(companyService.findByCompanyInvitation(storeInvitationCode) != null) {	
+			response.getWriter().print(gson.toJson("yes"));
+			return;
+		}else {
 			response.getWriter().print(gson.toJson("no"));
 		}
 		
-		//確認邀請碼
-		if(companyService.findByCompanyInvitation(storeInvitationCode) != null && storeEmail == null) {	
-			response.getWriter().print(gson.toJson("yes"));
-		}else if(companyService.findByCompanyInvitation(storeInvitationCode) != null && companyService.findByCompanyEmail(storeEmail) != null){
-			response.getWriter().print(gson.toJson("no"));
-		}
+		
+		
+//		//確認email
+//		if(companyService.findByCompanyEmail(storeEmail) != null && storeInvitationCode == null) {	
+//			session.setAttribute("successEmail", storeEmail);
+//			response.getWriter().print(gson.toJson("yes"));
+//		}else if(storeEmail == null && storeInvitationCode == null){
+//			response.getWriter().print(gson.toJson("no"));
+//		}
+//		
+//		//確認邀請碼
+//		if(companyService.findByCompanyInvitation(storeInvitationCode) != null && storeEmail == null) {	
+//			response.getWriter().print(gson.toJson("yes"));
+//		}else if(companyService.findByCompanyInvitation(storeInvitationCode) != null && companyService.findByCompanyEmail(storeEmail) != null){
+//			response.getWriter().print(gson.toJson("no"));
+//		}
 	
 		
 	}

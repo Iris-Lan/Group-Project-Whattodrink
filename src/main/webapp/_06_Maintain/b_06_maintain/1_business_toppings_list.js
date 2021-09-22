@@ -1,10 +1,10 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "https://whattodrink.herokuapp.com/UpdateToppingServlet",
+    url: "https://whattodrink.herokuapp.com/DeleteToppingServlet",
     dataType: "json",
     success: function (response) {
-      // console.log(response);
+	console.log(response);
       renderHTML(response);
     },
   });
@@ -34,8 +34,9 @@ function renderHTML(data) {
                     <i
                       class="fas fa-edit"
                       role="button"
+                      id="${data[i].toppingId}"
                     ></i>
-                    <i class="fas fa-trash" role="button" id="delete"></i>
+                    <i class="fas fa-trash" role="button" ></i>
                   </div>
                 </div>
               </div>
@@ -45,22 +46,25 @@ function renderHTML(data) {
       `;
   }
   $("#card").append(str);
-
+console.log($("i"));
   //刪除品項
-  $("#delete").click(function (e) {
-    // e.preventDefault();
-    // console.log(e.target.parentElement.parentElement.parentElement.parentElement);-->card
-    e.target.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
-    // console.log(e.target.parentElement.firstElementChild.innerText);-->proId
+  $(".fa-trash").click(function (e) {
+     e.preventDefault();
+//alert();
+    console.log(e.target.id);
+    e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
     //傳送被刪除的配料id
-    $.ajax({
+        $.ajax({
       type: "POST",
-      url: "",
+      url: "https://whattodrink.herokuapp.com/DeleteToppingServlet",
       data: {
-        toppingId: e.target.parentElement.firstElementChild.innerText,
+        toppingId: e.target.previousElementSibling.previousElementSibling.innerText,
       },
       success: function (res) {
-        $(`#${data[i].toppingId}`).remove();
+	console.log(res);
+        if (res == "yes") {
+			window.location.assign("https://whattodrink.herokuapp.com/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp");
+        }
       },
     });
   });
@@ -69,48 +73,42 @@ function renderHTML(data) {
   const modifyModal = document.getElementById("alter");
   const modal = new bootstrap.Modal(modifyModal, { keyboard: false });
   $(".fa-edit").click(function (e) {
-    // console.log(e.target.previousElementSibling.innerText);
-    var toppingId = e.target.previousElementSibling.innerText;
+    var toppingId = e.target.id;
+    console.log(toppingId);
     //請求該配料資料
     $.ajax({
       type: "POST",
-      url: "url",
+      url: "https://whattodrink.herokuapp.com/UpdateToppingServlet",
       data: { toppingId: toppingId },
       success: function (response) {
+	$("[name=toppingImg]").change(function () {
+          var img = $("[name=toppingImg]").get(0).files[0].name;
+          var idx = img.lastIndexOf(".");
+          var lastname = img.substring(idx, img.length);
+          var name = lastname.toLowerCase();
+          if (name != ".jpg" && name != ".jpeg") {
+            alert("圖片格式錯誤，請重新選擇");
+            $("[name=toppingImg]").val("");
+          } else {
+            $("[name=toppingImg]").attr(
+              "src",
+              URL.createObjectURL($(this).get(0).files[0])
+            );
+          }
+        });
         var toppingName = response.toppingName;
         var toppingPrice = response.toppingPrice;
         var toppingCal = response.toppingCal;
-        $("#addOnName").text(toppingName);
-        $("#addOnName").text(toppingPrice);
-        $("#addOnName").text(toppingCal);
+        $("#addOnName").val(toppingName);
+        $("#addOnTotal").val(toppingPrice);
+        $("#addOnCal").val(toppingCal);
       },
     });
 
     $("#toppingId").attr("value", toppingId);
-    console.log($("#toppingId"));
     modal.show();
+    $("[data-bs-dismiss]").click(function () {
+      $(".tr").removeData();
+    });
   });
 }
-
-//傳送修改配料資訊
-// $("button[type=submit]").click(function (e) {
-//   e.preventDefault();
-//   toppingName = $("#addOnName").val();
-//   toppingPrice = $("#addOnName").val();
-//   toppingCal = $("#addOnName").val();
-//   $.ajax({
-//     type: "POST",
-//     url: "url",
-//     data: {
-//       toppingName: toppingName,
-//       toppingPrice: toppingPrice,
-//       toppingCal: toppingCal,
-//     },
-//     success: function (response) {
-//       //資料庫收到資料傳1
-//       if (response == 1) {
-//         alert("更新成功");
-//       }
-//     },
-//   });
-// });

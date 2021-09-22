@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,9 +30,10 @@ public class DeleteToppingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = LoggerFactory.getLogger(DeleteToppingServlet.class);
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		log.info("企業用戶顯示配料列表之Controller-GET方法開始");
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json;charset=UTF-8");
@@ -41,14 +43,14 @@ public class DeleteToppingServlet extends HttpServlet {
 		System.out.println("1. ===========================");
 		log.info("company_id: " + company_id);
 		System.out.println("2. ===========================");
-		
+
 		DrinkService drinkService = new DrinkServiceImpl();
 		List<ToppingBean> toppingBeansList = drinkService.findToppingBeansByCompanyId(company_id);
 
 		System.out.println("3. ===========================");
 		log.info("toppingBeansList: " + toppingBeansList);
-		System.out.println("4. ===========================");		
-		
+		System.out.println("4. ===========================");
+
 		List<Map<String, Object>> list = new LinkedList<>();
 		for (int i = 0; i < toppingBeansList.size(); i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -63,24 +65,28 @@ public class DeleteToppingServlet extends HttpServlet {
 		System.out.println("5. ===========================");
 		System.out.println(JSON.toJSONString(list));
 		System.out.println("6. ===========================");
-		log.info("企業用戶顯示配料列表之Controller-GET方法開結束始");		}
+		log.info("企業用戶顯示配料列表之Controller-GET方法開結束始");
+	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 
-		Integer topping_id = Integer.parseInt(request.getParameter("toppingId"));
-		DrinkService drinkService = new DrinkServiceImpl();
-		
-//		ToppingBean toppingBean = new ToppingBean();
-//		toppingBean.setTopping_id(topping_id);
-		
-		drinkService.deleteToppingById(topping_id);
-		response.getWriter().print("yes");
-		System.out.println("7. ===========================");
-		System.out.println("topping_id: " + topping_id + "已刪除。");
-		System.out.println("8. ===========================");		
-		log.info("企業用戶刪除配料之Controller-POST方法結束");	}
+		if (request.getParameter("toppingId").length() != 0) {
+			Integer topping_id = Integer.parseInt(request.getParameter("toppingId"));
+			DrinkService drinkService = new DrinkServiceImpl();
+			drinkService.deleteToppingById(topping_id);
+			System.out.println("7. ===========================");
+			System.out.println("topping_id: " + topping_id + "已刪除(enabled欄位改為FALSE)。");
+			System.out.println("8. ===========================");
+			log.info("企業用戶刪除配料之Controller-POST方法結束");
+			response.getWriter().print("yes");
+			
+//			RequestDispatcher rd = request.getRequestDispatcher("/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp");
+//			rd.forward(request, response);
+		}
+	}
 
 }

@@ -168,4 +168,25 @@ public class ItemServiceImpl implements ItemService{
 		}		
 	}
 
+	@Override
+	public List<ItemToppingBean> findByItemId(Integer item_id) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<ItemToppingBean> list = null;
+		try {
+			tx = session.beginTransaction();
+			log.info("處理訂單細項之Service: 更新訂單細項狀態");
+			list = itemDao.findByItemId(item_id);
+			tx.commit();
+		}catch(Exception e) {
+			if(tx != null) {
+				tx.rollback();				
+			}
+			System.out.println("發生異常，交易回滾.....,原因: " + e.getMessage());			
+			throw new RuntimeException(e);
+		}	
+		return list;
+	}
+
+	
 }

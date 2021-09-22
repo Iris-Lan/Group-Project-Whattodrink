@@ -22,7 +22,7 @@ public interface ItemService {
 
 	void updateItemBean(ItemBean itemBean);
 
-
+	List<ItemToppingBean> findByItemId(Integer item_id);
 
 //	void deleteOrderItemById(Integer item_id);
 }

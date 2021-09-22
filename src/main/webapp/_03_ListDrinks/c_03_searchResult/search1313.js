@@ -10,32 +10,6 @@ if (location.pathname.match('ByTag') || location.pathname.match('ByNative')) {
 }
 
 
-//儲存地址
-let storage = sessionStorage;
-
-document.getElementById("location0").value = storage.getItem("Address");
-document.getElementById("location1").value = storage.getItem("Address");
-
-//按下enter送出定位表單
-$("#location0").keydown(function(event) {
-	if (event.keyCode == 13) {
-		let Address = document.getElementById("location0").value;
-		storage.setItem("Address", Address);
-		document.getElementById("location0").value = storage.getItem("Address");
-		document.getElementById("location1").value = storage.getItem("Address");
-		$("locationform0").submit();
-	}
-});
-
-$("#location1").keydown(function(event) {
-	if (event.keyCode == 13) {
-		let Address = document.getElementById("location1").value;
-		storage.setItem("Address", Address);
-		document.getElementById("location0").value = storage.getItem("Address");
-		document.getElementById("location1").value = storage.getItem("Address");
-		$("locationform1").submit();
-	}
-});
 
 //複製邀請碼右方彈跳文字
 var popoverTriggerList = [].slice.call(

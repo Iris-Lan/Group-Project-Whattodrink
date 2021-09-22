@@ -15,4 +15,5 @@ public interface CommentService {
 
 	List<CommentBean> findCommentBeansById(Integer product_id);
 
+	List<CommentBean> findCommentBeansByOrderId(String order_id);
 }

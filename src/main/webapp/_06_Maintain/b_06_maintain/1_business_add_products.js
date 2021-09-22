@@ -9,7 +9,7 @@ $(document).ready(function () {
       console.log(response[1].name);
       var str = "";
       for (let i = 1; i <= count; i++) {
-        str += `<option value="${i}">${response[i].name}</option>
+        str += `<option value="${response[i].categoryId}">${response[i].name}</option>
         `;
         // console.log(response[i].category_name);
       }
@@ -25,6 +25,21 @@ $(document).ready(function () {
     }
     if ($("input[id=customized]:checked")) {
       $("input[name=customized]").attr("disabled", false);
+    }
+  });
+  //限制必填項
+  $("[name=price_L]").change(function () {
+    if ($("[name=price_L]").val() != "") {
+      $("[name=cal_L]").attr("required", true);
+    } else {
+      $("[name=cal_L]").attr("required", false);
+    }
+  });
+  $("[name=price_M]").change(function () {
+    if ($("[name=price_M]").val() != "") {
+      $("[name=cal_M]").attr("required", true);
+    } else {
+      $("[name=cal_M]").attr("required", false);
     }
   });
 

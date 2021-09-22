@@ -46,7 +46,10 @@ public class B_orderStatusChange extends HttpServlet {
 		//預設待確認 、接單、取消、可領取、已領取
 		//狀態 可領取: 僅顯示下拉選單"已領取"
 		//狀態 已領取: 自動刪除列，換成歷史清單出現
-		String orderStatus = request.getParameter("orderStatus"); 
+		String orderStatus = request.getParameter("orderStatus");
+		System.out.println(order_id);
+		System.out.println(orderStatus);
+		
 		//狀態存DB後通知前端
 		if(orderStatus.equals("取消")) {
 			//商家取消，如果買家有使用好友折扣退還，並修改order invitaionDiscount=> 商家取消，退還好友優惠折扣50元

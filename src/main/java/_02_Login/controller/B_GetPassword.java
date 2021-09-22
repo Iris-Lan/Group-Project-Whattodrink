@@ -44,19 +44,19 @@ public class B_GetPassword extends HttpServlet {
 		System.out.println("code:" + code);
 		session.setAttribute("inputEmail", email);
 		SendingEmail.SendVerificationCodeTo(email, code);
-		try {
-			new Thread(() -> {
-				try {
-//					Thread.sleep(120000);
-					Thread.sleep(30000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				session.removeAttribute("code");
-			}).start();
-		}catch(Exception e) {
-			e.getMessage();
-		}
+//		try {
+//			new Thread(() -> {
+//				try {
+//					Thread.sleep(115000);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//				session.removeAttribute("code");
+//				System.out.println("移除code:" + code);
+//			}).start();
+//		}catch(Exception e) {
+//			e.getMessage();
+//		}
 	}
 
 }

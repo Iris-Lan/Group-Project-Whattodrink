@@ -35,6 +35,14 @@ public interface DrinkService {
 	List<DrinkBean> orderDrinksByCalAndKeyword(String keyword);
 
 	void updateDrink(DrinkBean drinkBean);
+	
+	void updateTopping(ToppingBean toppingBean);
+	
+	void updateSugarLimitBean(SugarLimitBean sugarLimitBean);
+
+	void updateTempLimitBean(TempLimitBean tempLimitBean);
+	
+	void deleteTagByProductId(Integer product_id);
 
 	void deleteDrink(Integer product_id);
 	
@@ -44,7 +52,13 @@ public interface DrinkService {
 	
 	CategoryBean findByCategory_id(Integer category_id);
 	
+	List<SugarLimitBean> findSugarLimitsByProductIdWithTx(Integer productId);
 	
+	List<TempLimitBean> findTempLimitsByProductIdWithTx(Integer productId);
+	
+	Long determineTempLimitsByProductId(Integer productId);
+
+	List<Integer> determineSugarLimitsByProductId(Integer productId);
 	
 	
 	

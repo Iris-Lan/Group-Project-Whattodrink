@@ -89,9 +89,6 @@
                 name="pro_pic"
                 id="pro"
               />
-             <!-- <button class="input-group-text" type="submit" id="upload">
-                上傳
-              </button> -->
             </div>
           </div>
         </div>
@@ -490,15 +487,8 @@
           <h6 class="fw-normal">
             <a
               class="link-dark text-decoration-none"
-              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"/>"
-              >飲品列表</a
-            >
-          </h6>
-          <h6 class="fw-normal">
-            <a
-              class="link-dark text-decoration-none"
-              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp"/>"
-              >配料列表</a
+              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_product_list.jsp"/>"
+              >商品列表</a
             >
           </h6>
           <h6 class="fw-normal">
@@ -526,7 +516,7 @@
             <a
               class="link-dark text-decoration-none"
               href="<c:url value="/_07_Others/b_07_other/1_business_report.jsp"/>"
-              >每日報表</a
+              >每月報表</a
             >
           </h6>
           <h6 class="fw-normal">

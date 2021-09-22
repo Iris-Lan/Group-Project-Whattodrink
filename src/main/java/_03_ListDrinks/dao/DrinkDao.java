@@ -36,6 +36,14 @@ public interface DrinkDao {
 
 	void updateDrink(DrinkBean drinkBean);
 
+	void updateTopping(ToppingBean toppingBean);
+	
+	void updateSugarLimitBean(SugarLimitBean sugarLimitBean);
+
+	void updateTempLimitBean(TempLimitBean tempLimitBean);
+	
+	void deleteTagByProductId(Integer product_id);
+
 	void deleteDrink(Integer product_id);
 
 	void deleteToppingById(Integer topping_id);
@@ -43,6 +51,13 @@ public interface DrinkDao {
 	DrinkBean findById(Integer product_id);
 	
 	CategoryBean findByCategory_id(Integer category_id);
+	
+	Long determineTempLimitsByProductId(Integer productId);
+
+	List<Integer> determineSugarLimitsByProductId(Integer productId);
+	
+	
+	
 	
 	
 	//B insert
@@ -84,7 +99,6 @@ public interface DrinkDao {
 	List<ItemBean> findAllItemBeanInItemToppingBean();
 
 	List<String> findToppingNamesByItemBean(ItemBean b);
-
 
 
 

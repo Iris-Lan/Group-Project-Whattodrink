@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import _00_init.utils.HibernateUtils;
 import _04_ShoppingCart.dao.ItemDao;
 import _04_ShoppingCart.model.ItemBean;
+import _04_ShoppingCart.model.ItemToppingBean;
 import _04_ShoppingCart.service.OrderService;
 import _04_ShoppingCart.service.serviceImpl.OrderServiceImpl;
 
@@ -123,6 +124,15 @@ public class ItemDaoImpl implements ItemDao {
 	}
 
 
+	@Override
+	public List<ItemToppingBean> findByItemId(Integer item_id) {
+		Session session = factory.getCurrentSession();
+		List<ItemToppingBean> list = null;
+
+		String hql = "FROM ItemToppingBean i WHERE i.item_id = :item_id";
+		list = session.createQuery(hql, ItemToppingBean.class).setParameter("item_id", item_id).getResultList();
+		return list;
+	}
 	
 
 }

@@ -1,7 +1,9 @@
 package _01_Register.c_01_register.service.serviceImpl;
 
-import org.hibernate.Session;
+import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
@@ -315,4 +317,43 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerBean;
 	}
 
+	@Override
+	public List<Map<String, Object>> findAllHistoryOrdersByCustomerId(Integer customer_id) {
+
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<Map<String, Object>> list = null;
+
+		try {
+			tx = session.beginTransaction();
+			list = customerDao.findAllHistoryOrdersByCustomerId(customer_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> findAllCurrentOrdersByCustomerId(Integer customer_id) {
+
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<Map<String, Object>> list = null;
+
+		try {
+			tx = session.beginTransaction();
+			list = customerDao.findAllCurrentOrdersByCustomerId(customer_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return list;
+	}
 }
