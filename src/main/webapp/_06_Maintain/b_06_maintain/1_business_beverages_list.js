@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "https://whattodrink.herokuapp.com/DeleteProductServlet",
+    url: "http://localhost:8080/whattodrink/DeleteProductServlet",
     dataType: "json",
     success: function (response) {
       // console.log(response);
@@ -27,7 +27,7 @@ function renderHTML(data) {
               <div class="col-md-6">
                 <img
                   class="ratio ratio-4x3"
-                  src="https://whattodrink.herokuapp.com/${data[i].picPath}?yui=${getRandom(0,1000)}"
+                  src="http://localhost:8080/whattodrink/${data[i].picPath}?yui=${getRandom(0,1000)}"
                   />
               </div>
               <div class="col-md-6">
@@ -66,14 +66,14 @@ function renderHTML(data) {
     //傳送被刪除的配料id
     $.ajax({
       type: "POST",
-      url: "https://whattodrink.herokuapp.com/DeleteProductServlet",
+      url: "http://localhost:8080/whattodrink/DeleteProductServlet",
       data: {
         proId: e.target.previousElementSibling.previousElementSibling.innerText,
       },
       success: function (res) {
         if (res == "yes") {
           window.location.assign(
-            "https://whattodrink.herokuapp.com/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"
+            "http://localhost:8080/whattodrink/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"
           );
         }
       },
@@ -91,7 +91,7 @@ function renderHTML(data) {
               <div class="col-md-6">
                 <img
                   class="ratio ratio-4x3"
-                  src="https://whattodrink.herokuapp.com/${data[i].picPath}?yui=${getRandom(0,1000)}"
+                  src="http://localhost:8080/whattodrink/${data[i].picPath}?yui=${getRandom(0,1000)}"
                   />
               </div>
               <div class="col-md-6">
@@ -128,7 +128,7 @@ function renderHTML(data) {
       //請求該筆資料
       $.ajax({
         type: "POST",
-        url: "https://whattodrink.herokuapp.com/UpdateProductServlet",
+        url: "http://localhost:8080/whattodrink/UpdateProductServlet",
         data: { proId: proId },
         cache: false,
         success: function (response) {
@@ -484,14 +484,14 @@ function renderHTML(data) {
       //傳送被刪除的配料id
       $.ajax({
         type: "POST",
-        url: "https://whattodrink.herokuapp.com/DeleteProductServlet",
+        url: "http://localhost:8080/whattodrink/DeleteProductServlet",
         data: {
           proId: e.target.previousElementSibling.id,
         },
         success: function (res) {
           if (res == "yes") {
             window.location.assign(
-              "https://whattodrink.herokuapp.com/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"
+              "http://localhost:8080/whattodrink/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"
             );
           }
         },
@@ -506,7 +506,7 @@ function renderHTML(data) {
     //請求該筆資料
     $.ajax({
       type: "POST",
-      url: "https://whattodrink.herokuapp.com/UpdateProductServlet",
+      url: "http://localhost:8080/whattodrink/UpdateProductServlet",
       data: { proId: proId },
       cache: false,
       success: function (response) {

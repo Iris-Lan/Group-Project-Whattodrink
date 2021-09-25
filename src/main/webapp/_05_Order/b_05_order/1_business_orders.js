@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "https://whattodrink.herokuapp.com/B_order",
+    url: "http://localhost:8080/whattodrink/B_order",
     dataType: "json",
     success: function (res) {
       var str = "";
@@ -76,7 +76,7 @@ $(document).ready(function () {
         var ordId = e.target.id.substring(1, e.target.id.length);
         $.ajax({
           type: "POST",
-          url: "https://whattodrink.herokuapp.com/B_orderStatusChange",
+          url: "http://localhost:8080/whattodrink/B_orderStatusChange",
           data: {
             orderStatus: ordState,
             order_id: ordId,
@@ -92,7 +92,7 @@ $(document).ready(function () {
         //請求該訂單資料
         $.ajax({
           type: "POST",
-          url: "https://whattodrink.herokuapp.com/B_orderClickItem",
+          url: "http://localhost:8080/whattodrink/B_orderClickItem",
           data: { order_id: ordId },
           dataType: "json",
           success: function (response) {

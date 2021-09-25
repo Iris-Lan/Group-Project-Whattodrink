@@ -32,7 +32,7 @@ $("#register_next0").click(function (e) {
     if ((str.length == 10) && (regex.test(str)===true)) {
 
      $.ajax({
-       url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+       url: "http://localhost:8080/whattodrink/_01_register/register.do",
        type: "POST",
        data: $("#register1").serialize()+"&"+"step=1",
        success(res) {
@@ -44,7 +44,7 @@ $("#register_next0").click(function (e) {
 
 
 		$.ajax({
-		      url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+		      url: "http://localhost:8080/whattodrink/_01_register/register.do",
 		      type: "POST",
 		      data: "step=9"+"&"+$("#register1").serialize(),
 		      success(res) {
@@ -74,7 +74,7 @@ $("#register_next1").click(function (e) {
   if (document.getElementById("register2").checkValidity() == true) {
     e.preventDefault();
     $.ajax({
-      url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+      url: "http://localhost:8080/whattodrink/_01_register/register.do",
       type: "POST",
       data: $("#register2").serialize()+"&"+"step=2"+"&"+$("#register1").serialize(),
       success(res) {
@@ -100,7 +100,7 @@ $("#register_next2").click(function (e) {
      if (($("#password1_register").val() == $("#password2_register").val())&&(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(str1)==true)) {
 
        $.ajax({
-         url: "https://whattodrink.herokuapp.com/CustomerRegisterServlet",
+         url: "http://localhost:8080/whattodrink/CustomerRegisterServlet",
          type: "POST",
          data: $("#register1").serialize()+"&"+$("#register3").serialize(),
          success(res) {
@@ -108,7 +108,7 @@ $("#register_next2").click(function (e) {
              $("#register3_warn").html(res);
            }
            if (res == 0) {
-             window.location.assign("https://whattodrink.herokuapp.com/_01_Register/c_01_register/Registersuccess.jsp");
+             window.location.assign("http://localhost:8080/whattodrink/_01_Register/c_01_register/Registersuccess.jsp");
            }
          },
        });
@@ -126,7 +126,7 @@ $("#resend").click(function () {
 	
 	 $("#register2_warn").html(`已重新發送，請至信箱確認`);
        $.ajax({
-         url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+         url: "http://localhost:8080/whattodrink/_01_register/register.do",
          type: "POST",
          data: "step=9"+"&"+$("#register1").serialize(),
          success(res) {

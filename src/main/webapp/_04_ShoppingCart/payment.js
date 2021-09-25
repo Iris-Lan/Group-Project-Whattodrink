@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "https://whattodrink.herokuapp.com/PaymentDiscount",
+    url: "http://localhost:8080/whattodrink/PaymentDiscount",
     dataType: "json",
     async: false,
     success: function (response) {
@@ -38,7 +38,7 @@ $(document).ready(function () {
 			if ($("#taxId").val().length == 0) {
 				$.ajax({
 					type: "POST",
-					url: "https://whattodrink.herokuapp.com/_05_Order/preConfirmOrderServlet",
+					url: "http://localhost:8080/whattodrink/_05_Order/preConfirmOrderServlet",
 					data: {
 						payment: payment,
 						taxId: taxId,
@@ -46,7 +46,7 @@ $(document).ready(function () {
 					},
 					success: function() {
 						window.location.assign(
-							"https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
+							"http://localhost:8080/whattodrink/_04_ShoppingCart/confirmOrderPage.jsp"
 						);
 					},
 				});
@@ -56,7 +56,7 @@ $(document).ready(function () {
 		} else {
 			$.ajax({
 				type: "POST",
-				url: "https://whattodrink.herokuapp.com/_05_Order/preConfirmOrderServlet",
+				url: "http://localhost:8080/whattodrink/_05_Order/preConfirmOrderServlet",
 				data: {
 					payment: payment,
 					taxId: taxId,
@@ -64,7 +64,7 @@ $(document).ready(function () {
 				},
 				success: function() {
 					window.location.assign(
-						"https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
+						"http://localhost:8080/whattodrink/_04_ShoppingCart/confirmOrderPage.jsp"
 					);
 				},
 			});

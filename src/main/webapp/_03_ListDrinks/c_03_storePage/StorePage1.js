@@ -4,7 +4,7 @@ console.log(heart.id);
   if (heart.className == "far fa-heart fa-lg") {
   		console.log('空心轉實心');
    $.ajax({
-            url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
+            url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
             type: "post",
             data: {
               company_id:heart.id
@@ -20,7 +20,7 @@ console.log(heart.id);
 		console.log('實星轉空星');
    $.ajax({
      	
-            url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
+            url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
             type: "post",
             data: {
               company_id:heart.id
@@ -79,7 +79,7 @@ console.log(heart.id);
 			             
 			           $.ajax({
 			               type: "POST",
-			               url: "https://whattodrink.herokuapp.com/DistanceServlet",
+			               url: "http://localhost:8080/whattodrink/DistanceServlet",
 			               data:str,
 			               success: function (response) {
 			                 console.log(response);  
@@ -134,7 +134,7 @@ console.log(heart.id);
 			             
 			           $.ajax({
 			               type: "POST",
-			               url: "https://whattodrink.herokuapp.com/DistanceServlet",
+			               url: "http://localhost:8080/whattodrink/DistanceServlet",
 			               data:str,
 			               success: function (response) {
 			                 console.log(response);

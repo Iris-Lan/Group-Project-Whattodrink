@@ -851,7 +851,7 @@
         	console.log(e.target.previousElementSibling.value);
         	
 						$.ajax({
-							url: "https://whattodrink.herokuapp.com/_03_ListDrinks/DrinkDetail",
+							url: "http://localhost:8080/whattodrink/_03_ListDrinks/DrinkDetail",
 							type: "POST",
 							data: {productId:e.target.previousElementSibling.value},
 							dataType:"json",
@@ -950,7 +950,7 @@
             });
 
     	  $.ajax({
-				url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/AddToCartServlet",
+				url: "http://localhost:8080/whattodrink/_04_ShoppingCart/AddToCartServlet",
 				type: "POST",
 				data: {
 					productId:$('#productId').val(),
@@ -990,7 +990,7 @@
 		$("#clearbtn").click(function () {
 			modal3.hide();
 			$.ajax({
-				url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/deleteCartServlet",
+				url: "http://localhost:8080/whattodrink/_04_ShoppingCart/deleteCartServlet",
 				type: "POST",
 				data:{
 					productId:$('#productId').val(),
@@ -1091,7 +1091,7 @@
 	function doo3() {
 
 		$.ajax({
-		    url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/RetrieveShoppingCart",
+		    url: "http://localhost:8080/whattodrink/_04_ShoppingCart/RetrieveShoppingCart",
 		    type: "POST",
 		    success(res) {
 			console.log(res);
@@ -1100,7 +1100,7 @@
 					const nocartModal = new bootstrap.Modal(NocartModal, { keyboard: false });
 						nocartModal.show();
 					}else{
-						window.location.assign("https://whattodrink.herokuapp.com/_04_ShoppingCart/shoppingcart.jsp");		
+						window.location.assign("http://localhost:8080/whattodrink/_04_ShoppingCart/shoppingcart.jsp");		
 					}
 			
 						}
@@ -1146,7 +1146,7 @@ $(".comment").click(function (e) {
 	
 	
 	$.ajax({
-	    url: "https://whattodrink.herokuapp.com/DrinkForCompanyFromStarServlet",
+	    url: "http://localhost:8080/whattodrink/DrinkForCompanyFromStarServlet",
 	    type: "POST",
 		data: {product_id:e.target.parentElement.parentElement.firstElementChild.firstElementChild.value},
 		dataType:"json",
@@ -1167,7 +1167,7 @@ $(".comment").click(function (e) {
 		<div class="row mb-3">
 			<div class="col-sm-6">
 				<img class="ratio ratio-4x3"
-					src="\${res[i].drinkPicpath!=undefined?`https://whattodrink.herokuapp.com/\${res[i].drinkPicpath}`:`https://whattodrink.herokuapp.com/images/none.png`}"
+					src="\${res[i].drinkPicpath!=undefined?`http://localhost:8080/whattodrink/\${res[i].drinkPicpath}`:`http://localhost:8080/whattodrink/images/none.png`}"
 					style="max-width: fit-content" />
 			</div>
 			<div class="col-sm-6">

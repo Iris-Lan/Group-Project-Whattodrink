@@ -244,7 +244,7 @@
           </div>
           <div class="modal-body">
             <form
-              action="https://whattodrink.herokuapp.com/UpdateToppingServlet2"
+              action="http://localhost:8080/whattodrink/UpdateToppingServlet2"
               method="POST"
               enctype="multipart/form-data"
               class="tr"

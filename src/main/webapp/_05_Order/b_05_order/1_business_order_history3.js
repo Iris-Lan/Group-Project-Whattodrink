@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "https://whattodrink.herokuapp.com/B_orderHistory",
+    url: "http://localhost:8080/whattodrink/B_orderHistory",
     dataType: "json",
     success: function (response) {
       console.log(response);
@@ -32,7 +32,7 @@ $(document).ready(function () {
         //刪除訂單
         $.ajax({
           type: "POST",
-          url: "https://whattodrink.herokuapp.com/B_orderHistoryDelete",
+          url: "http://localhost:8080/whattodrink/B_orderHistoryDelete",
           data: {
             order_id:
               e.target.parentElement.parentElement.firstElementChild.innerText,
@@ -48,7 +48,7 @@ $(document).ready(function () {
         //請求該配料資料
         $.ajax({
           type: "POST",
-          url: "https://whattodrink.herokuapp.com/B_orderClickItem",
+          url: "http://localhost:8080/whattodrink/B_orderClickItem",
           data: { order_id: ordId },
           dataType: "json",
           success: function (res) {

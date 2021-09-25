@@ -157,7 +157,7 @@
     	 console.log(heart.nextElementSibling.value);
 
      $.ajax({
-              url: "https://whattodrink.herokuapp.com/AddDeleteMyFavoriteServlet",
+              url: "http://localhost:8080/whattodrink/AddDeleteMyFavoriteServlet",
               type: "post",
               data: {
                 company_id : heart.nextElementSibling.value

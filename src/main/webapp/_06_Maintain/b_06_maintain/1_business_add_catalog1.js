@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	$.ajax({
 		type: "GET",
-		url: "https://whattodrink.herokuapp.com/AddCategoryServlet",
+		url: "http://localhost:8080/whattodrink/AddCategoryServlet",
 		dataType: "json",
 		success: function(response) {
 			console.log(response);

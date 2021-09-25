@@ -54,7 +54,7 @@ public class B_order extends HttpServlet {
 //		$(document).ready(function () {
 //		  $.ajax({
 //		    type: "POST",
-//		    url: "https://whattodrink.herokuapp.com/B_order",
+//		    url: "http://localhost:8080/whattodrink/B_order",
 //		    dataType: "json",
 //		    success: function (response) {
 //		    	console.log(response);

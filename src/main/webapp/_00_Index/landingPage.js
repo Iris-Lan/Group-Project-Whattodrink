@@ -34,7 +34,7 @@ function initMap() {
 
 
   // 放置多個marker
-  fetch("https://whattodrink.herokuapp.com/_00_Index/storeMap.geojson")
+  fetch("http://localhost:8080/whattodrink/_00_Index/storeMap.geojson")
     .then((results) => results.json())
     .then((result) => {
       let res = result.features;
@@ -45,7 +45,7 @@ function initMap() {
         );
         let marker = new google.maps.Marker({
           position: latLng,
-          icon: "https://whattodrink.herokuapp.com/_00_Index/mapicon.png",
+          icon: "http://localhost:8080/whattodrink/_00_Index/mapicon.png",
           map: this.map,
         });
         // info window
