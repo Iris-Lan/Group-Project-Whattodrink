@@ -10,5 +10,7 @@
       maxIdle="4"
       maxWaitMillis="5000"
     />
+    <Listener className="org.Apache.catalina.core.JreMemoryLeakPreventionListener"
+          classesToInitialize="com.mysql.jdbc.NonRegisteringDriver" />
 
 </Context>
