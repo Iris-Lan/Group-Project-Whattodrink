@@ -27,7 +27,7 @@ public class DBService {
 	private static final String DBURL_MySQL = "jdbc:mysql://" + host
 			+ "/project?useUnicode=yes&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Taipei&allowPublicKeyRetrieval=true";
 	public static final String USERID_MySQL = "root";
-	public static final String PSWD_MySQL = "00000000";
+	public static final String PSWD_MySQL = "0000";
 	
 	private static final String DROP_item_MySQL = "DROP Table IF EXISTS item";
 	
