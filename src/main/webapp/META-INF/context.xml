@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context displayName="Servlet 3.0 Web Application" docBase="WebAppMySQL_Lab01" path="/WebAppMySQL_Lab01" reloadable="false">
+<Context displayName="Servlet 3.0 Web Application" docBase="WebAppMySQL_Lab01" path="/WebAppMySQL_Lab01" reloadable="true">
 
   <Resource name="jdbc/memberDB" type="javax.sql.DataSource"
       username="be8e076a5c8c52" password="6e2ace50"
