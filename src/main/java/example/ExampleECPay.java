@@ -67,10 +67,10 @@ public class ExampleECPay extends HttpServlet {
 //		EcpayFunction.genCheckMacValue(key, iv, obj);
 		//必填，僅停留付款成功頁面，此處須設計頁面接收綠界交易結果並回傳參數
 //		obj.setReturnURL("https://whattodrink.000webhostapp.com/");
-		obj.setReturnURL("http://localhost:8080/whattodrink/");
+		obj.setReturnURL("https://whattodrink.herokuapp.com/");
 		
 		//付款成功後按返回按鈕
-		obj.setClientBackURL("http://localhost:8080/whattodrink/");
+		obj.setClientBackURL("https://whattodrink.herokuapp.com/");
 		
 		
 		//付款成功後返回client端網址  

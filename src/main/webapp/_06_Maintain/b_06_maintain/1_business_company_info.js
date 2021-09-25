@@ -3,7 +3,7 @@ $(document).ready(function () {
   $.ajax({
 	cache: false,
     type: "GET",
-    url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet",
+    url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet",
     dataType: "json",
     success: function (response) {
       loadData(response);
@@ -141,7 +141,7 @@ $("#check1").click(function (e) {
   var endTime = $("#endTime").val();
   var storeTel = $("#storeTel").val();
   $.ajax({
-    url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=1",
+    url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=1",
     type: "POST",
     data: {
       storeName: storeName,
@@ -163,7 +163,7 @@ $("#check2").click(function (e) {
   if (tax_id_number.length != 8) {
     if (tax_id_number.length == 0) {
       $.ajax({
-        url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=2",
+        url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=2",
         type: "POST",
         cache: false,
         data: {
@@ -178,7 +178,7 @@ $("#check2").click(function (e) {
     }
   } else {
     $.ajax({
-      url: "http://localhost:8080/whattodrink/BusinessCompanyInfoServlet?type=2",
+      url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=2",
       type: "POST",
       cache: false,
       data: {

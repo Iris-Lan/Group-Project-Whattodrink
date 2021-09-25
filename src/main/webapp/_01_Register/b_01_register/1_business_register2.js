@@ -14,7 +14,7 @@ $(function () {
     function (value, element) {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterUpdateServlet.do",
+	        url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterUpdateServlet.do",
 	        data: $("#password").serialize(),
 	        dataType: "json",
 	        async: false,
@@ -42,7 +42,7 @@ $(function () {
       $.ajax({
 		cache: false,
         type: "POST",
-        url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterUpdateServlet.do",
+        url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterUpdateServlet.do",
         // data: { username: value },
         data: $("#username").serialize(),
         dataType: "json",
@@ -54,7 +54,7 @@ $(function () {
         }
       });
       return flag;
-    },`帳號已經存在，前往<a href="http://localhost:8080/whattodrink/_02_Login/b_02_login/1_business_login.jsp"/>登入</a>`
+    },`帳號已經存在，前往<a href="https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp"/>登入</a>`
   );
   $("#register_form").validate({
     rules: {
@@ -62,7 +62,7 @@ $(function () {
         required: true,
         smaeAccount: true,
         //   remote: {
-        //     url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterUpdateServlet.do",
+        //     url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterUpdateServlet.do",
         //     type: "POST",
         //     dataType: "json",
         //     data: {
@@ -107,7 +107,7 @@ $(function () {
   $("#register_form").submit(function (e) {
 //  	e.preventDefault();
     $.ajax({
-      url: "http://localhost:8080/whattodrink/_01_Register/B_RegisterUpdateServlet.do",
+      url: "https://whattodrink.herokuapp.com/_01_Register/B_RegisterUpdateServlet.do",
       type: "POST",
       async: false,
       data: 
@@ -125,7 +125,7 @@ $(function () {
       success(res) {
       	if(res == "InsertOK"){
 	        alert("註冊成功，前往登入頁");     	
-	        window.location.assign("http://localhost:8080/whattodrink/_02_Login/b_02_login/1_business_login.jsp");      	
+	        window.location.assign("https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp");      	
       	}
       }
     });

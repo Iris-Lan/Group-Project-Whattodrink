@@ -269,7 +269,7 @@
           </div>
           <div class="modal-body">
             <form
-              action="http://localhost:8080/whattodrink/UpdateProductServlet2"
+              action="https://whattodrink.herokuapp.com/UpdateProductServlet2"
               method="POST"
               enctype="multipart/form-data"
               class="tr"

@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/DeleteToppingServlet",
+    url: "https://whattodrink.herokuapp.com/DeleteToppingServlet",
     dataType: "json",
     success: function (response) {
 	console.log(response);
@@ -56,14 +56,14 @@ console.log($("i"));
     //傳送被刪除的配料id
         $.ajax({
       type: "POST",
-      url: "http://localhost:8080/whattodrink/DeleteToppingServlet",
+      url: "https://whattodrink.herokuapp.com/DeleteToppingServlet",
       data: {
         toppingId: e.target.previousElementSibling.previousElementSibling.innerText,
       },
       success: function (res) {
 	console.log(res);
         if (res == "yes") {
-			window.location.assign("http://localhost:8080/whattodrink/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp");
+			window.location.assign("https://whattodrink.herokuapp.com/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp");
         }
       },
     });
@@ -78,7 +78,7 @@ console.log($("i"));
     //請求該配料資料
     $.ajax({
       type: "POST",
-      url: "http://localhost:8080/whattodrink/UpdateToppingServlet",
+      url: "https://whattodrink.herokuapp.com/UpdateToppingServlet",
       data: { toppingId: toppingId },
       success: function (response) {
 	$("[name=toppingImg]").change(function () {

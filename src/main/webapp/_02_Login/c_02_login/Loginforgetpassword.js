@@ -4,7 +4,7 @@ let ee = $('#email').val();
 
 	$.ajax({
 		type: "POST",
-		url: "http://localhost:8080/whattodrink/ForgetPasswordServlet",
+		url: "https://whattodrink.herokuapp.com/ForgetPasswordServlet",
 		data: `step=1&email=${ee}`,
 		success: function(res) {
 			if (res != 0) {
@@ -15,7 +15,7 @@ let ee = $('#email').val();
 				$("#warntext").html(`已發送驗證碼，請至信箱確認`);
 				$.ajax({
 					type: "POST",
-					url: "http://localhost:8080/whattodrink/ForgetPasswordServlet",
+					url: "https://whattodrink.herokuapp.com/ForgetPasswordServlet",
 					data: `step=2&email=${ee}`,
 					success: function(response) {
 

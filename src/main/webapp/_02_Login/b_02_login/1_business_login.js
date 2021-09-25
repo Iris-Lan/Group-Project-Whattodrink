@@ -14,7 +14,7 @@ $(function () {
     function (value, element) {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/whattodrink/_02_Login/B_LoginServlet.do",
+	        url: "https://whattodrink.herokuapp.com/_02_Login/B_LoginServlet.do",
 	        data: $("#password").serialize(),
 	        dataType: "json",
 	        async: false,
@@ -41,7 +41,7 @@ $(function () {
     let flag = false;
       $.ajax({
         type: "POST",
-        url: "http://localhost:8080/whattodrink/_02_Login/B_LoginServlet.do",
+        url: "https://whattodrink.herokuapp.com/_02_Login/B_LoginServlet.do",
         data: $("#username").serialize(),
         dataType: "json",
         async: false,
@@ -83,7 +83,7 @@ $(function () {
 //  $("#account").submit(function (e) {
 //    e.preventDefault();
 //    $ajax({
-//      url: "http://localhost:8080/whattodrink/_02_Login/B_LoginServlet.do",
+//      url: "https://whattodrink.herokuapp.com/_02_Login/B_LoginServlet.do",
 //      type: "POST",
 //      data: {
 //        username: function () {

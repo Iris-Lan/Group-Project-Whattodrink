@@ -393,7 +393,7 @@ $('#submitbtn').click(function(e){
 	
 
     $.ajax({
-        url: 'http://localhost:8080/whattodrink/AddCommentsServlet',
+        url: 'https://whattodrink.herokuapp.com/AddCommentsServlet',
         cache: false,
         contentType: false,
         processData: false,
@@ -409,7 +409,7 @@ $('#submitbtn').click(function(e){
     		   showConfirmButton: false,
     		   timer: 2000
     		 }).then(function() {
-    			 window.location.assign("http://localhost:8080/whattodrink/_05_Order/c_05_order/myOrder.jsp");
+    			 window.location.assign("https://whattodrink.herokuapp.com/_05_Order/c_05_order/myOrder.jsp");
     		 })
     		 
     		 

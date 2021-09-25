@@ -475,7 +475,7 @@ $(`#\${ee1[i]}`).attr("class","fas fa-heart fa-lg heart");
 function distance() {
 	$.ajax({
 
-		url: "http://localhost:8080/whattodrink/Orderbydistance",
+		url: "https://whattodrink.herokuapp.com/Orderbydistance",
 		type: "post",
 		dataType : 'json',
 		success(res) {
@@ -489,8 +489,8 @@ function distance() {
 						<div class="product-favorite">
 						</div>
 						<a style="color: black"
-							href="http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
-							src="http://localhost:8080/whattodrink/\${res.Company_iconPathJson[i]}" alt=""></a>
+							href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+							src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
 						<h5>\${res.Company_nameJson[i]}</h5>
 						<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
 					</div>`
@@ -503,8 +503,8 @@ function distance() {
 							<i id="\${res.Company_idJson[i]}" onclick="change(this)" class="far fa-heart fa-lg heart"></i>
 							</div>
 							<a style="color: black"
-								href="http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
-								src="http://localhost:8080/whattodrink/\${res.Company_iconPathJson[i]}" alt=""></a>
+								href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+								src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
 							<h5>\${res.Company_nameJson[i]}</h5>
 							<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
 						</div>`
@@ -531,7 +531,7 @@ function distance() {
 function popular() {
 	$.ajax({
 
-		url: "http://localhost:8080/whattodrink/OrderbyPopular",
+		url: "https://whattodrink.herokuapp.com/OrderbyPopular",
 		type: "post",
 		dataType : 'json',
 		success(res) {
@@ -545,8 +545,8 @@ function popular() {
 						<div class="product-favorite">
 						</div>
 						<a style="color: black"
-							href="http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
-							src="http://localhost:8080/whattodrink/\${res.Company_iconPathJson[i]}" alt=""></a>
+							href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+							src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
 						<h5>\${res.Company_nameJson[i]}</h5>
 						<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
 					</div>`
@@ -559,8 +559,8 @@ function popular() {
 							<i id="\${res.Company_idJson[i]}" onclick="change(this)" class="far fa-heart fa-lg heart"></i>
 							</div>
 							<a style="color: black"
-								href="http://localhost:8080/whattodrink/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
-								src="http://localhost:8080/whattodrink/\${res.Company_iconPathJson[i]}" alt=""></a>
+								href="https://whattodrink.herokuapp.com/_03_ListDrinks/StorePage?companyId=\${res.Company_idJson[i]}"><img
+								src="https://whattodrink.herokuapp.com/\${res.Company_iconPathJson[i]}" alt=""></a>
 							<h5>\${res.Company_nameJson[i]}</h5>
 							<p><i class="fas fa-street-view"></i>\${res.DistanceJson[i]}公尺 \${res.Trade_nameJson[i]}</p>
 						</div>`

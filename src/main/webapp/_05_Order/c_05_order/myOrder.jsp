@@ -318,7 +318,7 @@
      
       <script>
       $.ajax({
-        url: "http://localhost:8080/whattodrink/C_myOrderDelete",
+        url: "https://whattodrink.herokuapp.com/C_myOrderDelete",
         type: "GET",
         dataType: "JSON",
         async:false,

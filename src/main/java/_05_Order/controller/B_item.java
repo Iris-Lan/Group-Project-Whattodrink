@@ -100,7 +100,7 @@ public class B_item extends HttpServlet {
 		
 //		$("#Bitems").click(function(){
 //			$.ajax({
-//				url: "http://localhost:8080/whattodrink/B_item",
+//				url: "https://whattodrink.herokuapp.com/B_item",
 //				type: "POST",
 //				dataType:"json",
 //				async: false,

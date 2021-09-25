@@ -77,7 +77,7 @@ if(checkAuditTime(startTime,endTime)==false){
 }else{
 	console.log(e.target.previousElementSibling.value);
 	$.ajax({
-		url: "http://localhost:8080/whattodrink/_03_ListDrinks/DrinkDetail",
+		url: "https://whattodrink.herokuapp.com/_03_ListDrinks/DrinkDetail",
 		type: "POST",
 		data: { productId: e.target.previousElementSibling.value },
 		dataType: "json",
@@ -178,7 +178,7 @@ $("#submitbtn").click(function() {
 	});
 
 	$.ajax({
-		url: "http://localhost:8080/whattodrink/_04_ShoppingCart/AddToCartServlet",
+		url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/AddToCartServlet",
 		type: "POST",
 		data: {
 			productId: $('#productId').val(),
@@ -212,7 +212,7 @@ $("#submitbtn").click(function() {
 $("#clearbtn").click(function() {
 	modal3.hide();
 	$.ajax({
-		url: "http://localhost:8080/whattodrink/_04_ShoppingCart/deleteCartServlet",
+		url: "https://whattodrink.herokuapp.com/_04_ShoppingCart/deleteCartServlet",
 		type: "POST",
 		data: {
 			productId: $('#productId').val(),
@@ -242,20 +242,20 @@ let tt = $('#tagNameOrKeyword').val();
 let mm = $('#searchMethod').val();
 function goprice() {
 
-	let gg = `http://localhost:8080/whattodrink/RetrieveDrinksByPriceServlet?searchMethod=${mm}&tagNameOrKeyword=${tt}`;
+	let gg = `https://whattodrink.herokuapp.com/RetrieveDrinksByPriceServlet?searchMethod=${mm}&tagNameOrKeyword=${tt}`;
 
 	window.location.assign(gg);
 
 };
 
 function gocal() {
-	let gg = `http://localhost:8080/whattodrink/RetrieveDrinksByCalServlet?searchMethod=${mm}&tagNameOrKeyword=${tt}`;
+	let gg = `https://whattodrink.herokuapp.com/RetrieveDrinksByCalServlet?searchMethod=${mm}&tagNameOrKeyword=${tt}`;
 	window.location.assign(gg);
 };
 
 function godistance() {
-	let tag = `http://localhost:8080/whattodrink/_03_listDrinks/RetrieveDrinksByTag?tagName=${tt}`;
-	let native = `http://localhost:8080/whattodrink/_03_listDrinks/RetrieveDrinksByNative?keyword=${tt}`;
+	let tag = `https://whattodrink.herokuapp.com/_03_listDrinks/RetrieveDrinksByTag?tagName=${tt}`;
+	let native = `https://whattodrink.herokuapp.com/_03_listDrinks/RetrieveDrinksByNative?keyword=${tt}`;
 
 	if (location.search.match('tagSearch')) {
 		window.location.assign(tag);

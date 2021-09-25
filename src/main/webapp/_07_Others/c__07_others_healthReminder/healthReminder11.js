@@ -2,7 +2,7 @@ $(document).ready(function () {
   //請求體重
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/HealthReminderServlet",
+    url: "https://whattodrink.herokuapp.com/HealthReminderServlet",
     dataType: "json",
     success: function (response) {
 	console.log(response[0].weight);

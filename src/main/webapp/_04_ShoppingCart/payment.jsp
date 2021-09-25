@@ -78,7 +78,7 @@
 				</h6>
 
 				<h6 class="fw-normal">
-					<a class="link-secondary text-decoration-none" href="http://localhost:8080/whattodrink/C_LogoutServlet">登出</a>
+					<a class="link-secondary text-decoration-none" href="https://whattodrink.herokuapp.com/C_LogoutServlet">登出</a>
 				</h6>
 			</div>
 			<div class="d-flex flex-column">

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8080/whattodrink/C_myOrderHistory",
+		url: "https://whattodrink.herokuapp.com/C_myOrderHistory",
 		dataType: "json",
 		cache: false,
 		async:false,
@@ -64,7 +64,7 @@ $(document).ready(function() {
 			console.log(ordId);
 			window.location
 				.assign				 
-				(`http://localhost:8080/whattodrink/C_myOrderBuyItAgain?order_id=${ordId}`);
+				(`https://whattodrink.herokuapp.com/C_myOrderBuyItAgain?order_id=${ordId}`);
 		});
 
 		//去評價跳轉
@@ -74,7 +74,7 @@ $(document).ready(function() {
 			console.log(ordId);
 			if (e.target.innerText == "去評價") {
 				window.location.assign(
-					`http://localhost:8080/whattodrink/AddCommentsServlet?order_id=${ordId}`
+					`https://whattodrink.herokuapp.com/AddCommentsServlet?order_id=${ordId}`
 				);
 			}
 		});
@@ -91,7 +91,7 @@ $(document).ready(function() {
 				);
 				$.ajax({
 					type: "GET",
-					url: "http://localhost:8080/whattodrink/C_myOrderPastComment",
+					url: "https://whattodrink.herokuapp.com/C_myOrderPastComment",
 					data: {
 						reviewId:
 							e.target.parentElement.previousElementSibling.lastElementChild.id,
@@ -139,7 +139,7 @@ $(document).ready(function() {
 	//目前的訂單
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8080/whattodrink/C_myOrderCurrent",
+		url: "https://whattodrink.herokuapp.com/C_myOrderCurrent",
 		dataType: "json",
 		success: function(response) {
 			console.log(response);
@@ -200,7 +200,7 @@ $(document).ready(function() {
 				// 請求該訂單號碼牌
 				$.ajax({
 					type: "GET",
-					url: "http://localhost:8080/whattodrink/C_myurrentOrderNumber",
+					url: "https://whattodrink.herokuapp.com/C_myurrentOrderNumber",
 					data: { newOrdId: e.target.parentElement.id },
 					dataType: "json",
 					success: function(response) {
@@ -263,7 +263,7 @@ $(document).ready(function() {
 				console.log(e.target.parentElement.id);
 				$.ajax({
 					type: "GET",
-					url: "http://localhost:8080/whattodrink/C_myOrderItem",
+					url: "https://whattodrink.herokuapp.com/C_myOrderItem",
 					data: { receipt: e.target.parentElement.id },
 					dataType: "json",
 					success: function(response) {

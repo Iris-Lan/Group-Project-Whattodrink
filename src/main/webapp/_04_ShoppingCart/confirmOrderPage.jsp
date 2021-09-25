@@ -219,13 +219,13 @@
 
   
   $('#submit').click(function(){
-	  window.location.assign("http://localhost:8080/whattodrink/_05_Order/ConfirmOrderServlet");
+	  window.location.assign("https://whattodrink.herokuapp.com/_05_Order/ConfirmOrderServlet");
 	  
 	  
 	  })
 	  
  $('#cancle').click(function(){
-	  window.location.assign("http://localhost:8080/whattodrink/_00_Index/index.jsp");
+	  window.location.assign("https://whattodrink.herokuapp.com/_00_Index/index.jsp");
 	  
 	  
 	  })

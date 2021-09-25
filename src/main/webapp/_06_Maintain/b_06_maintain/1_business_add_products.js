@@ -2,7 +2,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8080/whattodrink/AddProductServlet",
+    url: "https://whattodrink.herokuapp.com/AddProductServlet",
     dataType: "json",
     success: function (response) {
       let count = response[0].qua;

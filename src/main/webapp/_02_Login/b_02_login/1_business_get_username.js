@@ -15,7 +15,7 @@ $(function () {
       let flag = false;
       $.ajax({
         type: "GET",
-        url: "http://localhost:8080/whattodrink/B_GetAccount",
+        url: "https://whattodrink.herokuapp.com/B_GetAccount",
         data: $("#email").serialize(),
         dataType: "json",
         async: false,
@@ -51,7 +51,7 @@ $(function () {
   $("#next").click(function (e) {
     e.preventDefault();
     $.ajax({
-      url: "http://localhost:8080/whattodrink/B_GetAccount",
+      url: "https://whattodrink.herokuapp.com/B_GetAccount",
       type: "POST",
       data: $("#email").serialize(),
       success() {

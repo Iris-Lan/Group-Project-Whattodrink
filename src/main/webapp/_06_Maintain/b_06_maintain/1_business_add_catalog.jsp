@@ -47,7 +47,7 @@
 			</div>
 			<div class="col-sm-10 mx-auto d-flex">
 				<div class="col me-5">
-					<form action="http://localhost:8080/whattodrink/AddCategoryServlet" method="POST">
+					<form action="https://whattodrink.herokuapp.com/AddCategoryServlet" method="POST">
 						<input class="form-control mb-3 form-control-sm"
 							placeholder="系列名稱" style="width: 250px" type="text" name="name1"
 							id="name1" /> <input
