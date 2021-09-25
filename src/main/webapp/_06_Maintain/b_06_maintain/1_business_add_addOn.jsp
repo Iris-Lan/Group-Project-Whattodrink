@@ -198,7 +198,7 @@
     </footer>
     <!-- footer end -->
 
-  <!-- hamburger menu -->
+    <!-- hamburger menu -->
     <div
       class="offcanvas offcanvas-start d-flex flex-column"
       id="hamburgerMenu"
@@ -234,8 +234,15 @@
           <h6 class="fw-normal">
             <a
               class="link-dark text-decoration-none"
-              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_product_list.jsp"/>"
-              >商品列表</a
+              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"/>"
+              >飲品列表</a
+            >
+          </h6>
+          <h6 class="fw-normal">
+            <a
+              class="link-dark text-decoration-none"
+              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp"/>"
+              >配料列表</a
             >
           </h6>
           <h6 class="fw-normal">
@@ -263,7 +270,7 @@
             <a
               class="link-dark text-decoration-none"
               href="<c:url value="/_07_Others/b_07_other/1_business_report.jsp"/>"
-              >每月報表</a
+              >每日報表</a
             >
           </h6>
           <h6 class="fw-normal">
@@ -293,6 +300,7 @@
         </div>
       </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

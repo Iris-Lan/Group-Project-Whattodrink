@@ -22,7 +22,7 @@
 	href="<c:url value="/_00_Index/slick/slick11.css"/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/_00_Index/slick/slick-theme.css"/>">
-<link rel="stylesheet" href="<c:url value="/_00_Index/index.css"/>">
+<link rel="stylesheet" href="<c:url value="/_00_Index/index.css?y=768"/>">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"
 	type="text/javascript"></script>
 <script src="<c:url value="/_00_Index/slick/slick.js"/>"
@@ -38,8 +38,8 @@
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
-				<div class="category regular2">
-					<div>
+				<div class="category">
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=紅茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -47,7 +47,7 @@
 							class="category-img" />
 							<p class="category-text">紅茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 
 
 						<a
@@ -57,7 +57,7 @@
 							class="category-img" />
 							<p class="category-text">綠茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=奶茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -65,7 +65,7 @@
 							class="category-img" />
 							<p class="category-text">奶茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=青茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -73,7 +73,7 @@
 							class="category-img" />
 							<p class="category-text">青茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=烏龍茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -81,7 +81,7 @@
 							class="category-img" />
 							<p class="category-text">烏龍茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=鮮奶茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -89,7 +89,7 @@
 							class="category-img" />
 							<p class="category-text">鮮奶茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=水果茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -97,7 +97,7 @@
 							class="category-img" />
 							<p class="category-text">水果茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=抹茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -105,7 +105,7 @@
 							class="category-img" />
 							<p class="category-text">抹茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=冬瓜茶"/>"
 							style="text-decoration: none; color: #000"><img
@@ -113,7 +113,7 @@
 							class="category-img" />
 							<p class="category-text">冬瓜茶</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=可可"/>"
 							style="text-decoration: none; color: #000"><img
@@ -121,7 +121,7 @@
 							class="category-img" />
 							<p class="category-text">可可</p> </a>
 					</div>
-					<div>
+					<div class="category1">
 						<a
 							href="<c:url value="/_03_listDrinks/RetrieveDrinksByTag?tagName=冰沙"/>"
 							style="text-decoration: none; color: #000"><img

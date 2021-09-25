@@ -236,18 +236,6 @@ $("#clearbtn").click(function() {
 
 
 
-
-
-
-// 點星星跳出評論
-const review = document.getElementById("review");
-const reviewmodal = new bootstrap.Modal(review, { keyboard: false });
-
-$(".point").click(function() {
-	reviewmodal.show();
-});
-
-
 //左方排序
 
 let tt = $('#tagNameOrKeyword').val();

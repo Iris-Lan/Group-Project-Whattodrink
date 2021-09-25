@@ -1,5 +1,6 @@
 package _00_init.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -20,7 +21,7 @@ public class SendingEmail {
 	private final static String host = "smtp.gmail.com";
 	private final static int port = 587;
 
-	public static void SendVerificationCodeTo(String email, String verificationCode) {
+	public static void SendVerificationCodeTo(String email, String verificationCode) throws UnsupportedEncodingException {
 		// Recipient's email ID needs to be mentioned.
 		String to = email;// change accordingly
 
@@ -43,7 +44,7 @@ public class SendingEmail {
 			Message message = new MimeMessage(session);
 
 			// Set From: header field of the header.
-			message.setFrom(new InternetAddress(from));
+			message.setFrom(new InternetAddress(from, "whattodrink2021"));
 
 			// Set To: header field of the header.
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
@@ -74,7 +75,7 @@ public class SendingEmail {
 	
 	
 	//business side - find company_account
-	public static void SendCompanyAccountTo(String email, String company_account) {
+	public static void SendCompanyAccountTo(String email, String company_account) throws UnsupportedEncodingException {
 		// Recipient's email ID needs to be mentioned.
 		String to = email;// change accordingly
 
@@ -97,7 +98,7 @@ public class SendingEmail {
 			Message message = new MimeMessage(session);
 
 			// Set From: header field of the header.
-			message.setFrom(new InternetAddress(from));
+			message.setFrom(new InternetAddress(from, "whattodrink2021"));
 
 			// Set To: header field of the header.
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));

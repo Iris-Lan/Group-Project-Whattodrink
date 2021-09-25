@@ -33,33 +33,40 @@
         <div style="width: 300px; margin: 30px auto; text-align: center">
           <h4><i class="fas fa-key"></i>&nbsp;忘記密碼</h4>
         </div>
-        <form action="" method="POST" id="forgetpassword1">
+        <form action="<c:url value='/ForgetPasswordServlet'/>" method="POST" id="form1">
           <div
             class="d-flex justify-content-center flex-wrap"
             style="width: 260px; margin: 30px auto; text-align: center"
           >
+              <input
+              type="hidden"
+              name="step"
+              value="3"
+            />
             <input
               type="email"
               class="input_field"
               name="email"
               placeholder="請輸入信箱"
               required
+              id="email"
             />
-            <button id="sub">發送</button>
+            <button type="button" id="sub">發送</button>
 
             <input
               type="text"
               class="input_field"
               name="code"
               placeholder="請輸入驗證碼"
+             id="verificationCode"
               required
             />
             <span style="font-size: 14px; color: rgb(247, 70, 70)" id="warntext"
-              >驗證碼錯誤/無此信箱</span
+              >${errorCode}</span
             >
           </div>
           <div style="width: 360px; margin: auto; text-align: center">
-            <button type="submit" style="width: 200px" class="btn btn-dark">
+            <button type="submit" style="width: 200px" class="btn btn-dark" id="code">
               下一步
             </button>
           </div>

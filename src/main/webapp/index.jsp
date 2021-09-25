@@ -107,7 +107,7 @@
 	<input type="button" id='deleteKey' value="刪除特定key的購物車列 測試key2" />
 	<a href="https://whattodrink.herokuapp.com/_00_Index/index.jsp">index</a>
 	<a href="https://whattodrink.herokuapp.com/_01_Register/c_01_register/LoginRegister.jsp">登入</a>
-	<a href="https://whattodrink.herokuapp.com/LogoutServlet">登出</a>
+	<a href="https://whattodrink.herokuapp.com/C_LogoutServlet">登出</a>
 <!-- 	<input type="button" id='logout' value="登出" /> -->
 
 

@@ -67,10 +67,14 @@ public class B_orderStatusChange extends HttpServlet {
 		}else if(orderStatus.equals("已領取")) {
 			//set pickup_date 領取時間
 			Timestamp ts = new Timestamp(System.currentTimeMillis());
-			orderBean.setPickup_date(ts);
-			orderBean.setOrderStatus(orderStatus);
-			orderService.updateOrderBean(orderBean);
-			return;
+			list.forEach(b->{
+				b.setItemStatus("已完成");
+				itemService.updateItemBean(b);
+				orderBean.setPickup_date(ts);
+				orderBean.setOrderStatus(orderStatus);
+				orderService.updateOrderBean(orderBean);
+				return;
+			});
 		}
 		orderBean.setOrderStatus(orderStatus);
 		orderService.updateOrderBean(orderBean);

@@ -9,39 +9,54 @@
 </head>
 <body>
 	
-	<a href="<c:url value="/RetrieveDrinksByPriceServlet?searchMethod=tagSearch&tagNameOrKeyword=鮮奶茶"/>">tagSearch p</a>
-	<a href="<c:url value="/RetrieveDrinksByPriceServlet?searchMethod=nativeSearch&tagNameOrKeyword=熟成"/>">nativeSearch p</a>
-	<a href="<c:url value="/RetrieveDrinksByCalServlet?searchMethod=nativeSearch&tagNameOrKeyword=熟成"/>">nativeSearch c</a>
-	<a href="<c:url value="/RetrieveDrinksByCalServlet?searchMethod=tagSearch&tagNameOrKeyword=鮮奶茶"/>">tagSearch c</a>
-	<a href="<c:url value="/RetrieveDrinksByPriceServlet?order_id=11A1"/>">測試</a>
-	<a href="<c:url value="/Orderbydistance"/>">測試11</a>
-	
-<input class="form-control" id="blockimg" type="file" >
-<button id="upload">Upload</button>
-
-
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script type="text/javascript">
+  <script language="javascript" type="text/javascript">
+        var wsUri = "ws://localhost:8080/whattodrink/websocket";
+        var output;
+            function init() {
+                output = document.getElementById("output");
+                testWebSocket();
+            }
+            function testWebSocket() {
+                websocket = new WebSocket(wsUri);
+                websocket.onopen = function(evt) { 
+                    onOpen(evt)
+                    };
+//                 websocket.onclose = function(evt) {
+//                     onClose(evt)
+//                 };
+                websocket.onmessage = function(evt) {
+                    onMessage(evt)
+                };
+                websocket.onerror = function(evt) {
+                    onError(evt)
+                };
+            }
+            function onOpen(evt) {
+                writeToScreen("CONNECTED"); 
+                doSend("WebSocket rocks"); 
+            }  
+//             function onClose(evt) { 
+//                 writeToScreen("DISCONNECTED"); 
+//             }  
+            function onMessage(evt) { 
+                writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>'); 
+              
+            }  
+            function onError(evt) { 
+                writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data); 
+            }  
+            function doSend(message) { 
+                writeToScreen("SENT: " + message);
+                websocket.send(message); 
+            }  
+            function writeToScreen(message) { 
+                var pre = document.createElement("p"); pre.style.wordWrap = "break-word"; pre.innerHTML = message; output.appendChild(pre); 
+            }  
+            window.addEventListener("load", init, false);  
+        </script>  
 
-//$.ajax
-
- $('#upload').on('click', function() {
-    var file_data = $('#blockimg').prop('files')[0];   //取得上傳檔案屬性
-    var form_data = new FormData();  //建構new FormData()
-    form_data.append('file', file_data);  //吧物件加到file後面
-                              
-    $.ajax({
-                url: 'upload.php',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,     //data只能指定單一物件                 
-                type: 'post',
-               success: function(data){
-                    $('#ajsxboxdhow').html(data);
-                }
-     });
-});
- </script>
+<h2>WebSocket Test</h2>
+<div id="output"></div>
 </body>
 </html>

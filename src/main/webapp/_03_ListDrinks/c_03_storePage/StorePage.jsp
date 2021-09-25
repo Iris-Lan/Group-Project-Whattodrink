@@ -115,7 +115,7 @@
 					</h6>
 
 					<h6 class="fw-normal">
-						<a class="link-secondary text-decoration-none" href="">登出</a>
+						<a class="link-secondary text-decoration-none" href="<c:url value="/C_LogoutServlet"/>">登出</a>
 					</h6>
 				</div>
 				<div class="d-flex flex-column">
@@ -158,12 +158,24 @@
 						class="fas fa-search fa-lg"></i>
 				</a></li>
 				<li class="nav-item show7-1"><a class="nav-link"
-					onclick="doo3()"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
+					onclick="doo3()" style="cursor: pointer;"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
 
+				<c:if test="${CLoginOK==null}">
 				<li class="nav-item show7-1"><a class="nav-link"
-					href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>""
-              ><i
-						class="fas fa-sign-in-alt fa-lg"></i></a></li>
+					style="cursor: pointer;"
+					href="<c:url value='/_01_Register/c_01_register/LoginRegister.jsp'/>">
+						<i class="fas fa-sign-in-alt fa-lg"></i>
+				</a></li>
+			</c:if>
+
+			<c:if test="${CLoginOK!=null}">
+				<li class="nav-item show7-1"><a class="nav-link"
+					style="cursor: pointer;" href="<c:url value="/C_LogoutServlet"/>">
+						<i class="fas fa-sign-out-alt fa-lg"></i>
+				</a></li>
+			</c:if>
+				
+				
 			</ul>
 
 			<ul class="navbar-nav mx-md-auto flex-row hide7">
@@ -171,7 +183,7 @@
 				<li class="nav-item me-1">
 					<form action="" id="locationform0">
 						<input type="text" class="form-control" id="location0"
-							placeholder="您現在的位置"
+							placeholder="您現在的位置" required="required"
 							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
 					</form>
 
@@ -187,18 +199,28 @@
 						action="<c:url value='/_03_listDrinks/RetrieveDrinksByNative'/>"
 						method="POST" id="searchform1">
 						<input type="text" class="form-control" id="search"
-							placeholder="好想喝..." name="keyword"
+							placeholder="好想喝..." name="keyword" required="required"
 							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
 					</form>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#"><i
+				<li class="nav-item"><a class="nav-link"  onclick="doo1()"><i
 						class="fas fa-search fa-lg"></i></a></li>
 
-				<li class="nav-item"><a class="nav-link cart-icon"
+				<li class="nav-item"><a class="nav-link cart-icon" style="cursor: pointer;"
 					onclick="doo3()"><i class="fas fa-shopping-cart fa-lg"></i></a></li>
+				<c:if test="${CLoginOK==null}">
 				<li class="nav-item"><a class="nav-link"
-					href="<c:url value="/_01_Register/c_01_register/LoginRegister.jsp"/>"><i
-						class="fas fa-sign-in-alt fa-lg"></i></a></li>
+					style="cursor: pointer;"
+					href="<c:url value='/_01_Register/c_01_register/LoginRegister.jsp'/>">
+						<i class="fas fa-sign-in-alt fa-lg"></i>
+				</a></li>
+			</c:if>
+			<c:if test="${CLoginOK!=null}">
+				<li class="nav-item"><a class="nav-link"
+					style="cursor: pointer;" href="<c:url value="/C_LogoutServlet"/>">
+						<i class="fas fa-sign-out-alt fa-lg"></i>
+				</a></li>
+			</c:if>
 
 			</ul>
 
@@ -209,7 +231,7 @@
 				<li class="nav-item me-1">
 					<form action="" id="locationform1">
 						<input type="text" class="form-control" id="location1"
-							placeholder="您現在的位置"
+							placeholder="您現在的位置" required="required"
 							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
 					</form>
 
@@ -227,7 +249,7 @@
 						method="POST" id="searchform2">
 
 						<input type="text" class="form-control" name="keyword" id=""
-							placeholder="好想喝..."
+							placeholder="好想喝..." required="required"
 							style="background-color: rgba(255, 255, 255, 0.26); border: none;" />
 					</form>
 
@@ -365,7 +387,7 @@
 		<!-- additional cartIcon -->
 		<ul class="navbar-nav">
 			<li class="nav-item special-cartIcon" id="special-cartIcon"><a
-				class="nav-link" onclick="doo3()"><i
+				class="nav-link" onclick="doo3()" style="cursor: pointer;"><i
 					class="fas fa-shopping-cart"></i></a></li>
 		</ul>
 	</div>
@@ -374,7 +396,7 @@
 
 	<!-- Store drink START -->
 	<c:forEach varStatus="varStatusName" var="bb" begin="0"
-		end="${storeCategoryBeans.size()-1}">
+		end="${storeCategoryBeans.size()-1}" items="${storeCategoryBeans}">
 		<div class="container-fluid">
 			<div class="row" id="categoryBody${varStatusName.index}">
 				<div class="col-sm-10 mx-auto">
@@ -386,15 +408,15 @@
 							value="${storeCategoryBeans[0].category_id}" scope="session" />
 
 
-						<c:forEach varStatus="ss" var="cc" items="${storeDrinkBeans}">
-							<c:if test="${cc.category_id==(varStatusName.index+(category_id_start))}">
+						<c:forEach varStatus="ss" var="cc" items="${storeDrinkBeans}"> 				
+							<c:if test="${cc.category_id==bb.category_id}">
 							<!-- card1 -->
 								<div class="col-sm-4">
 									<div class="card mb-3">
 										<div class="row">
 											<div class="col-lg-6">
 												<img class="ratio ratio-4x4"
-													src="https://picsum.photos/180/180/?blur=2"/>
+													src="<c:url value='/${cc.product_picpath}'/>"/>
 											</div>
 											<div class="col-lg-6">
 												<div class="card-body">
@@ -606,7 +628,7 @@
 							<tr>
 								<td class="d-flex justify-content-between align-items-center">
 									<input class="min" name="" type="button" /> <input
-									class="text_box" name="" type="text" id="quantity" value="1" />
+									class="text_box" name="" type="text" id="quantity" value="1" readonly />
 									<input class="add" name="" type="button" />
 								</td>
 							</tr>
@@ -1064,6 +1086,7 @@
 
 	<!-- 點擊購物車判斷&跳轉 -->
 	<script>
+
 	
 	function doo3() {
 
@@ -1084,6 +1107,22 @@
 			});
 
 }	
+
+
+	//自然搜尋
+	
+	function doo1() {
+		if (document.getElementById("searchform1").checkValidity() == true) {
+		document.getElementById('searchform1').submit();
+		}
+	};
+
+
+	function doo2() {
+		if (document.getElementById("searchform2").checkValidity() == true) {
+		document.getElementById('searchform2').submit();
+		}
+	};
 </script>
 
 	<script type="text/javascript">

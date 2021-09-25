@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -52,12 +53,12 @@ public class AddAddOnServlet extends HttpServlet {
 		toppingBean.setTopping_name(topping_name);
 		toppingBean.setTopping_cal(topping_cal);
 		toppingBean.setTopping_price(topping_price);
-		
+		toppingBean.setEnabled(true);
 		
 		// picture
 		String dirPath = "C:/_JSP/workspace"+ 
 				   getServletContext().getContextPath() + 
-				   "/images/" +
+				   "/src/main/webapp/images/" +
 				   companyBean.getCompany_id();
 		String picName = dirPath + "/" + topping_name + ".jpg";
 
@@ -76,6 +77,8 @@ public class AddAddOnServlet extends HttpServlet {
 		DrinkService drinkService = new DrinkServiceImpl();
 		drinkService.saveToppingBean(toppingBean);
 		
+		RequestDispatcher rd = request.getRequestDispatcher("/_06_Maintain/b_06_maintain/1_business_add_addOn.jsp");
+		rd.forward(request, response);
 	}
 
 }

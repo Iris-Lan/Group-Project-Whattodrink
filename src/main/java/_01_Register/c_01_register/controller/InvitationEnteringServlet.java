@@ -41,20 +41,29 @@ public class InvitationEnteringServlet extends HttpServlet {
 		
 		if (customerService.existsByInvitation(invitationCode)) {
 			CustomerBean customerBean = (CustomerBean) session.getAttribute("CLoginOK");
-			customerBean.setInvited_by(invitationCode);
-			customerBean.setInvitationCount(customerBean.getInvitationCount() + 1);
-			customerBean.setAlter_date(new Timestamp(System.currentTimeMillis()));
-			
-			CustomerBean inviter = customerService.findByInvitation(invitationCode);
-			inviter.setInvitationCount(inviter.getInvitationCount() + 1);
-			inviter.setAlter_date(new Timestamp(System.currentTimeMillis()));
-			
-			customerService.updateCustomers(customerBean, inviter);
-			
-			session.setAttribute("CLoginOK", customerBean);
-			
-			session.setAttribute("invitationCode", "恭喜你獲得好友專屬50元優惠");
-			response.sendRedirect(request.getContextPath() + "/_07_Others/c__07_others_acount/myAccountCoupon.jsp");
+			if (customerBean.getInvitation().equals(invitationCode)) {
+				request.setAttribute("invitationCode", "無法輸入自己的邀請碼");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/_07_Others/c__07_others_acount/myAccountCoupon.jsp");
+				rd.forward(request, response);
+				return;
+			} else {
+				customerBean.setInvited_by(invitationCode);
+				customerBean.setInvitationCount(customerBean.getInvitationCount() + 1);
+				customerBean.setAlter_date(new Timestamp(System.currentTimeMillis()));
+
+				CustomerBean inviter = customerService.findByInvitation(invitationCode);
+				inviter.setInvitationCount(inviter.getInvitationCount() + 1);
+				inviter.setAlter_date(new Timestamp(System.currentTimeMillis()));
+
+				customerService.updateCustomers(customerBean, inviter);
+
+				session.setAttribute("CLoginOK", customerBean);
+
+				session.setAttribute("invitationCode", "恭喜你獲得好友專屬50元優惠");
+				response.sendRedirect(request.getContextPath() + "/_07_Others/c__07_others_acount/myAccountCoupon.jsp");
+				return;
+			}
 		} else {
 			request.setAttribute("invitationCode", "邀請碼輸入錯誤");
 			RequestDispatcher rd = request.getRequestDispatcher("/_07_Others/c__07_others_acount/myAccountCoupon.jsp");

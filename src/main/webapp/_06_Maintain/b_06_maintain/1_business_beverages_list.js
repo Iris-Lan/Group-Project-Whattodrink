@@ -9,7 +9,15 @@ $(document).ready(function () {
     },
   });
 });
+
+
+function getRandom(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+};
+
+
 function renderHTML(data) {
+	console.log(data);
   var str = "";
   for (let i = 0; i < 12; i++) {
     str += `
@@ -19,7 +27,7 @@ function renderHTML(data) {
               <div class="col-md-6">
                 <img
                   class="ratio ratio-4x3"
-                  src="https://fakeimg.pl/300/"
+                  src="https://whattodrink.herokuapp.com/${data[i].picPath}?yui=${getRandom(0,1000)}"
                   />
               </div>
               <div class="col-md-6">
@@ -32,7 +40,7 @@ function renderHTML(data) {
                     style="justify-content: space-between"
                   ><span class="d-none">${data[i].proId}</span>
                     <i
-                      class="fas fa-edit data2"
+                      class="fas fa-edit"
                       role="button"
                       id="${data[i].proId}"
                     ></i>
@@ -83,7 +91,7 @@ function renderHTML(data) {
               <div class="col-md-6">
                 <img
                   class="ratio ratio-4x3"
-                  src="https://fakeimg.pl/300/"
+                  src="https://whattodrink.herokuapp.com/${data[i].picPath}?yui=${getRandom(0,1000)}"
                   />
               </div>
               <div class="col-md-6">
@@ -471,14 +479,14 @@ function renderHTML(data) {
 
     //刪除品項
     $(".fa-trash").click(function (e) {
-      e.preventDefault();
+      //e.preventDefault();
       e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
       //傳送被刪除的配料id
       $.ajax({
         type: "POST",
         url: "https://whattodrink.herokuapp.com/DeleteProductServlet",
         data: {
-          proId: e.target.id,
+          proId: e.target.previousElementSibling.id,
         },
         success: function (res) {
           if (res == "yes") {

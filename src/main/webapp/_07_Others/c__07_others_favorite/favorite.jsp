@@ -44,9 +44,7 @@
            <Input type='hidden' name='companyid' value='${bb.companyBean.company_id}' />
           </div>
           <a href="<c:url value="/_03_ListDrinks/StorePage?companyId=${bb.company_id}"/>"><img style="background-size: cover;background-position: center;max-width: 220px;" src="<c:url value="/${bb.companyBean.company_iconpath}"/>"></a>
-          <h5>${bb.companyBean.company_name}<i class="fas fa-star fa-lg" style="position: absolute;right:20px;color:#F5C6AA;"></i>
-            <p class="point">4.5</p>
-          </h5>
+          <h5>${bb.companyBean.company_name}</h5>
           <p><i class="fas fa-map-pin"></i>&nbsp;&nbsp;&nbsp;${bb.companyBean.trade_name}</p>
         </div>
         </c:forEach>

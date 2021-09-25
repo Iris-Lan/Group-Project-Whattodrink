@@ -117,3 +117,24 @@ $("#register_next2").click(function (e) {
      }
   }
 });
+
+
+
+
+
+$("#resend").click(function () {
+	
+	 $("#register2_warn").html(`已重新發送，請至信箱確認`);
+       $.ajax({
+         url: "https://whattodrink.herokuapp.com/_01_register/register.do",
+         type: "POST",
+         data: "step=9"+"&"+$("#register1").serialize(),
+         success(res) {
+     
+         },
+       });
+     
+});
+
+
+

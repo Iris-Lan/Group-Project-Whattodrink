@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import _01_Register.c_01_register.model.CustomerBean;
+import _04_ShoppingCart.model.OrderBean;
 
 public interface CustomerService {
 
@@ -44,4 +45,7 @@ public interface CustomerService {
 
 	List<Map<String, Object>> findAllCurrentOrdersByCustomerId(Integer customer_id);
 
+	List<OrderBean> findTodayOrdersByCustomerId(Integer customer_id);
+	
+	List<OrderBean> findAllDeleteOrdersByCustomerId(Integer customer_id);
 }

@@ -22,6 +22,7 @@
     />
 
     <link rel="stylesheet" href="<c:url value="/_07_Others/c__07_others_healthReminder/healthReminder.css"/>" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <style>
     /* remove number input spinner */
@@ -64,6 +65,7 @@
                 min="30"
                 max="150"
                 id="weight"
+                value="${CLoginOK.weight}" 
               />kg</span
             >
           </form>
@@ -264,7 +266,7 @@
       </div>
     </footer>
     <!-- footer end -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

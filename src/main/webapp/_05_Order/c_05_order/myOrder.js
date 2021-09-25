@@ -3,7 +3,8 @@ $(document).ready(function() {
 		type: "GET",
 		url: "https://whattodrink.herokuapp.com/C_myOrderHistory",
 		dataType: "json",
-		caahe: false,
+		cache: false,
+		async:false,
 		success: function(response) {
 			renderHTML(response);
 		},
@@ -12,7 +13,7 @@ $(document).ready(function() {
 	//過去的訂單
 	function renderHTML(data) {
 		var str = "";
-		for (var i = 0; i < data.length; i++) {
+		for (var i = 0; i < data.length-1; i++) {
 			str += `
       <div class="row">
       <div class="col-sm-2">
@@ -185,9 +186,10 @@ $(document).ready(function() {
             </div>
             <hr class="my-4" style="background-color: black" />
           `;
-					newOrd.insertAdjacentHTML("afterend", str2);
+					
 				}
 			}
+				newOrd.insertAdjacentHTML("afterend", str2);
 
 			//開啟號碼牌modal
 			const modifyModal = document.getElementById("number");

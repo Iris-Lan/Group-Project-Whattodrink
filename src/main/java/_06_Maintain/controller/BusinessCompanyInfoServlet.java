@@ -44,8 +44,8 @@ public class BusinessCompanyInfoServlet extends HttpServlet {
 		details.put("bg_iconpath", companyBean.getBg_iconpath());
 		details.put("business_name", companyBean.getBusiness_name());
 		String companyBeanJson = JSON.toJSONString(details);
-		response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
 		response.setDateHeader("Expires", 0);
+		response.setHeader("Cache-Control", "no-store");
 		response.setHeader("Pragma", "no-cache");
 		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().write(companyBeanJson);
@@ -127,6 +127,9 @@ public class BusinessCompanyInfoServlet extends HttpServlet {
 		}
 		if (type == 3 || type == 4) {
 			// 更新圖片是一般的form表單 可以直接透過後端跳轉頁面
+			response.setDateHeader("Expires", 0);
+			response.setHeader("Cache-Control", "no-store");
+			response.setHeader("Pragma", "no-cache");
 			response.sendRedirect(request.getContextPath() + "/_06_Maintain/b_06_maintain/1_business_company_info.jsp");
 		}
 		

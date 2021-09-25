@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
   });
   //限制必填項
-  $("[name=price_L]").change(function () {
+ $("[name=price_L]").change(function () {
     if ($("[name=price_L]").val() != "") {
       $("[name=cal_L]").attr("required", true);
     } else {
@@ -40,6 +40,22 @@ $(document).ready(function () {
       $("[name=cal_M]").attr("required", true);
     } else {
       $("[name=cal_M]").attr("required", false);
+    }
+  });
+
+  $("[name=cal_L]").change(function () {
+    if ($("[name=cal_L]").val() != "") {
+      $("[name=price_L]").attr("required", true);
+    } else {
+      $("[name=cal_L]").attr("required", false);
+    }
+  });
+
+  $("[name=cal_M]").change(function () {
+    if ($("[name=cal_M]").val() != "") {
+      $("[name=price_M]").attr("required", true);
+    } else {
+      $("[name=price_M]").attr("required", false);
     }
   });
 

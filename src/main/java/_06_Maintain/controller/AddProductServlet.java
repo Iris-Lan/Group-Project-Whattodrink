@@ -113,9 +113,15 @@ public class AddProductServlet extends HttpServlet {
 		// CategoryBean
 		CategoryBean categoryBean = drinkService.findByCategory_id(catagory_id);
 
-		// picture
-		String dirPath = "C:/_JSP/workspace" + getServletContext().getContextPath() + "/images/"
-				+ companyBean.getCompany_id();
+		// picture old
+//		String dirPath = "C:/_JSP/workspace" + getServletContext().getContextPath() + "/images/"
+//				+ companyBean.getCompany_id();
+		// picture new
+		String dirPath = "C:/_JSP/workspace"+ 
+				   getServletContext().getContextPath() + 
+				   "/src/main/webapp/images/" +
+				   companyBean.getCompany_id();
+		
 
 		String picName = dirPath + "/" + pro_name + ".jpg";
 
@@ -322,6 +328,7 @@ public class AddProductServlet extends HttpServlet {
 				sugarLimitBeanL.setSugar_id(sugar_id);
 				sugarLimitBeanL.setDrinkBean(newDrinkBeanL);
 				sugarLimitBeanL.setSugarLevelBean(sugarLevelBean);
+				sugarLimitBeanL.setEnabled(true);
 				drinkService.saveSugarLimitBean(sugarLimitBeanL);
 			}
 		}
@@ -335,6 +342,7 @@ public class AddProductServlet extends HttpServlet {
 				sugarLimitBeanM.setSugar_id(sugar_id);
 				sugarLimitBeanM.setDrinkBean(newDrinkBeanM);
 				sugarLimitBeanM.setSugarLevelBean(sugarLevelBean);
+				sugarLimitBeanM.setEnabled(true);
 				drinkService.saveSugarLimitBean(sugarLimitBeanM);
 			}
 		}	
@@ -351,6 +359,7 @@ public class AddProductServlet extends HttpServlet {
 					tempLimitBeanL.setTemp_id(i);
 					tempLimitBeanL.setTempLevelBean(tempLevelBean);
 					tempLimitBeanL.setDrinkBean(newDrinkBeanL);
+					tempLimitBeanL.setEnabled(true);
 					drinkService.saveTempLimitBean(tempLimitBeanL);
 				}
 			} else if (temp.compareTo("ice") == 0) {
@@ -362,6 +371,7 @@ public class AddProductServlet extends HttpServlet {
 					tempLimitBeanL.setTemp_id(i);
 					tempLimitBeanL.setTempLevelBean(tempLevelBean);
 					tempLimitBeanL.setDrinkBean(newDrinkBeanL);
+					tempLimitBeanL.setEnabled(true);
 					drinkService.saveTempLimitBean(tempLimitBeanL);
 				}
 			} else if (temp.compareTo("both") == 0) {
@@ -373,6 +383,7 @@ public class AddProductServlet extends HttpServlet {
 					tempLimitBeanL.setTemp_id(i);
 					tempLimitBeanL.setTempLevelBean(tempLevelBean);
 					tempLimitBeanL.setDrinkBean(newDrinkBeanL);
+					tempLimitBeanL.setEnabled(true);
 					drinkService.saveTempLimitBean(tempLimitBeanL);
 				}
 			}
@@ -388,6 +399,7 @@ public class AddProductServlet extends HttpServlet {
 					tempLimitBeanM.setTemp_id(i);
 					tempLimitBeanM.setTempLevelBean(tempLevelBean);
 					tempLimitBeanM.setDrinkBean(newDrinkBeanM);
+					tempLimitBeanM.setEnabled(true);
 					drinkService.saveTempLimitBean(tempLimitBeanM);
 
 				}
@@ -400,6 +412,7 @@ public class AddProductServlet extends HttpServlet {
 					tempLimitBeanM.setTemp_id(i);
 					tempLimitBeanM.setTempLevelBean(tempLevelBean);
 					tempLimitBeanM.setDrinkBean(newDrinkBeanM);
+					tempLimitBeanM.setEnabled(true);
 					drinkService.saveTempLimitBean(tempLimitBeanM);
 				}
 			} else if (temp.compareTo("both") == 0) {
@@ -411,6 +424,7 @@ public class AddProductServlet extends HttpServlet {
 					tempLimitBeanM.setTemp_id(i);
 					tempLimitBeanM.setTempLevelBean(tempLevelBean);
 					tempLimitBeanM.setDrinkBean(newDrinkBeanM);
+					tempLimitBeanM.setEnabled(true);
 					drinkService.saveTempLimitBean(tempLimitBeanM);
 				}
 			}

@@ -200,7 +200,7 @@
       <div class="col-sm-1"></div>
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-          <img src="../images/landing0.png" class="card-img-top" alt="..." height="200px">
+          <img src="<c:url value='/images/landing0.png'/>" class="card-img-top" alt="..." height="200px">
           <div class="card-body">
             <p class="card-text">分享你的邀請碼!雙方都能獲得50元優惠券 趕快來註冊吧
               </p>
@@ -209,7 +209,7 @@
       </div>
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-          <img src="../images/landing2.png" class="card-img-top" alt="..." height="200px">
+          <img src="<c:url value='/images/landing2.png'/>" class="card-img-top" alt="..." height="200px">
           <div class="card-body">
             <p class="card-text">雖然熱愛飲料，但也不忘保持健康，來看看今日的嗜糖紀錄吧 !</p>
           </div>
@@ -217,7 +217,7 @@
       </div>
       <div class="col-sm-3 d-flex justify-content-center align-items-center">
         <div class="card" style="width: 18rem;">
-          <img src="../images/landing3.png" class="card-img-top" alt="..." height="200px">
+          <img src="<c:url value='/images/landing3.png'/>" class="card-img-top" alt="..." height="200px">
           <div class="card-body">
             <p class="card-text">買飲料但怕踩雷 ? 別擔心 ! 先來看看飲品評論吧</p>
           </div>
@@ -243,7 +243,7 @@
       <div class="row">
         <div class="col-sm-1"></div>
         <div class="footer-content logo col-sm-5 m-0">
-          <a href=""><img src="../images/logo.png" alt="logo" class="small-logo" /></a>
+          <a href=""><img src="<c:url value='/images/logo.png'/>" alt="logo" class="small-logo" /></a>
           <div class="app_download">
             <a href="" class="text-dark text-decoration-none"><span class="border border-1 rounded-1 p-1 border-dark"><i
                   class="fab fa-google-play me-1"></i>應用程式</span></a>

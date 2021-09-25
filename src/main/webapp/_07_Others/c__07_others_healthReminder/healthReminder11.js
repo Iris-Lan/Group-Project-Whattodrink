@@ -5,6 +5,7 @@ $(document).ready(function () {
     url: "https://whattodrink.herokuapp.com/HealthReminderServlet",
     dataType: "json",
     success: function (response) {
+	console.log(response[0].weight);
       var weight = response[0].weight;
       var calTotal = 0;
       var str = "";

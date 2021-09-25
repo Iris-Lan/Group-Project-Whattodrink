@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import _00_init.utils.HibernateUtils;
 import _01_Register.c_01_register.dao.CustomerDao;
 import _01_Register.c_01_register.model.CustomerBean;
+import _04_ShoppingCart.model.OrderBean;
 import _07_Others.service.CommentService;
 import _07_Others.service.serviceImpl.CommentServiceImpl;
 
@@ -313,5 +314,46 @@ public class CustomerDaoImpl implements CustomerDao {
 			list.add(map);
 		}
 		return list;
+	}
+	
+	@Override
+	public List<OrderBean> findAllDeleteOrdersByCustomerId(Integer customer_id) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM OrderBean o WHERE o.customer_id = :customer_id AND o.orderStatus = '取消' ORDER BY o.order_date DESC";
+		List<OrderBean> list = session.createQuery(hql, OrderBean.class).setParameter("customer_id", customer_id).getResultList();
+		return list;
+	}
+	
+	@Override
+	public List<OrderBean> findTodayOrdersByCustomerId(Integer customer_id) {
+		Session session = factory.getCurrentSession();
+
+		String hql = "FROM OrderBean o WHERE o.customer_id = :customer_id AND o.orderStatus in ('待製作','可領取','待確認') AND ifnull(o.order_text, ' ') != '商家刪除資料' ORDER BY o.order_date DESC";
+		List<OrderBean> list1 = session.createQuery(hql, OrderBean.class).setParameter("customer_id", customer_id)
+				.getResultList();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Timestamp nowTimestamp = new Timestamp(System.currentTimeMillis());
+		String nowDate = sdf.format(nowTimestamp);
+		System.out.println("------------------");
+		System.out.println("nowDate" + nowDate);
+		System.out.println("------------------");
+
+		List<OrderBean> list2 = new LinkedList<OrderBean>();
+		for (int i = 0; i < list1.size(); i++) {
+			OrderBean o = list1.get(i);
+//			String orderTime = sdf.format(list1.get(i).getOrder_date());
+			String orderTime = sdf.format(o.getOrder_date());
+//			String orderDate = orderTime.substring(1, 11);
+			System.out.println("------------------");
+			System.out.println("orderDate" + orderTime);
+			System.out.println("------------------");
+			if (orderTime.compareTo(nowDate) == 0) {
+				list2.add(o);
+				System.out.println(o);
+			}
+		}
+
+		return list2;
 	}
 }

@@ -27,8 +27,8 @@ public class HealthReminderServlet extends HttpServlet {
 		CustomerBean customerBean = (CustomerBean) session.getAttribute("CLoginOK");
 		ItemService itemService = new ItemServiceImpl();
 		String healthReminder = itemService.getHealthReminderByCustomerId(customerBean.getCustomer_id());
-		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write(healthReminder);
+			response.setContentType("application/json;charset=UTF-8");
+			response.getWriter().write(healthReminder);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

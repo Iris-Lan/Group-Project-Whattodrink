@@ -85,6 +85,7 @@ public class DeleteProductServlet extends HttpServlet {
 			Timestamp ts = new Timestamp(date.getTime());
 			DrinkBean drinkBean = drinkService.findById(product_id);
 			drinkBean.setAlter_date(ts);
+			drinkBean.setEnabled(false);
 			drinkService.updateDrink(drinkBean);
 			System.out.println("7. ===========================");
 			System.out.println("product_id: " + product_id + "已刪除(enabled欄位改為FALSE)。");

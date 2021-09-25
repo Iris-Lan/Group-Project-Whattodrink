@@ -107,8 +107,9 @@ public class UpdateProductServlet2 extends HttpServlet {
 			drinkBean2.setProduct_picpath(drinkBean.getProduct_picpath());
 		} else {
 			// 有上傳新圖檔
-			String dirPath = "C:/_JSP/workspace" + getServletContext().getContextPath() + "/images/"
+			String dirPath = "C:/_JSP/workspace" + getServletContext().getContextPath() + "/src/main/webapp/images/"
 					+ companyBean.getCompany_id();
+
 			String toppingName = request.getParameter("pro_name");
 			String picName = dirPath + "/" + toppingName + ".jpg";
 			Part part = request.getPart("proImg");

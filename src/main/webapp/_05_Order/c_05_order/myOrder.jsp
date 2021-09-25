@@ -22,7 +22,7 @@
     />
 
     <link rel="stylesheet" href="<c:url value="/_05_Order/c_05_order/myOrder.css" />" />
-    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       .text-secondary {
         margin: unset;
@@ -62,7 +62,7 @@
           <!-- waiting order -->
           <h4 class="mb-4 mt-5 d-none" id="newOrd">目前的訂單</h4>
           <!-- past order -->
-          <h4 class="mb-4" id="oldOrd">過去的訂單</h4>
+          <h4 class="mb-4 mt-5" id="oldOrd">過去的訂單</h4>
         </div>
       </div>
     </div>
@@ -306,17 +306,47 @@
       </div>
     </footer>
     <!-- footer end -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
     <script src="<c:url value="/_05_Order/c_05_order/myOrder.js" />"></script>
-    <script>
+
+     
+     
+      <script>
+      $.ajax({
+        url: "https://whattodrink.herokuapp.com/C_myOrderDelete",
+        type: "GET",
+        dataType: "JSON",
+        async:false,
+        success: function (result) {
+        	console.log(result);
+      
+          var timoutId = setInterval(function () {
+        	 
+        	  
+            if (result.orderStatus == "取消") {
+             	   alert(`訂單編號：\${result.orderId}，因為店家考量已經取消，請重新訂購`);
+
+              console.log(timoutId);
+              clearInterval(timoutId);
+              // window.location.assign("");
+            }
+          }, 1000);
+        },
+      });
+      
+      
+      
+      
+      
+      
+      
       //複製號碼牌
       function copy() {
-        alert();
         var content = "取餐時間" + $("#t").text() + "取餐編號" + $("#n").text();
         navigator.clipboard
           .writeText(content)

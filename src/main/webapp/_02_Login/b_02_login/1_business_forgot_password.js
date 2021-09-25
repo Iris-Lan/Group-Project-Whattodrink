@@ -221,7 +221,7 @@ $(function () {
             window.location.assign(
               "https://whattodrink.herokuapp.com/_02_Login/b_02_login/1_business_login.jsp"
             );
-          }, 5000);
+          }, 3000);
         }
       },
     });

@@ -30,8 +30,16 @@ function loadData(data) {
   $("#tax_id_number").val(tax_id_number);
   $("#tel").val(tel);
 
-  var pic1 = `<img src="../../${data.company_iconpath}" style="max-width: 100%; max-height: 100%" id="pic1"/>`;
-  var pic2 = `<img src="../../${data.bg_iconpath}" style="max-width: 100%; max-height: 100%" id="pic2"/>`;
+
+
+function getRandom(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+};
+
+
+
+  var pic1 = `<img src="../../${data.company_iconpath}?yui=${getRandom(0,1000)}" style="max-width: 100%; max-height: 100%" id="pic1"/>`;
+  var pic2 = `<img src="../../${data.bg_iconpath}?yui=${getRandom(0,1000)}" style="max-width: 100%; max-height: 100%" id="pic2"/>`;
   img1.insertAdjacentHTML("afterbegin", pic1);
   img2.insertAdjacentHTML("afterbegin", pic2);
 }
@@ -152,14 +160,33 @@ $("#check2").click(function (e) {
   var num = $("#num").val();
   var tax_id_number = $("#tax_id_number").val();
   var tel = $("#tel").val();
-  $.ajax({
-    url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=2",
-    type: "POST",
-    data: {
-      person: person,
-      num: num,
-      tax_id_number: tax_id_number,
-      tel: tel,
-    },
-  });
+  if (tax_id_number.length != 8) {
+    if (tax_id_number.length == 0) {
+      $.ajax({
+        url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=2",
+        type: "POST",
+        cache: false,
+        data: {
+          person: person,
+          num: num,
+          tax_id_number: tax_id_number,
+          tel: tel,
+        },
+      });
+    } else {
+      alert("統一編號需為8碼");
+    }
+  } else {
+    $.ajax({
+      url: "https://whattodrink.herokuapp.com/BusinessCompanyInfoServlet?type=2",
+      type: "POST",
+      cache: false,
+      data: {
+        person: person,
+        num: num,
+        tax_id_number: tax_id_number,
+        tel: tel,
+      },
+    });
+  }
 });

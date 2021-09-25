@@ -29,24 +29,45 @@ $(document).ready(function () {
     },
   });
 
-  $("button[type=submit]").click(function (e) {
-    e.preventDefault();
-    var payment = $("input[name=payment]:checked").val();
-    var taxId = $("#taxId").val();
-    var discount = $("input[ name=invitationDiscount]:checked").val();
-    $.ajax({
-      type: "POST",
-      url: "https://whattodrink.herokuapp.com/_05_Order/preConfirmOrderServlet",
-      data: {
-        payment: payment,
-        taxId: taxId,
-        invitationDiscount: discount,
-      },
-      success: function () {
-        window.location.assign(
-          "https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
-        );
-      },
-    });
-  });
+	$("button[type=submit]").click(function(e) {
+		e.preventDefault();
+		var payment = $("input[name=payment]:checked").val();
+		var taxId = $("#taxId").val();
+		var discount = $("input[ name=invitationDiscount]:checked").val();
+		if ($("#taxId").val().length != 8) {
+			if ($("#taxId").val().length == 0) {
+				$.ajax({
+					type: "POST",
+					url: "https://whattodrink.herokuapp.com/_05_Order/preConfirmOrderServlet",
+					data: {
+						payment: payment,
+						taxId: taxId,
+						invitationDiscount: discount,
+					},
+					success: function() {
+						window.location.assign(
+							"https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
+						);
+					},
+				});
+			} else {
+				alert("統一編號須為8碼")
+			}
+		} else {
+			$.ajax({
+				type: "POST",
+				url: "https://whattodrink.herokuapp.com/_05_Order/preConfirmOrderServlet",
+				data: {
+					payment: payment,
+					taxId: taxId,
+					invitationDiscount: discount,
+				},
+				success: function() {
+					window.location.assign(
+						"https://whattodrink.herokuapp.com/_04_ShoppingCart/confirmOrderPage.jsp"
+					);
+				},
+			});
+		}
+	});
 });

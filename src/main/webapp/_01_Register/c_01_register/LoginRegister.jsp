@@ -125,9 +125,9 @@
             <span
               style="font-size: 14px; color: rgb(247, 70, 70)"
               id="register2_warn"
-              >驗證碼輸入錯誤</span
+              ></span
             >
-            <a href="" id="forget" style="color: black">重寄驗證碼</a>
+            <u style="color: black; cursor: pointer;" id="resend">重寄驗證碼</u>
             <button type="submit" class="sub-btn" id="register_next1">
               下一步
             </button>
@@ -140,7 +140,7 @@
               class="input_field"
               id="password1_register"
               name="password1_register"
-              placeholder="請自訂密碼(至少8碼且要有大小字母以及數字)"
+              placeholder="請自訂密碼(至少8碼且有大小字母及數字)"
               required
             />
 

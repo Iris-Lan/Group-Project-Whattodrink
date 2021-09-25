@@ -45,11 +45,11 @@ public class ShoppingCart {
 		} else {
 			// 如果cart已有相同冰度 甜度 配料 傳情 備註內容的飲料資料，則『加購』
 			for (Integer key : cart.keySet()) {
-				if (itemBean.getProduct_id().equals(cart.get(key).getProduct_id())
-						&& itemBean.getSugar_id().equals(cart.get(key).getSugar_id())
-						&& itemBean.getTemp_id().equals(cart.get(key).getTemp_id())
-						&& itemBean.getMessage().trim().equals(cart.get(key).getMessage().trim())
-						&& itemBean.getNote().trim().equals(cart.get(key).getNote().trim())) {
+				if (itemBean.getProduct_id().equals(cart.get(key).getProduct_id()) &&
+					itemBean.getSugar_id().equals(cart.get(key).getSugar_id()) 	&& 
+					itemBean.getTemp_id().equals(cart.get(key).getTemp_id()) && 
+					itemBean.getMessage().trim().equals(cart.get(key).getMessage().trim()) 	&& 
+					itemBean.getNote().trim().equals(cart.get(key).getNote().trim())) {
 
 					if (itemBean.getItemToppings().size() == cart.get(key).getItemToppings().size()) {
 						Collection<Integer> oldList = new ArrayList<>();
@@ -62,6 +62,7 @@ public class ShoppingCart {
 						}
 						if (oldList.containsAll(newList)) {
 							cart.get(key).setQuantity(cart.get(key).getQuantity() + itemBean.getQuantity());
+							cart.get(key).setPrice(cart.get(key).getPrice() + itemBean.getPrice());
 							return;
 						}
 					}
@@ -160,4 +161,38 @@ public class ShoppingCart {
 	public String getCompanyTradeName() {return getShoppingCart().get(getShoppingCart().keySet().iterator().next()).getDrinkBean().getCompanyBean().getTrade_name();}; 
 	public String getCompanyAddress() {return getShoppingCart().get(getShoppingCart().keySet().iterator().next()).getDrinkBean().getCompanyBean().getCompany_address();}; 
 
+	
+	
+	//test
+	public boolean isSame(ItemBean itemBean) {
+		if (cart.isEmpty()) {
+			return false;
+		} else {
+			// 如果cart已有相同冰度 甜度 配料 傳情 備註內容的飲料資料，則true
+			for (Integer key : cart.keySet()) {
+				if (itemBean.getProduct_id().equals(cart.get(key).getProduct_id()) &&
+					itemBean.getSugar_id().equals(cart.get(key).getSugar_id()) 	&& 
+					itemBean.getTemp_id().equals(cart.get(key).getTemp_id()) && 
+					itemBean.getMessage().trim().equals(cart.get(key).getMessage().trim()) 	&& 
+					itemBean.getNote().trim().equals(cart.get(key).getNote().trim())) {
+
+					if (itemBean.getItemToppings().size() == cart.get(key).getItemToppings().size()) {
+						Collection<Integer> oldList = new ArrayList<>();
+						for (ItemToppingBean bean : cart.get(key).getItemToppings()) {
+							oldList.add(bean.getTopping_id());
+						}
+						Collection<Integer> newList = new ArrayList<>();
+						for (ItemToppingBean bean : itemBean.getItemToppings()) {
+							newList.add(bean.getTopping_id());
+						}
+						if (oldList.containsAll(newList)) {
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+
+		}
+	}
 }

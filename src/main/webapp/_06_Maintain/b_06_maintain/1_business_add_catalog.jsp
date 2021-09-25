@@ -141,65 +141,109 @@
 	</footer>
 	<!-- footer end -->
 
-	<!-- hamburger menu -->
-	<div class="offcanvas offcanvas-start d-flex flex-column"
-		id="hamburgerMenu" style="width: 300px; padding: 10px" tabindex="-1">
+	    <!-- hamburger menu -->
+		<div
+		class="offcanvas offcanvas-start d-flex flex-column"
+		id="hamburgerMenu"
+		style="width: 300px; padding: 10px"
+		tabindex="-1"
+	  >
 		<div class="offcanvas-header">
-			<button type="button" class="btn-close text-reset"
-				data-bs-dismiss="offcanvas"></button>
+		  <button
+			type="button"
+			class="btn-close text-reset"
+			data-bs-dismiss="offcanvas"
+		  ></button>
 		</div>
 		<div class="offcanvas-body lh-base">
-			<div class="d-block" style="height: 70vh">
-				<div>
-					<i class="fas fa-user-circle mb-4" style="font-size: xxx-large"></i>
-				</div>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_05_Order/b_05_order/1_business_orders.jsp"/>">待處理訂單</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_06_Maintain/b_06_maintain/1_business_company_info.jsp"/>">店家資訊</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_06_Maintain/b_06_maintain/1_business_product_list.jsp"/>">商品列表</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_06_Maintain/b_06_maintain/1_business_add_products.jsp"/>">新增商品</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_06_Maintain/b_06_maintain/1_business_add_addOn.jsp"/>">新增配料</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_06_Maintain/b_06_maintain/1_business_add_catalog.jsp"/>">新增分類</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_07_Others/b_07_other/1_business_report.jsp"/>">每月報表</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-dark text-decoration-none"
-						href="<c:url value="/_05_Order/b_05_order/1_business_order_history.jsp"/>">歷史訂單</a>
-				</h6>
-				<h6 class="fw-normal">
-					<a class="link-secondary text-decoration-none"
-						href="<c:url value="/_02_Login/b_02_login/1_business_login.jsp"/>">登出</a>
-				</h6>
+		  <div class="d-block" style="height: 70vh">
+			<div>
+			  <i class="fas fa-user-circle mb-4" style="font-size: xxx-large"></i>
 			</div>
-			<div class="d-flex flex-column">
-				<a href="" class="logo"><img
-					src="<c:url value="/images/logo.png"/>" alt="logo" /></a> <a href=""
-					class="text-dark text-decoration-none app_download"><span
-					class="border border-1 rounded-1 p-1 border-dark"
-					style="width: fit-content"><i
-						class="fab fa-google-play me-1"></i>應用程式</span></a>
-			</div>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_05_Order/b_05_order/1_business_orders.jsp"/>"
+				>待處理訂單</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_06_Maintain/b_06_maintain/1_business_company_info.jsp"/>"
+				>店家資訊</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"/>"
+				>飲品列表</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp"/>"
+				>配料列表</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_06_Maintain/b_06_maintain/1_business_add_products.jsp"/>"
+				>新增商品</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_06_Maintain/b_06_maintain/1_business_add_addOn.jsp"/>"
+				>新增配料</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_06_Maintain/b_06_maintain/1_business_add_catalog.jsp"/>"
+				>新增分類</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_07_Others/b_07_other/1_business_report.jsp"/>"
+				>每日報表</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-dark text-decoration-none"
+				href="<c:url value="/_05_Order/b_05_order/1_business_order_history.jsp"/>"
+				>歷史訂單</a
+			  >
+			</h6>
+			<h6 class="fw-normal">
+			  <a
+				class="link-secondary text-decoration-none"
+				href="<c:url value="/_02_Login/b_02_login/1_business_login.jsp"/>"
+				>登出</a
+			  >
+			</h6>
+		  </div>
+		  <div class="d-flex flex-column">
+			<a href="" class="logo"><img src="<c:url value="/images/logo.png"/>" alt="logo" /></a>
+			<a href="" class="text-dark text-decoration-none app_download"
+			  ><span
+				class="border border-1 rounded-1 p-1 border-dark"
+				style="width: fit-content"
+				><i class="fab fa-google-play me-1"></i>應用程式</span
+			  ></a
+			>
+		  </div>
 		</div>
-	</div>
+	  </div>
+  
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script

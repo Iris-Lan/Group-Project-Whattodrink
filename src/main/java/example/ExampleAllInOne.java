@@ -162,6 +162,9 @@ public class ExampleAllInOne {
 			DrinkBean drinkBean = drinkService.findById(bean.getProduct_id());
 			for(ItemToppingBean toppingBean : toppings) {
 				toppingName += toppingBean.getToppingBean().getTopping_name() + " ";
+				
+				//test
+				System.out.println(toppingName);
 			}
 			
 			itemName += drinkBean.getProduct_name() + "    " + toppingName + "    x" + bean.getQuantity() + "    " + bean.getPrice() + "元#";

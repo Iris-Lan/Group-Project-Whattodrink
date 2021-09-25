@@ -51,9 +51,8 @@
         <Input type='hidden' name='startTime' value='${fn:substring(bb.companyBean.start_time,0,5)}'/>
         <Input type='hidden' name='endTime' value='${fn:substring(bb.companyBean.end_time,0,5)}'/>
         <Input type='hidden' name='company' value='${bb.product_id}'/>
-          <img src="<c:url value='/images/冷露歐蕾.jpg'/>" style="width: 180px;" alt="">
-          <h5>${bb.product_name}${bb.capacity}</i>
-          </h5>
+          <img src="<c:url value='/${bb.product_picpath}'/>" style="width: 180px;" alt="">
+          <h5>${bb.product_name}${bb.capacity}</h5>
           <p>$${bb.product_price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${bb.product_cal}cal</p>
           <p><i class="fas fa-street-view"></i>${bb.companyBean.distance}公尺</p>
           <p> <a href="<c:url value="/_03_ListDrinks/StorePage?companyId=${bb.companyBean.company_id}"/>" style="color: black;">${bb.companyBean.company_name}${bb.companyBean.trade_name}</a></p>
@@ -183,7 +182,7 @@
 							<tr>
 								<td class="d-flex justify-content-between align-items-center">
 									<input class="min" name="" type="button" /> <input
-									class="text_box" name="" type="text" id="quantity" value="1" /> <input
+									class="text_box" name="" type="text" id="quantity" value="1" readonly/> <input
 									class="add" name="" type="button" />
 								</td>
 							</tr>
@@ -239,93 +238,6 @@
 <!-- clear shopping Modal end-->
 
 
-
-  <!-- review Modal -->
-  <div class="modal fade" id="review" tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">過去的評價</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-10 mx-auto">
-              <div class="row mb-3">
-                <div class="col-sm-6">
-                  <img
-                    class="ratio ratio-4x3"
-                    src="https://picsum.photos/400/300/?blur=2"
-                    style="max-width: fit-content"
-                  />
-                </div>
-                <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
-                  <div class="rating_stars my-1">
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                  </div>
-                  <p class="m-0">洛神味很讚讚</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-10 mx-auto">
-              <div class="row mb-3">
-                <div class="col-sm-6">
-                  <img
-                    class="ratio ratio-4x3"
-                    src="https://picsum.photos/400/300/?blur=2"
-                    style="max-width: fit-content"
-                  />
-                </div>
-                <div class="col-sm-6">
-                  <p class="fw-bold fs-5 m-0">洛神冰茶</p>
-                  <div class="rating_stars my-1">
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#" class="text-warning text-decoration-none">
-                      <i class="fas fa-star"></i>
-                    </a>
-                  </div>
-                  <p class="m-0">好ㄏ</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Modal(sharecode) start-->
   <div class="modal fade" id="sharecode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

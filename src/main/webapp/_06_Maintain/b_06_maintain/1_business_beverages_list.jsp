@@ -21,6 +21,19 @@
       referrerpolicy="no-referrer"
     />
  <link rel="stylesheet" href="<c:url value="/_06_Maintain/b_06_maintain/style.css"/>" />
+ <style>
+ /* Chrome, Safari, Edge, Opera */
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+ </style>
   </head>
   <body>
      <!-- header start -->
@@ -133,7 +146,7 @@
     </footer>
     <!-- footer end -->
 
-  <!-- hamburger menu -->
+    <!-- hamburger menu -->
     <div
       class="offcanvas offcanvas-start d-flex flex-column"
       id="hamburgerMenu"
@@ -169,8 +182,15 @@
           <h6 class="fw-normal">
             <a
               class="link-dark text-decoration-none"
-              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_product_list.jsp"/>"
-              >商品列表</a
+              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_beverages_list.jsp"/>"
+              >飲品列表</a
+            >
+          </h6>
+          <h6 class="fw-normal">
+            <a
+              class="link-dark text-decoration-none"
+              href="<c:url value="/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp"/>"
+              >配料列表</a
             >
           </h6>
           <h6 class="fw-normal">

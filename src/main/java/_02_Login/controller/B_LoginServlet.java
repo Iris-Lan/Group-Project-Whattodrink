@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
+import _00_init.utils.GlobalService;
 import _01_Register.b_01_register.model.CompanyBean;
 import _01_Register.b_01_register.service.CompanyService;
 import _01_Register.b_01_register.service.serviceImpl.CompanyServiceImpl;

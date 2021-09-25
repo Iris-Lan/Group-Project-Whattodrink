@@ -231,7 +231,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js" integrity="sha256-sq9BgeqJAlCLfjfAO+2diFGt5O8aIYNrds+yhlpFnvg=" crossorigin="anonymous"></script>
 
 <script>
 
@@ -248,7 +248,14 @@
 
     // 上傳檔案
     $('input[type=file]').change(function (c) {
-
+    	 var image = $("input[type=file]").get(0).files[0].name;
+         var idx = image.lastIndexOf(".");
+         var lastname = image.substring(idx, image.length);
+         var name = lastname.toLowerCase();
+         if (name != ".jpg" && name != ".jpeg" && name!= ".png") {
+           alert("圖片格式錯誤，請重新選擇");
+           $("input[type=file]").val("");
+         }
      
       file = this.files[0];
       // 圖片才處理
@@ -393,7 +400,23 @@ $('#submitbtn').click(function(e){
         data: formData,                    
         type: 'post',
        success: function(data){
-    	   window.location.assign("https://whattodrink.herokuapp.com/_05_Order/c_05_order/myOrder.jsp");
+    	   
+    	   
+    	   
+    	   Swal.fire({
+    		   icon: 'success',
+    		   title: '已送出評論!',
+    		   showConfirmButton: false,
+    		   timer: 2000
+    		 }).then(function() {
+    			 window.location.assign("https://whattodrink.herokuapp.com/_05_Order/c_05_order/myOrder.jsp");
+    		 })
+    		 
+    		 
+    	
+    
+    	   
+    	  
         }
 });
 

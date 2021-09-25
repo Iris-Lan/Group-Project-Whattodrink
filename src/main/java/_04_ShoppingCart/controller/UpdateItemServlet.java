@@ -1,6 +1,8 @@
 package _04_ShoppingCart.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import _03_ListDrinks.model.DrinkBean;
@@ -113,9 +117,51 @@ public class UpdateItemServlet extends HttpServlet {
 			itemBean.setSugarLevelBean(drinkService.findSugarLevelBeanBySugarId(sugar_id));
 			log.info("修改特定購物車列完畢，修改後itemBean為=" + itemBean);
 			
+			
+			
+			// 如果cart已有相同冰度 甜度 配料 傳情 備註內容的飲料資料，就合併
+			for (Integer key : cart.getShoppingCart().keySet()) {
+				if (itemBean.getProduct_id().equals(cart.getShoppingCart().get(key).getProduct_id()) &&
+					itemBean.getSugar_id().equals(cart.getShoppingCart().get(key).getSugar_id()) 	&& 
+					itemBean.getTemp_id().equals(cart.getShoppingCart().get(key).getTemp_id()) && 
+					itemBean.getMessage().trim().equals(cart.getShoppingCart().get(key).getMessage().trim()) 	&& 
+					itemBean.getNote().trim().equals(cart.getShoppingCart().get(key).getNote().trim()) &&
+					cartKey != key) {
+
+					if (itemBean.getItemToppings().size() == cart.getShoppingCart().get(key).getItemToppings().size()) {
+						Collection<Integer> oldList = new ArrayList<>();
+						for (ItemToppingBean bean : cart.getShoppingCart().get(key).getItemToppings()) {
+							oldList.add(bean.getTopping_id());
+						}
+						Collection<Integer> newList = new ArrayList<>();
+						for (ItemToppingBean bean : itemBean.getItemToppings()) {
+							newList.add(bean.getTopping_id());
+						}
+						if (oldList.containsAll(newList)) {
+							cart.getShoppingCart().get(key).setQuantity(cart.getShoppingCart().get(key).getQuantity() + itemBean.getQuantity());
+							cart.getShoppingCart().get(key).setPrice(cart.getShoppingCart().get(key).getPrice() + itemBean.getPrice());
+							cart.deleteItemBean(cartKey);
+							
+							JSONArray priceAndCal = new JSONArray();
+							//修改後的規格和之前的相同時，傳key，不同的傳0
+							priceAndCal.add(cartKey);
+							priceAndCal.add(totalPrice);
+							priceAndCal.add(item_cal);
+							priceAndCal.add(cart.getCartSubTotal());
+							
+							response.getWriter().println(JSON.toJSONString(priceAndCal));
+							return;
+						}
+					}
+				}
+			}
+						
+			
+			
 			cart.addToCart(cartKey, listTemp);
 			
 			JSONArray priceAndCal = new JSONArray();
+			priceAndCal.add(0);
 			priceAndCal.add(totalPrice);
 			priceAndCal.add(item_cal);
 			priceAndCal.add(cart.getCartSubTotal());

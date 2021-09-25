@@ -22,7 +22,7 @@ public class CreateTable_company {
 //		String 	company_name = 			"萬波";
 //		String  company_id = 			companyService.getCompanyId(company_name);
 //		String 	company_account = 		"rrr3333";	
-//		String 	company_password = 		"0000";
+//		String 	company_password = 		"00000000";
 //		String 	company_owner = 		"張三三";
 //		String 	company_owner_email = 	"44@bb.cc";
 //		Time 	start_time = 			Time.valueOf("9:00:00");

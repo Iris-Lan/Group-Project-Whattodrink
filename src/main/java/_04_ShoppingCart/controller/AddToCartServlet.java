@@ -116,7 +116,7 @@ public class AddToCartServlet extends HttpServlet {
 		
 		
 		//set 加上配料的總價格與此杯總cal  cal:修改購物車時前端給add_to_health的杯數值 乘上item_cal(預設是每杯)再set回item_cal
-		itemBean.setPrice((price*quantity));
+		itemBean.setPrice(price*quantity);
 		itemBean.setItem_cal(item_cal);		
 		itemBean.setItemToppings(itemToppingBeanSet);
 		itemBean.setDrinkBean(drinkBean);

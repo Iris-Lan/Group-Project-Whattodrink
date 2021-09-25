@@ -77,7 +77,7 @@ public class UpdateToppingServlet2 extends HttpServlet {
 			toppingBean2.setTopping_picpath(toppingBean.getTopping_picpath());
 		} else {
 			// 有上傳新圖檔
-			String dirPath = "C:/_JSP/workspace" + getServletContext().getContextPath() + "/images/"
+			String dirPath = "C:/_JSP/workspace" + getServletContext().getContextPath() + "/src/main/webapp/images/"
 					+ companyBean.getCompany_id();
 			String toppingName = request.getParameter("toppingName");
 			String picName = dirPath + "/" + toppingName + ".jpg";
@@ -95,7 +95,7 @@ public class UpdateToppingServlet2 extends HttpServlet {
 		System.out.println("5. ===========================");
 		log.info("NEW-toppingBean: " + toppingBean2);
 		System.out.println("6. ===========================");
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/_06_Maintain/b_06_maintain/1_business_toppings_list.jsp");
 		rd.forward(request, response);
 

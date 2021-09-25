@@ -21,7 +21,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/_07_Others/c__07_others_acount/myAccountCoupon.css'/> ">
-
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 </head>
 
 <body>
@@ -40,7 +41,7 @@
 					href="<c:url value="/_07_Others/c__07_others_acount/myAccount.jsp"/>">
 					<h5>帳戶設定</h5>
 				</a> <a
-					href="<c:url value="/_07_Others/c__07_others_acount/myAccountCoupon.jsp"/>">
+					href="<c:url value="/InvitationEnteringServlet"/>">
 					<h5>優惠券</h5>
 				</a>
 			</div>
@@ -197,10 +198,18 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-	<script
-		src="<c:url value="/_07_Others/c__07_others_acount/myAccount.js"/>"></script>
+
+	<script type="text/javascript">
+	
+	//複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+	  document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+	  return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+	</script>
 
 </body>
 

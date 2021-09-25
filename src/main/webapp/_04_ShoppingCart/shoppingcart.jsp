@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -119,7 +120,7 @@
 			</h6>
 
 			<h6 class="fw-normal">
-				<a class="link-secondary text-decoration-none" href="">登出</a>
+				<a class="link-secondary text-decoration-none" href="<c:url value="/C_LogoutServlet"/>">登出</a>
 			</h6>
 		</div>
 		<div class="d-flex flex-column">
@@ -200,28 +201,26 @@
 <Input type='hidden' name='company_id' id="company_id" value='${cart.value.drinkBean.companyBean.company_id}' />
 <Input type='hidden' name='trade_name' id="trade_name" value='${cart.value.drinkBean.companyBean.trade_name}' />
 <Input type='hidden' name='company_address' id="company_address" value='${cart.value.drinkBean.companyBean.company_address}' />
+<Input type='hidden' name='company_address' id="company_start_time" value='${fn:substring(cart.value.drinkBean.companyBean.start_time,0,5)}' />
+<Input type='hidden' name='company_address' id="company_end_time" value='${fn:substring(cart.value.drinkBean.companyBean.end_time,0,5)}' />
             <div class="item" id="${cart.key}item">
           
               <div class="row">
                 <div class="col-2">
                 <Input type='hidden' name='quantity' id="${cart.key}quantity" value='${cart.value.quantity}' />
-                  <select
+                <select
                     class="form-select item-select"
                     name="count"
-                    style="width: 60px; height: 35px"
+                    style="width: 80px; height: 35px"
                     id="${cart.key}quantityoption"
                   >
-                    <option value="0">0</option>
-                    <option value="1" ${cart.value.quantity==1?'selected':''}>1</option>
-                    <option value="2" ${cart.value.quantity==2?'selected':''}>2</option>
-                    <option value="3" ${cart.value.quantity==3?'selected':''}>3</option>
-                    <option value="4" ${cart.value.quantity==4?'selected':''}>4</option>
-                    <option value="5" ${cart.value.quantity==5?'selected':''}>5</option>
-                    <option value="6" ${cart.value.quantity==6?'selected':''}>6</option>
-                    <option value="7" ${cart.value.quantity==7?'selected':''}>7</option>
-                    <option value="8" ${cart.value.quantity==8?'selected':''}>8</option>
-                    <option value="9" ${cart.value.quantity==9?'selected':''}>9</option>
-                    <option value="10" ${cart.value.quantity==10?'selected':''}>10</option>
+                  <c:forEach varStatus="stVar"  begin="0" end="100">
+                  <option value="${stVar.index}" ${cart.value.quantity==stVar.index?'selected':''}>${stVar.index}</option>
+                  
+                  
+                  </c:forEach>
+                  
+                  
                   </select>
                 </div>
                 <div class="col-7 d-flex align-items-end">
@@ -338,7 +337,7 @@
                 class="form-select"
                 id="floatingSelect"
                 name="count"
-                style="width: 60px; height: 35px"
+                style="width: 80px; height: 35px"
               >
               </select>
             </div>
@@ -557,7 +556,7 @@
 							<tr>
 								<td class="d-flex justify-content-between align-items-center">
 									<input class="min" name="" type="button" /> <input
-									class="text_box" name="" type="text" id="quantity" value="1" /> <input
+									class="text_box" name="" type="text" id="quantity" value="1" readonly/> <input
 									class="add" name="" type="button" />
 								</td>
 							</tr>
@@ -672,7 +671,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-    <script src="<c:url value='/_04_ShoppingCart/shoppingcart.js'/>"></script>
+    <script src="<c:url value='/_04_ShoppingCart/shoppingcart1.js'/>"></script>
 
   </body>
 </html>

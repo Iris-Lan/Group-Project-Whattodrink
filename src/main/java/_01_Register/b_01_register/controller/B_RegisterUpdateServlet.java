@@ -1,6 +1,7 @@
 package _01_Register.b_01_register.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import _00_init.utils.GlobalService;
 import _01_Register.b_01_register.model.CompanyBean;
 import _01_Register.b_01_register.service.CompanyService;
 import _01_Register.b_01_register.service.serviceImpl.CompanyServiceImpl;
@@ -52,6 +54,7 @@ public class B_RegisterUpdateServlet extends HttpServlet {
 		//取得商家帳密
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");	
+		String password2 = request.getParameter("password2");	
 		System.out.println(username + " " + password + " " + email);
 //		pattern = Pattern.compile(PASSWORD_PATTERN);
 //		matcher = pattern.matcher(password);
@@ -69,7 +72,7 @@ public class B_RegisterUpdateServlet extends HttpServlet {
 		//確認帳號
 		if(companyService.findByCompanyAccount(username) == null  && username.trim().length() > 0) {
 			response.getWriter().println(gson.toJson("yes"));				
-			if(username != null && password != null &&  password.trim().length() > 0) { //同個請求收到兩個值才能insert
+			if(username != null && password != null &&  password.trim().length() > 0 && password2.trim().length() > 0) { //同個請求收到兩個值才能insert
 //			if(password == null) {
 //				response.getWriter().println(gson.toJson("yes"));				
 //			}else if(username != null && password != null &&  password.trim().length() > 0) { //同個請求收到兩個值才能insert
@@ -78,6 +81,11 @@ public class B_RegisterUpdateServlet extends HttpServlet {
 					CompanyBean cb = companyService.findByCompanyEmail(email);
 					cb.setCompany_account(username);
 					cb.setCompany_password(password);
+					cb.setBg_iconpath("images/noimageCompany.png");
+					cb.setBg_filename("noimageCompany.png");
+					cb.setCompany_filename("noimageCompany.png");
+					cb.setCompany_iconpath("images/noimageCompany.png");
+					cb.setAlter_date(new Timestamp(System.currentTimeMillis()));
 					companyService.updateCompany(cb);
 					gson = new Gson();	
 					response.getWriter().println(gson.toJson("InsertOK"));

@@ -14,6 +14,7 @@ import _01_Register.c_01_register.dao.CustomerDao;
 import _01_Register.c_01_register.dao.daoImpl.CustomerDaoImpl;
 import _01_Register.c_01_register.model.CustomerBean;
 import _01_Register.c_01_register.service.CustomerService;
+import _04_ShoppingCart.model.OrderBean;
 
 
 public class CustomerServiceImpl implements CustomerService {
@@ -347,6 +348,44 @@ public class CustomerServiceImpl implements CustomerService {
 		try {
 			tx = session.beginTransaction();
 			list = customerDao.findAllCurrentOrdersByCustomerId(customer_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return list;
+	}
+	
+	@Override
+	public List<OrderBean> findAllDeleteOrdersByCustomerId(Integer customer_id) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<OrderBean> list = null;
+
+		try {
+			tx = session.beginTransaction();
+			list = customerDao.findAllDeleteOrdersByCustomerId(customer_id);
+			tx.commit();
+		} catch (Exception ex) {
+			if (tx != null)
+				tx.rollback();
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		}
+		return list;
+	}
+	
+	@Override
+	public List<OrderBean> findTodayOrdersByCustomerId(Integer customer_id) {
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		List<OrderBean> list = null;
+
+		try {
+			tx = session.beginTransaction();
+			list = customerDao.findTodayOrdersByCustomerId(customer_id);
 			tx.commit();
 		} catch (Exception ex) {
 			if (tx != null)

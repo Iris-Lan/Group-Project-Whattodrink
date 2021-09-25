@@ -32,28 +32,34 @@
         <div style="width: 300px; margin: 30px auto;text-align: center;">
           <h4><i class="fas fa-key"></i>&nbsp;忘記密碼</h4>
         </div>
-        <form action="" method="POST">
+        <form action="<c:url value='/ForgetPasswordServlet'/>" method="POST" id="form2">
         <div class="d-flex justify-content-center flex-wrap"style="width: 260px; margin: 30px auto;text-align: center;">
-       
-            <input
-              type="text"
-              class="input_field"
-              name="password"
-              placeholder="請輸入新自訂密碼"
-              required
+       <input
+              type="hidden"
+              name="step"
+              value="4"
             />
             <input
-              type="text"
+              type="password"
               class="input_field"
               name="password"
+              placeholder="請輸入新自訂密碼(至少8碼且有大小字母及數字)"
+              required
+              id="password1"
+            />
+            <input
+              type="password"
+              class="input_field"
+              name="password1"
               placeholder="請再次輸入自訂密碼"
               required
+              id="password2"
             />
-            <span style="font-size: 14px; color: rgb(247, 70, 70)"
-              >輸入密碼不一致</span>
+            <span style="font-size: 14px; color: rgb(247, 70, 70)" id="warntext2"
+              ></span>
         </div>
         <div style="width: 360px; margin: auto; text-align: center">
-          <button type="button" style="width: 200px" class="btn btn-dark">
+          <button type="submit" style="width: 200px" class="btn btn-dark" id="checkPassword">
               確認
             </button>
         </div>

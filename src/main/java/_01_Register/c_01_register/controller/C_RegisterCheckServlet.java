@@ -84,20 +84,27 @@ public class C_RegisterCheckServlet extends HttpServlet {
 				response.getWriter().write("4");
 			}
 		} else if (step == 2) {
+			HttpSession session = request.getSession();
 			String verificationCode = request.getParameter("emailpassword_register");
-			if (customerService.existsByAccountAndVerificationCode(customer_phone, verificationCode)) {
+			String customer_verification = (String) session.getAttribute("customer_verification");
+//			if (customerService.existsByAccountAndVerificationCode(customer_phone, verificationCode)) {
+//				response.getWriter().write("0");
+//			} 
+			if (verificationCode.equals(customer_verification)) {
 				response.getWriter().write("0");
 			} else {
 				response.getWriter().write("9");
 			}
 		} else if (step == 9) {
-			CustomerBean customerBean = new CustomerBean();
-			customerBean.setCustomer_account(customer_phone);
-			customerBean.setEmail(customer_email);
+//			CustomerBean customerBean = new CustomerBean();
+//			customerBean.setCustomer_account(customer_phone);
+//			customerBean.setEmail(customer_email);
 			String customer_verification = CreateVerificationCode.getVerificationCode();
-			customerBean.setCustomer_verification(customer_verification);
-			customerService.save(customerBean);
-			SendingEmail.SendVerificationCodeTo(customer_email, "test777");
+			HttpSession session = request.getSession();
+			session.setAttribute("customer_verification", customer_verification);
+//			customerBean.setCustomer_verification(customer_verification);
+//			customerService.save(customerBean);
+			SendingEmail.SendVerificationCodeTo(customer_email, customer_verification);
 		}
 	}
 	

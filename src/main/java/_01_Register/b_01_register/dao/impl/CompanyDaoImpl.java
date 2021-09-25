@@ -19,6 +19,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+
 import _00_init.utils.HibernateUtils;
 import _01_Register.b_01_register.dao.CompanyDao;
 import _01_Register.b_01_register.model.CompanyBean;
@@ -286,7 +288,7 @@ public class CompanyDaoImpl implements Serializable, CompanyDao {
 		log.info("COMPANYID:" + company_id); 
 		Session session = factory.getCurrentSession();
 		String hql = "SELECT o.order_id, o.scheduled_time, o.payment, o.order_quantity, o.order_total, o.orderStatus,o.taxId, o.invitationDiscount "
-				   + "FROM OrderBean o WHERE o.company_id = :id AND o.orderStatus not in ('已領取','取消') ORDER BY o.order_date";
+				   + "FROM OrderBean o WHERE o.company_id = :id AND DATE(o.order_date) = CURDATE() AND o.orderStatus not in ('已領取','取消') ORDER BY o.order_date";
 		List<Object[]> temp = session.createQuery(hql, Object[].class)
 		              .setParameter("id", company_id)
 		              .getResultList();

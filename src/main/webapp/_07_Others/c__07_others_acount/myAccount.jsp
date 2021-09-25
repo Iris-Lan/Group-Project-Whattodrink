@@ -21,7 +21,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/_07_Others/c__07_others_acount/myAccount.css'/> ">
-
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 					href="<c:url value="/_07_Others/c__07_others_acount/myAccount.jsp"/>">
 					<h5>帳戶設定</h5>
 				</a> <a
-					href="<c:url value="/_07_Others/c__07_others_acount/myAccountCoupon.jsp"/>">
+					href="<c:url value="/InvitationEnteringServlet"/>">
 					<h5>優惠券</h5>
 				</a>
 			</div>
@@ -63,12 +63,12 @@
 								<c:choose>
 									<c:when test="${CLoginOK.customer_name==null}">
 										<label>姓名</label>
-										<input type="text" name="name" id="name" required="required">
+										<input type="text" name="name" required="required">
 									</c:when>
 
 									<c:otherwise>
 										<label>姓名</label>
-										<input type="text" name="name" id="name"
+										<input type="text" name="name" 
 											value="${CLoginOK.customer_name}" required="required">
 									</c:otherwise>
 								</c:choose>
@@ -78,12 +78,12 @@
 							<c:choose>
 									<c:when test="${CLoginOK.birthday==null}">
 										<label>生日</label> <input type="date" name="birthday"
-									id="birthday" required="required">
+									 required="required">
 									</c:when>
 
 									<c:otherwise>
 										<label>生日</label> <input type="date" name="birthday"
-									id="birthday" value="${CLoginOK.birthday}" required="required">
+									 value="${CLoginOK.birthday}" required="required">
 									</c:otherwise>
 								</c:choose>
 									
@@ -92,12 +92,12 @@
 							
 							<c:choose>
 									<c:when test="${CLoginOK.weight==null}">
-										<label>體重</label> <input type="number" name="weight" id="weight" required="required"
+										<label>體重</label> <input type="number" name="weight" required="required"
 									>
 									</c:when>
 
 									<c:otherwise>
-										<label>體重</label> <input type="number" name="weight" id="weight" required="required"
+										<label>體重</label> <input type="number" name="weight" required="required"
 									value="${CLoginOK.weight}">
 									</c:otherwise>
 								</c:choose>
@@ -108,12 +108,12 @@
 							
 							<c:choose>
 									<c:when test="${CLoginOK.customer_address==null}">
-										<label>地址</label> <input type="text" name="address" id="address" required="required"
+										<label>地址</label> <input type="text" name="address" required="required"
 									>
 									</c:when>
 
 									<c:otherwise>
-										<label>地址</label> <input type="text" name="address" id="address" required="required"
+										<label>地址</label> <input type="text" name="address"  required="required"
 									value="${CLoginOK.customer_address}">
 									</c:otherwise>
 								</c:choose>
@@ -238,9 +238,49 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="<c:url value="/_07_Others/c__07_others_acount/myAccount.js"/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js" integrity="sha256-sq9BgeqJAlCLfjfAO+2diFGt5O8aIYNrds+yhlpFnvg=" crossorigin="anonymous"></script>
+
+	
+	<script type="text/javascript">
+	
+	//複製邀請碼右方彈跳文字
+	var popoverTriggerList = [].slice.call(
+	  document.querySelectorAll('[data-bs-toggle="popover"]')
+	);
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+	  return new bootstrap.Popover(popoverTriggerEl);
+	});
+
+
+
+$('#save').click(function (e) {
+if (document.getElementById("acountform").checkValidity() == true) {
+	e.preventDefault();
+	Swal.fire({
+		   icon: 'success',
+		   title: '已儲存修改!',
+		   showConfirmButton: false,
+		   timer: 2000
+		 }).then(function() {
+			 $('#acountform').submit();
+		 })
+		 
+
+	
+}
+
+
+
+
+	
+})
+
+
+
+	  
+		 
+		 
+	</script>
 
 </body>
 
