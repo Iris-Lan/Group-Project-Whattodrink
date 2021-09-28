@@ -81,7 +81,7 @@ public class deleteCartServlet extends HttpServlet {
 			int price = drinkBean.getProduct_price();
 			
 			//set ItemBean相關bean
-			ItemBean itemBean = new ItemBean(null, null, product_id, temp_id, sugar_id, capacity, item_cal, price, message, 0, null, quantity, note);
+			ItemBean itemBean = new ItemBean(null, null, product_id, temp_id, sugar_id, capacity, item_cal, price, message, 0, "待製作", quantity, note);
 			
 			//set ItemToppingBean 相關的bean 同時加總該飲料的配料價格與cal
 			Set<ItemToppingBean> itemToppingBeanSet = new HashSet<>();

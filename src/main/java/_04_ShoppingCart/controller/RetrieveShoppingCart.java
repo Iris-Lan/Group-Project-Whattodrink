@@ -51,12 +51,6 @@ public class RetrieveShoppingCart extends HttpServlet {
 			return;
 		}
 		
-//		RequestDispatcher rd = request.getRequestDispatcher("/_04_ShoppingCart/shoppingcart.jsp");
-//		rd.forward(request, response);
-//		return;
-//		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/_04_ShoppingCart/shoppingcart.jsp"));
-//		return;
-		
 		
 	}
 

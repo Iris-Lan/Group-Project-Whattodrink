@@ -74,12 +74,6 @@ public class StorePage extends HttpServlet {
 			storeDrinkBeans.get(i).setAvgStar(avg);	
 		}
 		
-		storeDrinkBeans.forEach(bean -> {
-			System.out.println(bean.getProduct_name());
-			System.out.println(bean.getCategory_id());
-		});
-		
-		
 		
 		session.setAttribute("storeCategoryBeans", storeCategoryBeans);
 		session.setAttribute("storeDrinkBeans", storeDrinkBeans);
