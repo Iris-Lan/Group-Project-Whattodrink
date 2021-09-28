@@ -6,9 +6,9 @@
       driverClassName="com.mysql.cj.jdbc.Driver"
       url="jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_a64c0078cd65816"
       connectionProperties="jdbc:mysql://be8e076a5c8c52:6e2ace50@us-cdbr-east-04.cleardb.com/heroku_a64c0078cd65816?reconnect=true;useUnicode=yes;characterEncoding=utf8;useSSL=false;serverTimezone=Asia/Taipei;useSSL=false;allowPublicKeyRetrieval=true"
-      maxTotal="8"
-      maxIdle="4"
-      maxWaitMillis="5000"
+      maxTotal="15"
+      maxIdle="5"
+      maxWaitMillis="60000"
     />
 
 </Context>
