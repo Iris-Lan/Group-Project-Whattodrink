@@ -188,8 +188,9 @@ $(document).ready(function() {
           `;
 					
 				}
-			}
 				newOrd.insertAdjacentHTML("afterend", str2);
+			}
+				
 
 			//開啟號碼牌modal
 			const modifyModal = document.getElementById("number");
